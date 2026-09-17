@@ -55,10 +55,10 @@ promptmaster-studio = "promptmaster_studio.cli:main"
 promptmaster = "promptmaster_studio.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/promptmaster/promptmaster-studio"
-Documentation = "https://github.com/promptmaster/promptmaster-studio#readme"
-Repository = "https://github.com/promptmaster/promptmaster-studio.git"
-Issues = "https://github.com/promptmaster/promptmaster-studio/issues"
+Homepage = "https://github.com/1nc0gn30/promptmaster-studio"
+Documentation = "https://github.com/1nc0gn30/promptmaster-studio#readme"
+Repository = "https://github.com/1nc0gn30/promptmaster-studio.git"
+Issues = "https://github.com/1nc0gn30/promptmaster-studio/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

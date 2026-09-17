@@ -1,6 +1,6 @@
 """Pure Python standard library HTTP & REST UI Server for PromptMaster Studio.
 
-Serves the Google Material 3 web studio interface and provides REST API endpoints
+Serves the PromptMaster Studio web interface (design influenced by Material 3) and provides REST API endpoints
 for prompt optimization, static linting, template interpolation, token estimation,
 and curriculum knowledge base queries.
 100% Python Standard Library. Zero external runtime dependencies.
@@ -42,7 +42,7 @@ EMBEDDED_HTML_FALLBACK = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Google PromptMaster Studio</title>
+  <title>PromptMaster Studio</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; background: #f8fafd; color: #1f1f1f; }
     h1 { color: #1a73e8; }
@@ -53,7 +53,7 @@ EMBEDDED_HTML_FALLBACK = """<!DOCTYPE html>
   </style>
 </head>
 <body>
-  <h1>Google PromptMaster Studio (Standalone Fallback)</h1>
+  <h1>PromptMaster Studio (Standalone Fallback)</h1>
   <div class="card">
     <textarea id="promptInput" placeholder="Enter prompt to optimize..."></textarea>
     <br>
@@ -146,7 +146,7 @@ class PromptMasterStudioRequestHandler(BaseHTTPRequestHandler):
             self._send_json({
                 "status": "healthy",
                 "version": __version__,
-                "server": "Google PromptMaster Studio",
+                "server": "PromptMaster Studio",
             })
             return
 
@@ -360,7 +360,7 @@ def start_server(
     url = f"http://{host}:{port}/"
 
     print(f"\n=======================================================")
-    print(f"  ⚡ Google PromptMaster Studio v{__version__}")
+    print(f"  ⚡ PromptMaster Studio v{__version__}")
     print(f"  ✨ Studio UI:     {url}")
     print(f"  🛡️ REST Health:   {url}api/health")
     print(f"  📚 Curriculum:    {url}api/curriculum")

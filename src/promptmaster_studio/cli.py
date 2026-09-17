@@ -1176,7 +1176,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_cur.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
 
     # 7. serve
-    p_serve = subparsers.add_parser("serve", help="Launch the Google Material 3 PromptMaster Studio Web UI.")
+    p_serve = subparsers.add_parser("serve", help="Launch the PromptMaster Studio Web UI (design influenced by Material 3).")
     p_serve.add_argument("-p", "--port", type=int, default=8765, help="Port to listen on (default: 8765).")
     p_serve.add_argument("-H", "--host", default="127.0.0.1", help="Host address (default: 127.0.0.1).")
     p_serve.add_argument("--open", action="store_true", help="Open browser automatically.")

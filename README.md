@@ -1,8 +1,8 @@
-# ⚡ Google PromptMaster Studio
+# ⚡ PromptMaster Studio
 
 > **Zero-dependency, high-performance Prompt Engineering, Meta-Optimization, Static Linting & Model Context Protocol (MCP) Suite.**
 
-[![CI](https://github.com/promptmaster/promptmaster-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/promptmaster/promptmaster-studio/actions/workflows/ci.yml)
+[![CI](https://github.com/1nc0gn30/promptmaster-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/promptmaster-studio/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP Compliant](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
@@ -16,7 +16,7 @@
 - [Key Features](#-key-features)
 - [Architecture Diagram](#-architecture-diagram)
 - [Installation & Quickstart](#-installation--quickstart)
-- [Google Material 3 Studio UI](#-google-material-3-studio-ui)
+- [Material 3 Studio UI](#-material-3-studio-ui)
 - [CLI Reference Guide](#-cli-reference-guide)
 - [Model Context Protocol (MCP) Setup](#-model-context-protocol-mcp-setup)
   - [Claude Desktop](#claude-desktop)
@@ -30,7 +30,7 @@
 
 ## 🌟 Overview
 
-**Google PromptMaster Studio** is an enterprise-grade toolkit built strictly with the **Python Standard Library (100% zero external runtime dependencies)**. It elevates prompt design from ad-hoc experimentation into rigorous, testable software engineering.
+**PromptMaster Studio** is an enterprise-grade toolkit built strictly with the **Python Standard Library (100% zero external runtime dependencies)**. It elevates prompt design from ad-hoc experimentation into rigorous, testable software engineering.
 
 PromptMaster Studio provides:
 1. **Meta-Optimization Engine**: Decomposes raw, unstructured instructions into deterministic role personas, XML boundary delimiters, anti-hallucination guardrails, and Chain-of-Thought (CoT) reasoning protocols.
@@ -38,7 +38,7 @@ PromptMaster Studio provides:
 3. **Template Interpolation Compiler**: High-performance compiler supporting `{{ variable }}`, filter pipelines (`| upper`, `| json`, `| bullets`), default fallbacks (`:-default`), conditionals (`{{#if}}`), and iteration (`{{#each}}`).
 4. **Multi-Model Token & Budget Analyzer**: Accurate BPE heuristics calculating token envelopes and API input costs across Anthropic Claude, OpenAI GPT-4o, Google Gemini, and Meta Llama.
 5. **Native MCP Server**: Complete JSON-RPC 2.0 stdio server providing instant tool integration for Claude Desktop, Cursor, and IDE coding agents.
-6. **Material 3 Studio Web UI**: A dual-pane visual development studio with real-time linter meters, live variable interpolation, and interactive curriculum drawers.
+6. **Material 3 Studio Web UI**: A dual-pane visual development studio (design influenced by Material 3) with real-time linter meters, live variable interpolation, and interactive curriculum drawers.
 
 ---
 
@@ -47,7 +47,7 @@ PromptMaster Studio provides:
 ```mermaid
 flowchart TD
     subgraph UI_And_Clients["Client Interfaces"]
-        A1["Google Material 3 Studio UI\n(public/index.html)"]
+        A1["Studio Web UI (Material 3 Inspired)\n(public/index.html)"]
         A2["PromptMaster CLI\n(promptmaster)"]
         A3["MCP Clients\n(Claude Desktop / Cursor / Cline)"]
     end
@@ -108,7 +108,7 @@ python -c "import promptmaster_studio; print('PromptMaster ready!')"
 
 ---
 
-## 🎨 Google Material 3 Studio UI
+## 🎨 Material 3 Studio UI (Design influenced by Material 3)
 
 Launch the embedded visual studio web interface:
 
