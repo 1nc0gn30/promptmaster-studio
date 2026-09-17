@@ -68,6 +68,8 @@ from promptmaster_studio.models import (
 )
 
 __version__ = "1.0.0"
+__author__ = "PromptMaster Studio Team"
+__license__ = "MIT"
 
 # Module singletons for fast top-level access
 _engine = PromptTemplateEngine()
