@@ -217,6 +217,28 @@ class MCPServer:
             handler=self._handle_prompt_diagnostics,
         )
 
+        # 8. prompt_redteam
+        self.register_tool(
+            name="prompt_redteam",
+            description="Simulate multi-turn adversarial red-team jailbreaks against a prompt, compute vulnerability score, and synthesize zero-trust hardened defenses.",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string",
+                        "description": "The prompt or system instructions to adversarial red-team audit.",
+                    },
+                    "auto_harden": {
+                        "type": "boolean",
+                        "default": True,
+                        "description": "Whether to return an auto-hardened prompt with zero-trust boundaries.",
+                    },
+                },
+                "required": ["prompt"],
+            },
+            handler=self._handle_prompt_redteam,
+        )
+
     def register_tool(
         self,
         name: str,
@@ -471,6 +493,50 @@ Estimated Tokens: {result.estimated_tokens_before} -> {result.estimated_tokens_a
                 "curriculum_count": curriculum_count,
                 "models_count": models_count,
                 "status": "HEALTHY",
+            },
+        }
+
+    def _handle_prompt_redteam(self, arguments: Dict[str, Any]) -> Dict[str, Any]:
+        from promptmaster_studio.engine.adversarial_jailbreak import AdversarialRedTeamSimulator
+        prompt_text = arguments.get("prompt", "")
+        auto_harden = arguments.get("auto_harden", True)
+
+        if not prompt_text:
+            raise ValueError("Parameter 'prompt' is required.")
+
+        simulator = AdversarialRedTeamSimulator()
+        report = simulator.simulate(prompt_text)
+
+        lines = [
+            "=== ADVERSARIAL RED-TEAM JAILBREAK REPORT ===",
+            f"Vulnerability Score: {report.vulnerability_score}/100 ({report.risk_level} RISK)",
+            f"Vectors Tested: {report.total_vectors_tested} | Vulnerabilities Detected: {report.vulnerabilities_found}",
+            f"Active Defenses Detected: {', '.join(report.defense_layers_detected) if report.defense_layers_detected else 'NONE'}",
+            "",
+            "--- Attack Vector Breakdown ---",
+        ]
+        for f in report.findings:
+            status_tag = "VULNERABLE" if f.is_vulnerable else "RESISTANT"
+            lines.append(f"[{status_tag}] {f.vector_name} ({f.severity.upper()})")
+            if f.is_vulnerable:
+                lines.append(f"  Remediation: {f.defensive_remediation}")
+
+        if auto_harden and report.hardened_prompt_suggestion:
+            lines.extend([
+                "",
+                "--- Recommended Hardened Zero-Trust Prompt ---",
+                report.hardened_prompt_suggestion,
+            ])
+
+        return {
+            "content": [{"type": "text", "text": "\n".join(lines)}],
+            "data": {
+                "vulnerability_score": report.vulnerability_score,
+                "risk_level": report.risk_level,
+                "total_vectors_tested": report.total_vectors_tested,
+                "vulnerabilities_found": report.vulnerabilities_found,
+                "defense_layers_detected": report.defense_layers_detected,
+                "hardened_prompt": report.hardened_prompt_suggestion,
             },
         }
 

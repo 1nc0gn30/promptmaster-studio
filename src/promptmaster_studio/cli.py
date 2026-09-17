@@ -478,6 +478,68 @@ def cmd_mcp(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_redteam(args: argparse.Namespace) -> int:
+    """Simulate adversarial jailbreak attacks and synthesize zero-trust defense."""
+    from promptmaster_studio.engine.adversarial_jailbreak import AdversarialRedTeamSimulator
+    prompt_text = read_prompt_input(args.prompt_or_file)
+    if not prompt_text.strip():
+        print(Color.red("Error: Input prompt is empty."), file=sys.stderr)
+        return 1
+
+    simulator = AdversarialRedTeamSimulator()
+    report = simulator.simulate(prompt_text)
+
+    if getattr(args, "json", False):
+        res_data = {
+            "vulnerability_score": report.vulnerability_score,
+            "risk_level": report.risk_level,
+            "total_vectors_tested": report.total_vectors_tested,
+            "vulnerabilities_found": report.vulnerabilities_found,
+            "defense_layers_detected": report.defense_layers_detected,
+            "hardened_prompt": report.hardened_prompt_suggestion,
+            "findings": [
+                {
+                    "vector_id": f.vector_id,
+                    "vector_name": f.vector_name,
+                    "category": f.category,
+                    "severity": f.severity,
+                    "is_vulnerable": f.is_vulnerable,
+                    "confidence": f.confidence,
+                    "remediation": f.defensive_remediation,
+                }
+                for f in report.findings
+            ],
+        }
+        print(json.dumps(res_data, indent=2, ensure_ascii=False))
+        return 0
+
+    print_banner()
+    color_risk = Color.red if report.risk_level in ("CRITICAL", "HIGH") else (Color.yellow if report.risk_level == "MEDIUM" else Color.green)
+    print(Color.bold(Color.cyan(f"\n🛡️ Adversarial Red-Team Jailbreak Simulator ({report.total_vectors_tested} Attack Vectors)")))
+    print(Color.dim("======================================================================"))
+    print(f"Vulnerability Score : {color_risk(f'{report.vulnerability_score}/100')} ({color_risk(report.risk_level)} RISK)")
+    print(f"Vectors Tested      : {report.total_vectors_tested}")
+    print(f"Vulnerabilities     : {color_risk(str(report.vulnerabilities_found))}")
+    active_def = ", ".join(report.defense_layers_detected) if report.defense_layers_detected else "None"
+    print(f"Active Defenses     : {Color.green(active_def)}")
+    print(Color.dim("----------------------------------------------------------------------"))
+    print(Color.bold("Attack Vector Findings:"))
+    for f in report.findings:
+        tag = Color.red("[VULNERABLE]") if f.is_vulnerable else Color.green("[RESISTANT] ")
+        sev = Color.bold(Color.yellow(f"({f.severity.upper()})"))
+        print(f"  {tag} {f.vector_name} {sev}")
+        if f.is_vulnerable:
+            print(f"      {Color.dim('Remedy:')} {f.defensive_remediation}")
+
+    if getattr(args, "harden", False) and report.hardened_prompt_suggestion:
+        print(Color.dim("----------------------------------------------------------------------"))
+        print(Color.bold(Color.cyan("Synthesized Zero-Trust Hardened Prompt:")))
+        print(report.hardened_prompt_suggestion)
+
+    print()
+    return 0
+
+
 # ============================================================================
 # SELF-TEST RUNNER (cmd_test)
 # ============================================================================
@@ -1196,6 +1258,13 @@ def build_parser() -> argparse.ArgumentParser:
     p_test = subparsers.add_parser("test", help="Execute internal self-verification test runner.")
     p_test.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
 
+    # 11. redteam
+    p_red = subparsers.add_parser("redteam", help="Simulate adversarial jailbreak attacks and evaluate prompt vulnerability.")
+    p_red.add_argument("prompt_or_file", help="Prompt text, file path, or '-' for stdin.")
+    p_red.add_argument("--harden", action="store_true", help="Output synthesized zero-trust hardened prompt.")
+    p_red.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_red.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
     return parser
 
 
@@ -1246,6 +1315,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         return cmd_serve(args)
     elif sub == "test":
         return cmd_test(args)
+    elif sub == "redteam":
+        return cmd_redteam(args)
     else:
         print(Color.red(f"Unknown subcommand: {sub}"), file=sys.stderr)
         return 1

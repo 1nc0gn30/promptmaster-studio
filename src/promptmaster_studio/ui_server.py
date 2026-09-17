@@ -326,6 +326,33 @@ class PromptMasterStudioRequestHandler(BaseHTTPRequestHandler):
                 self._send_json(report.to_dict() if hasattr(report, "to_dict") else report)
                 return
 
+            if path == "/api/redteam":
+                from promptmaster_studio.engine.adversarial_jailbreak import AdversarialRedTeamSimulator
+                prompt = body.get("prompt", "")
+                simulator = AdversarialRedTeamSimulator()
+                report = simulator.simulate(prompt)
+                self._send_json({
+                    "vulnerability_score": report.vulnerability_score,
+                    "risk_level": report.risk_level,
+                    "total_vectors_tested": report.total_vectors_tested,
+                    "vulnerabilities_found": report.vulnerabilities_found,
+                    "defense_layers_detected": report.defense_layers_detected,
+                    "hardened_prompt": report.hardened_prompt_suggestion,
+                    "findings": [
+                        {
+                            "vector_id": f.vector_id,
+                            "vector_name": f.vector_name,
+                            "category": f.category,
+                            "severity": f.severity,
+                            "is_vulnerable": f.is_vulnerable,
+                            "confidence": f.confidence,
+                            "remediation": f.defensive_remediation,
+                        }
+                        for f in report.findings
+                    ],
+                })
+                return
+
             # Unknown POST route
             self._send_error_json(f"POST route '{path}' not recognized", status=404)
 

@@ -51,6 +51,11 @@ from promptmaster_studio.engine import (
     prune_prompt_tokens,
     rank_few_shot_examples,
     search_curriculum,
+    AdversarialRedTeamSimulator,
+    RedTeamSimulationReport,
+    RedTeamAttackFinding,
+    JailbreakAttackVector,
+    ATTACK_VECTORS,
 )
 from promptmaster_studio.models import (
     ContextBudgetReport,
@@ -249,6 +254,13 @@ __all__ = [
     "search_curriculum",
     "get_categories",
     "get_all_tags",
+    "rank_few_shot_examples",
+    "prune_prompt_tokens",
+    "AdversarialRedTeamSimulator",
+    "RedTeamSimulationReport",
+    "RedTeamAttackFinding",
+    "JailbreakAttackVector",
+    "ATTACK_VECTORS",
     # Compat
     "DEFAULT_ENCODING_FALLBACKS",
     "IS_WINDOWS",
