@@ -29,6 +29,10 @@ from promptmaster_studio.engine.template_engine import (
     VariableMissingError,
     VariableValidationError,
 )
+from promptmaster_studio.engine.few_shot_ranker import (
+    prune_prompt_tokens,
+    rank_few_shot_examples,
+)
 from promptmaster_studio.engine.tokenizer_estimator import (
     MODEL_CATALOG,
     TokenizerEstimator,
@@ -56,4 +60,6 @@ __all__ = [
     "search_curriculum",
     "get_categories",
     "get_all_tags",
+    "rank_few_shot_examples",
+    "prune_prompt_tokens",
 ]

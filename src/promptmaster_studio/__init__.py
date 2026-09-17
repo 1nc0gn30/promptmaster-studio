@@ -48,6 +48,8 @@ from promptmaster_studio.engine import (
     get_template,
     list_lessons,
     list_templates,
+    prune_prompt_tokens,
+    rank_few_shot_examples,
     search_curriculum,
 )
 from promptmaster_studio.models import (
@@ -208,6 +210,8 @@ __all__ = [
     "get_prompt_templates",
     "get_curriculum_lessons",
     "get_model_specs",
+    "rank_few_shot_examples",
+    "prune_prompt_tokens",
     # Models
     "ProviderTarget",
     "VariableType",
