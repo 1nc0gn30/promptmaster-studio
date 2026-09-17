@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google PromptMaster Studio | Prompt Engineering & Meta-Optimization</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Text:wght@400;500;600&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --primary-hover: #1557b0;
+      --primary-container: #d2e3fc;
+      --on-primary-container: #041e49;
+      --surface: #ffffff;
+      --surface-dim: #f8fafd;
+      --surface-container-lowest: #ffffff;
+      --surface-container-low: #f1f5f9;
+      --surface-container: #e8f0fe;
+      --surface-container-high: #dfe8f6;
+      --on-surface: #1f1f1f;
+      --on-surface-variant: #444746;
+      --outline: #747775;
+      --outline-variant: #c4c7c5;
+      --outline-light: #e0e3e7;
+      --success: #1e8e3e;
+      --success-container: #ceead6;
+      --warning: #e37400;
+      --warning-container: #feefc3;
+      --error: #d93025;
+      --error-container: #fad2cf;
+      --font-google: 'Google Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-text: 'Google Sans Text', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'Fira Code', ui-monospace, monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+      --shadow-md: 0 2px 6px 2px rgba(60,64,67,0.15), 0 1px 2px 0 rgba(60,64,67,0.3);
+      --shadow-lg: 0 4px 12px 3px rgba(60,64,67,0.15), 0 1px 3px 0 rgba(60,64,67,0.3);
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --primary: #8ab4f8;
+      --primary-hover: #aecbfa;
+      --primary-container: #174ea6;
+      --on-primary-container: #d2e3fc;
+      --surface: #1e1f20;
+      --surface-dim: #131314;
+      --surface-container-lowest: #0e0e0f;
+      --surface-container-low: #282a2c;
+      --surface-container: #303134;
+      --surface-container-high: #3c4043;
+      --on-surface: #e3e3e3;
+      --on-surface-variant: #c4c7c5;
+      --outline: #8e918f;
+      --outline-variant: #444746;
+      --outline-light: #3c4043;
+      --success: #81c995;
+      --success-container: #0d652d;
+      --warning: #fdd663;
+      --warning-container: #7c4a03;
+      --error: #f28b82;
+      --error-container: #8c1d18;
+      --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.5);
+      --shadow-md: 0 4px 8px 3px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 16px 4px rgba(0,0,0,0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-text);
+      background-color: var(--surface-dim);
+      color: var(--on-surface);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--outline-light);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #1a73e8, #4285f4, #34a853, #fbbc05, #ea4335);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-title {
+      font-family: var(--font-google);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-badge {
+      font-size: 0.7rem;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Buttons & Chips */
+    button, .btn {
+      font-family: var(--font-google);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-tonal {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      border-color: var(--outline-light);
+    }
+    .btn-tonal:hover {
+      background: var(--surface-container);
+      border-color: var(--outline-variant);
+    }
+
+    .btn-icon {
+      padding: 0.5rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--surface);
+      border: 1px solid var(--outline-light);
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--on-surface-variant);
+    }
+    .chip:hover, .chip.active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Layout Containers */
+    main {
+      flex: 1;
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 1.15fr 360px;
+      gap: 1.25rem;
+      max-width: 1920px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (max-width: 1360px) {
+      main {
+        grid-template-columns: 1fr 1fr;
+      }
+      .sidebar-column {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      .sidebar-column {
+        grid-column: span 1;
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      transition: var(--transition);
+    }
+    .card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--outline-light);
+      padding-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-family: var(--font-google);
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Editor */
+    .editor-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 240px;
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      background: var(--surface-dim);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-md);
+      padding: 0.875rem;
+      resize: vertical;
+      line-height: 1.6;
+      outline: none;
+      transition: var(--transition);
+    }
+    textarea:focus {
+      border-color: var(--primary);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+    }
+
+    /* Variable Fields */
+    .variables-section {
+      background: var(--surface-dim);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .variable-field {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .variable-field label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .variable-field input, .variable-field select {
+      font-family: var(--font-text);
+      font-size: 0.85rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--outline-light);
+      background: var(--surface);
+      color: var(--on-surface);
+      outline: none;
+    }
+    .variable-field input:focus {
+      border-color: var(--primary);
+    }
+
+    /* Tabs */
+    .tab-header {
+      display: flex;
+      gap: 0.25rem;
+      background: var(--surface-dim);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--outline-light);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 0.4rem 0.6rem;
+      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      border: none;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+      text-align: center;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .tab-btn.active {
+      background: var(--surface);
+      color: var(--primary);
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Output Previews */
+    .preview-box {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      background: var(--surface-dim);
+      color: var(--on-surface);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      min-height: 280px;
+      max-height: 480px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.6;
+    }
+
+    /* Quality Scores & Gauges */
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .score-card {
+      background: var(--surface-dim);
+      border: 1px solid var(--outline-light);
+      border-radius: var(--radius-md);
+      padding: 0.75rem;
+      text-align: center;
+    }
+
+    .score-value {
+      font-family: var(--font-google);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .score-label {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    .overall-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 1rem;
+      background: var(--surface-container);
+      color: var(--primary);
+    }
+
+    /* Linter Issues */
+    .issues-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .issue-item {
+      padding: 0.6rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      border-left: 4px solid var(--outline);
+      background: var(--surface-dim);
+    }
+
+    .issue-item.critical { border-left-color: var(--error); background: var(--error-container); color: var(--on-surface); }
+    .issue-item.error { border-left-color: var(--error); }
+    .issue-item.warning { border-left-color: var(--warning); }
+    .issue-item.info { border-left-color: var(--primary); }
+
+    .issue-header {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+
+    .issue-suggestion {
+      color: var(--on-surface-variant);
+      font-style: italic;
+    }
+
+    /* Drawer */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 200;
+      display: none;
+      backdrop-filter: blur(2px);
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: -650px;
+      width: 650px;
+      max-width: 90vw;
+      height: 100vh;
+      background: var(--surface);
+      box-shadow: var(--shadow-lg);
+      z-index: 201;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer.open {
+      right: 0;
+    }
+
+    .drawer-header {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--outline-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-content {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* Cost table */
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .cost-table th, .cost-table td {
+      padding: 6px 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--outline-light);
+    }
+    .cost-table th {
+      font-weight: 600;
+      color: var(--on-surface-variant);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #323232;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      box-shadow: var(--shadow-md);
+      z-index: 300;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+      pointer-events: none;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <div class="brand-logo">⚡</div>
+      <div>
+        <div class="brand-title">
+          Google PromptMaster Studio
+          <span class="brand-badge">v1.0.0 STABLE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-tonal" id="curriculumBtn" onclick="openCurriculumDrawer()">
+        📚 Curriculum & KB
+      </button>
+      <button class="btn btn-tonal" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
+        🌓
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid -->
+  <main>
+    <!-- Left Pane: Editor & Configuration -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>✍️ Prompt & Template Editor</span>
+        </div>
+        <div class="chip-group">
+          <select id="templateSelector" onchange="onSelectTemplate(this.value)" style="padding: 4px 8px; border-radius: 20px; border: 1px solid var(--outline-light); font-size: 0.8rem; background: var(--surface);">
+            <option value="">-- Choose Built-in Template --</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Quick Category Chips -->
+      <div class="chip-group" id="categoryChips">
+        <span class="chip active" onclick="filterTemplates('all')">All</span>
+        <span class="chip" onclick="filterTemplates('coding')">Coding</span>
+        <span class="chip" onclick="filterTemplates('reasoning')">Reasoning</span>
+        <span class="chip" onclick="filterTemplates('security')">Security</span>
+        <span class="chip" onclick="filterTemplates('extraction')">Extraction</span>
+      </div>
+
+      <!-- Textarea Editor -->
+      <div class="editor-wrapper">
+        <textarea id="promptInput" placeholder="Enter your raw prompt or mustache template (e.g. You are an expert {{ role }}. Please analyze {{ document }}...)" oninput="debouncedAnalyze()"></textarea>
+      </div>
+
+      <!-- Live Dynamic Variable Form -->
+      <div class="variables-section" id="variablesSection" style="display: none;">
+        <div style="font-size: 0.85rem; font-weight: 600; display: flex; justify-content: space-between;">
+          <span>⚡ Live Variable Interpolation</span>
+          <span id="detectedVarsCount" style="color: var(--primary); font-size: 0.75rem;">0 detected</span>
+        </div>
+        <div id="variableFieldsContainer" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+      </div>
+
+      <!-- Target & Optimization Options -->
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <div style="font-size: 0.8rem; font-weight: 600; color: var(--on-surface-variant);">Target Architecture:</div>
+        <div class="tab-header" id="targetSelector">
+          <button class="tab-btn active" data-target="anthropic_xml" onclick="setTarget('anthropic_xml')">Claude XML</button>
+          <button class="tab-btn" data-target="openai_chat" onclick="setTarget('openai_chat')">OpenAI Chat</button>
+          <button class="tab-btn" data-target="google_gemini" onclick="setTarget('google_gemini')">Google Gemini</button>
+          <button class="tab-btn" data-target="generic_markdown" onclick="setTarget('generic_markdown')">CoT Reasoning</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: flex; gap: 0.75rem; margin-top: auto;">
+        <button class="btn btn-primary" onclick="optimizePrompt()" style="flex: 1;">
+          🚀 Meta-Optimize Prompt
+        </button>
+        <button class="btn btn-tonal" onclick="autoFixPrompt()" title="Apply deterministic lint fixes">
+          🪄 Auto-Fix
+        </button>
+        <button class="btn btn-tonal" onclick="clearEditor()" title="Clear Prompt">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- Right Pane: Live Output Preview -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          <span>✨ Optimized Model Output</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button class="btn btn-tonal" onclick="copyOptimizedText()" style="padding: 4px 10px; font-size: 0.75rem;">
+            📋 Copy
+          </button>
+          <button class="btn btn-tonal" onclick="downloadOptimizedPrompt()" style="padding: 4px 10px; font-size: 0.75rem;">
+            💾 Export
+          </button>
+        </div>
+      </div>
+
+      <!-- Output View Tabs -->
+      <div class="tab-header" id="outputViewTabs">
+        <button class="tab-btn active" onclick="setOutputView('optimized')">Optimized Output</button>
+        <button class="tab-btn" onclick="setOutputView('rendered')">Rendered (Interpolated)</button>
+        <button class="tab-btn" onclick="setOutputView('system')">System Message</button>
+        <button class="tab-btn" onclick="setOutputView('diffs')">Improvements & Tags</button>
+      </div>
+
+      <!-- Output Preview Content -->
+      <div class="preview-box" id="outputPreview">Click 'Meta-Optimize Prompt' or type in the editor to see live transformed output...</div>
+
+      <!-- Applied Improvements Box -->
+      <div id="improvementsBox" style="background: var(--surface-dim); border: 1px solid var(--outline-light); border-radius: var(--radius-md); padding: 0.75rem; display: none;">
+        <div style="font-size: 0.8rem; font-weight: 600; color: var(--primary); margin-bottom: 0.25rem;">Key Enhancements Applied:</div>
+        <ul id="improvementsList" style="font-size: 0.75rem; padding-left: 1.25rem; color: var(--on-surface-variant);"></ul>
+      </div>
+    </div>
+
+    <!-- Sidebar Column: Real-time Linter & Token Gauge -->
+    <div class="sidebar-column" style="display: flex; flex-direction: column; gap: 1.25rem;">
+      
+      <!-- Quality Meter Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🛡️ Prompt Quality & Safety</span>
+          </div>
+          <div class="overall-badge" id="overallBadge">100 / 100</div>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="score-value" id="clarityScore">100</div>
+            <div class="score-label">Clarity</div>
+          </div>
+          <div class="score-card">
+            <div class="score-value" id="securityScore">100</div>
+            <div class="score-label">Security</div>
+          </div>
+          <div class="score-card">
+            <div class="score-value" id="structureScore">100</div>
+            <div class="score-label">Structure</div>
+          </div>
+          <div class="score-card">
+            <div class="score-value" id="ratioScore">1.0</div>
+            <div class="score-label">Pos/Neg Ratio</div>
+          </div>
+        </div>
+
+        <!-- Linter Issues Accordion -->
+        <div style="font-size: 0.8rem; font-weight: 600; margin-top: 0.5rem; display: flex; justify-content: space-between;">
+          <span>Static Linter Issues</span>
+          <span id="issuesCountBadge" style="color: var(--on-surface-variant);">0 found</span>
+        </div>
+        <div class="issues-list" id="issuesList">
+          <div style="font-size: 0.8rem; color: var(--on-surface-variant); text-align: center; padding: 1rem;">
+            ✅ No quality or security issues detected.
+          </div>
+        </div>
+      </div>
+
+      <!-- Token & Cost Meter Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📊 Tokens & Cost Estimator</span>
+          </div>
+        </div>
+
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="score-value" id="tokenCount">0</div>
+            <div class="score-label">Tokens</div>
+          </div>
+          <div class="score-card">
+            <div class="score-value" id="wordCount">0</div>
+            <div class="score-label">Words</div>
+          </div>
+        </div>
+
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Est. Input Cost</th>
+              <th>Context Fit</th>
+            </tr>
+          </thead>
+          <tbody id="costTableBody">
+            <tr><td>GPT-4o</td><td>$0.00000</td><td>✅ Safe</td></tr>
+            <tr><td>Claude 3.5 Sonnet</td><td>$0.00000</td><td>✅ Safe</td></tr>
+            <tr><td>Gemini 1.5 Pro</td><td>$0.00000</td><td>✅ Safe</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Curriculum Drawer -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeCurriculumDrawer()"></div>
+  <div class="drawer" id="curriculumDrawer">
+    <div class="drawer-header">
+      <div style="font-family: var(--font-google); font-size: 1.1rem; font-weight: 600;">
+        📚 Prompt Engineering Curriculum
+      </div>
+      <button class="btn btn-tonal btn-icon" onclick="closeCurriculumDrawer()">✕</button>
+    </div>
+    <div class="drawer-content" id="curriculumContent">
+      <div style="font-size: 0.85rem; color: var(--on-surface-variant);">
+        Select a mastery module below to study production prompt design patterns:
+      </div>
+      <div id="curriculumList" style="display: flex; flex-direction: column; gap: 0.75rem;"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage">Copied to clipboard!</div>
+
+  <!-- Script Logic -->
+  <script>
+    let currentTarget = "anthropic_xml";
+    let currentOutputView = "optimized";
+    let optimizedData = null;
+    let debounceTimer = null;
+    let allTemplates = [];
+    let allLessons = [];
+    let currentVariables = {};
+
+    // Initial load
+    window.addEventListener("DOMContentLoaded", () => {
+      fetchTemplates();
+      fetchCurriculum();
+      debouncedAnalyze();
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById("toastMessage");
+      toast.innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
+    }
+
+    function setTarget(target) {
+      currentTarget = target;
+      document.querySelectorAll("#targetSelector .tab-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.target === target);
+      });
+      optimizePrompt();
+    }
+
+    function setOutputView(view) {
+      currentOutputView = view;
+      document.querySelectorAll("#outputViewTabs .tab-btn").forEach((btn, idx) => {
+        const views = ["optimized", "rendered", "system", "diffs"];
+        btn.classList.toggle("active", views[idx] === view);
+      });
+      renderOutputView();
+    }
+
+    function renderOutputView() {
+      const preview = document.getElementById("outputPreview");
+      const impBox = document.getElementById("improvementsBox");
+      impBox.style.display = "none";
+
+      if (!optimizedData) {
+        preview.innerText = document.getElementById("promptInput").value || "No content.";
+        return;
+      }
+
+      if (currentOutputView === "optimized") {
+        preview.innerText = optimizedData.optimized_prompt || "";
+      } else if (currentOutputView === "rendered") {
+        renderVariablesLocally();
+      } else if (currentOutputView === "system") {
+        preview.innerText = optimizedData.system_message || "No dedicated system prompt required for this target.";
+      } else if (currentOutputView === "diffs") {
+        impBox.style.display = "block";
+        const diffText = [
+          `Strategy: ${optimizedData.strategy_used || 'Standard'}`,
+          `Tokens Before: ${optimizedData.estimated_tokens_before || 0}`,
+          `Tokens After: ${optimizedData.estimated_tokens_after || 0}`,
+          `Added Structural Tags: ${(optimizedData.added_tags || []).join(', ') || 'None'}`
+        ].join('\n');
+        preview.innerText = diffText;
+      }
+    }
+
+    async function fetchTemplates() {
+      try {
+        const res = await fetch("/api/templates");
+        if (res.ok) {
+          allTemplates = await res.json();
+          populateTemplateSelector(allTemplates);
+        }
+      } catch (e) {
+        console.warn("Using offline templates fallback", e);
+      }
+    }
+
+    function populateTemplateSelector(templates) {
+      const sel = document.getElementById("templateSelector");
+      sel.innerHTML = '<option value="">-- Choose Built-in Template --</option>';
+      templates.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t.id;
+        opt.innerText = `[${t.category}] ${t.title}`;
+        sel.appendChild(opt);
+      });
+    }
+
+    function filterTemplates(cat) {
+      document.querySelectorAll("#categoryChips .chip").forEach(c => {
+        c.classList.toggle("active", c.innerText.toLowerCase() === cat);
+      });
+      if (cat === "all") {
+        populateTemplateSelector(allTemplates);
+      } else {
+        const filtered = allTemplates.filter(t => t.category.toLowerCase().includes(cat));
+        populateTemplateSelector(filtered);
+      }
+    }
+
+    function onSelectTemplate(id) {
+      const found = allTemplates.find(t => t.id === id);
+      if (found) {
+        document.getElementById("promptInput").value = found.template_str;
+        debouncedAnalyze();
+      }
+    }
+
+    function clearEditor() {
+      document.getElementById("promptInput").value = "";
+      optimizedData = null;
+      document.getElementById("outputPreview").innerText = "Editor cleared.";
+      debouncedAnalyze();
+    }
+
+    function debouncedAnalyze() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        analyzePrompt();
+        detectVariables();
+      }, 300);
+    }
+
+    function detectVariables() {
+      const text = document.getElementById("promptInput").value;
+      const matches = [...text.matchAll(/\{\{\s*([a-zA-Z_][a-zA-Z0-9_.]*)\s*(?:\||:-|:|\}\})/g)];
+      const unique = [...new Set(matches.map(m => m[1]))];
+      
+      const sec = document.getElementById("variablesSection");
+      const cont = document.getElementById("variableFieldsContainer");
+      const badge = document.getElementById("detectedVarsCount");
+
+      if (unique.length === 0) {
+        sec.style.display = "none";
+        return;
+      }
+
+      sec.style.display = "flex";
+      badge.innerText = `${unique.length} detected`;
+      cont.innerHTML = "";
+
+      unique.forEach(varName => {
+        const row = document.createElement("div");
+        row.className = "variable-field";
+        row.innerHTML = `
+          <label title="${varName}">${varName}</label>
+          <input type="text" placeholder="Value for ${varName}" value="${currentVariables[varName] || ''}" oninput="updateVar('${varName}', this.value)">
+        `;
+        cont.appendChild(row);
+      });
+    }
+
+    function updateVar(key, val) {
+      currentVariables[key] = val;
+      if (currentOutputView === "rendered") {
+        renderVariablesLocally();
+      }
+    }
+
+    function renderVariablesLocally() {
+      let text = (optimizedData && optimizedData.optimized_prompt) || document.getElementById("promptInput").value;
+      Object.entries(currentVariables).forEach(([k, v]) => {
+        const reg = new RegExp(`\\{\\{\\s*${k}\\s*(?:\\|[^}]*|:-[^}]*|:[^}]*)?\\}\\}`, "g");
+        text = text.replace(reg, v);
+      });
+      document.getElementById("outputPreview").innerText = text;
+    }
+
+    async function analyzePrompt() {
+      const text = document.getElementById("promptInput").value;
+      try {
+        const [lintRes, tokenRes] = await Promise.all([
+          fetch("/api/lint", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: text })
+          }).then(r => r.json()),
+          fetch("/api/tokens", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ prompt: text })
+          }).then(r => r.json())
+        ]);
+
+        updateLintUI(lintRes);
+        updateTokenUI(tokenRes);
+      } catch (e) {
+        console.warn("API offline - fallback heuristic calculation", e);
+      }
+    }
+
+    function updateLintUI(res) {
+      if (!res) return;
+      document.getElementById("clarityScore").innerText = Math.round(res.clarity_score || 0);
+      document.getElementById("securityScore").innerText = Math.round(res.security_score || 0);
+      document.getElementById("structureScore").innerText = Math.round(res.structure_score || 0);
+      document.getElementById("ratioScore").innerText = (res.positive_to_negative_ratio || 1.0).toFixed(1);
+      
+      const overall = Math.round(res.overall_score || 0);
+      const badge = document.getElementById("overallBadge");
+      badge.innerText = `${overall} / 100`;
+
+      const list = document.getElementById("issuesList");
+      const count = document.getElementById("issuesCountBadge");
+      const issues = res.issues || [];
+      count.innerText = `${issues.length} found`;
+
+      if (issues.length === 0) {
+        list.innerHTML = '<div style="font-size: 0.8rem; color: var(--on-surface-variant); text-align: center; padding: 1rem;">✅ No quality or security issues detected.</div>';
+        return;
+      }
+
+      list.innerHTML = "";
+      issues.forEach(i => {
+        const item = document.createElement("div");
+        item.className = `issue-item ${i.severity.toLowerCase()}`;
+        item.innerHTML = `
+          <div class="issue-header">
+            <span>[${i.rule_id}] ${i.severity.toUpperCase()}</span>
+            <span>Line ${i.line_number || 1}</span>
+          </div>
+          <div>${i.message}</div>
+          ${i.suggestion ? `<div class="issue-suggestion">💡 ${i.suggestion}</div>` : ''}
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function updateTokenUI(res) {
+      if (!res) return;
+      const tokens = res.estimated_tokens || 0;
+      document.getElementById("tokenCount").innerText = tokens.toLocaleString();
+      document.getElementById("wordCount").innerText = (res.word_count || 0).toLocaleString();
+
+      const costTable = document.getElementById("costTableBody");
+      const gptCost = (tokens / 1000000 * 2.50).toFixed(6);
+      const sonnetCost = (tokens / 1000000 * 3.00).toFixed(6);
+      const geminiCost = (tokens / 1000000 * 0.10).toFixed(6);
+
+      costTable.innerHTML = `
+        <tr><td>GPT-4o</td><td>$${gptCost}</td><td>✅ Safe</td></tr>
+        <tr><td>Claude 3.5 Sonnet</td><td>$${sonnetCost}</td><td>✅ Safe</td></tr>
+        <tr><td>Gemini 2.0 Flash</td><td>$${geminiCost}</td><td>✅ Safe</td></tr>
+      `;
+    }
+
+    async function optimizePrompt() {
+      const text = document.getElementById("promptInput").value;
+      if (!text.trim()) {
+        showToast("Please enter a prompt first.");
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/optimize", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            prompt: text,
+            target: currentTarget
+          })
+        });
+
+        if (res.ok) {
+          optimizedData = await res.json();
+          renderOutputView();
+
+          // Populate improvements
+          const list = document.getElementById("improvementsList");
+          list.innerHTML = "";
+          (optimizedData.improvements || []).forEach(imp => {
+            const li = document.createElement("li");
+            li.innerText = imp;
+            list.appendChild(li);
+          });
+
+          showToast("Prompt optimized successfully!");
+        }
+      } catch (e) {
+        showToast("Error optimizing prompt");
+        console.error(e);
+      }
+    }
+
+    async function autoFixPrompt() {
+      const text = document.getElementById("promptInput").value;
+      try {
+        const res = await fetch("/api/autofix", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ prompt: text })
+        });
+        if (res.ok) {
+          const data = await res.json();
+          document.getElementById("promptInput").value = data.fixed_prompt || text;
+          debouncedAnalyze();
+          showToast("Applied automatic fixes!");
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function copyOptimizedText() {
+      const text = document.getElementById("outputPreview").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("Copied to clipboard!");
+      });
+    }
+
+    function downloadOptimizedPrompt() {
+      const text = document.getElementById("outputPreview").innerText;
+      const blob = new Blob([text], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = `optimized_prompt_${currentTarget}.txt`;
+      a.click();
+    }
+
+    async function fetchCurriculum() {
+      try {
+        const res = await fetch("/api/curriculum");
+        if (res.ok) {
+          allLessons = await res.json();
+          renderCurriculumDrawer();
+        }
+      } catch (e) {
+        console.warn("Curriculum fetch failed", e);
+      }
+    }
+
+    function renderCurriculumDrawer() {
+      const container = document.getElementById("curriculumList");
+      container.innerHTML = "";
+
+      allLessons.forEach(l => {
+        const card = document.createElement("div");
+        card.style.cssText = "background: var(--surface-dim); border: 1px solid var(--outline-light); border-radius: var(--radius-md); padding: 1rem; cursor: pointer; transition: var(--transition);";
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem;">
+            <span style="font-weight: 600; font-size: 0.9rem;">${l.title}</span>
+            <span class="chip" style="padding: 2px 8px; font-size: 0.7rem;">${l.difficulty}</span>
+          </div>
+          <div style="font-size: 0.8rem; color: var(--on-surface-variant); margin-bottom: 0.5rem;">${l.summary}</div>
+          <button class="btn btn-tonal" style="padding: 4px 10px; font-size: 0.75rem;" onclick="loadLessonSample('${l.id}')">
+            ⚡ Load Example Prompt
+          </button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function loadLessonSample(id) {
+      const lesson = allLessons.find(l => l.id === id);
+      if (lesson && lesson.sample_before_prompt) {
+        document.getElementById("promptInput").value = lesson.sample_before_prompt;
+        closeCurriculumDrawer();
+        debouncedAnalyze();
+        showToast(`Loaded lesson: ${lesson.title}`);
+      }
+    }
+
+    function openCurriculumDrawer() {
+      document.getElementById("drawerOverlay").style.display = "block";
+      document.getElementById("curriculumDrawer").classList.add("open");
+    }
+
+    function closeCurriculumDrawer() {
+      document.getElementById("drawerOverlay").style.display = "none";
+      document.getElementById("curriculumDrawer").classList.remove("open");
+    }
+  </script>
+</body>
+</html>
