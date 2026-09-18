@@ -353,6 +353,23 @@ class PromptMasterStudioRequestHandler(BaseHTTPRequestHandler):
                 })
                 return
 
+            if path == "/api/cove":
+                from promptmaster_studio.engine.cove_and_debate import decompose_cove_pipeline
+                prompt = body.get("prompt", "")
+                domain = body.get("domain", "general")
+                target_provider = body.get("target_provider", "anthropic_xml")
+                pipeline = decompose_cove_pipeline(prompt, domain=domain, target_provider=target_provider)
+                self._send_json(pipeline.to_dict())
+                return
+
+            if path == "/api/debate":
+                from promptmaster_studio.engine.cove_and_debate import synthesize_debate_ensemble
+                topic = body.get("topic", "")
+                rounds = int(body.get("rounds", 3))
+                ensemble = synthesize_debate_ensemble(topic, rounds=rounds)
+                self._send_json(ensemble.to_dict())
+                return
+
             # Unknown POST route
             self._send_error_json(f"POST route '{path}' not recognized", status=404)
 

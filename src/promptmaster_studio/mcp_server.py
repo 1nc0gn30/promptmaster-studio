@@ -239,6 +239,55 @@ class MCPServer:
             handler=self._handle_prompt_redteam,
         )
 
+        # 9. prompt_chain_of_verification
+        self.register_tool(
+            name="prompt_chain_of_verification",
+            description="Decompose a prompt into a 4-stage Chain-of-Verification (CoVe) hallucination prevention pipeline (Baseline -> Question Plan -> Independent Verification -> Final Verified Synthesis).",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "prompt": {
+                        "type": "string",
+                        "description": "The prompt or question to decompose into a Chain-of-Verification workflow.",
+                    },
+                    "domain": {
+                        "type": "string",
+                        "default": "general",
+                        "description": "Target domain (e.g. medical, legal, financial, technical, general).",
+                    },
+                },
+                "required": ["prompt"],
+            },
+            handler=self._handle_prompt_cove,
+        )
+
+        # 10. prompt_multi_agent_debate
+        self.register_tool(
+            name="prompt_multi_agent_debate",
+            description="Synthesize a multi-agent society-of-mind debate ensemble (Proponent, Adversarial Skeptic, Pragmatist, and Impartial Arbiter) to resolve complex, ambiguous, or critical reasoning tasks.",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string",
+                        "description": "The complex decision, policy, code design, or dilemma to debate.",
+                    },
+                    "rounds": {
+                        "type": "integer",
+                        "default": 3,
+                        "description": "Number of debate rounds (2 to 5).",
+                    },
+                    "domain": {
+                        "type": "string",
+                        "default": "general",
+                        "description": "Topic domain specialization.",
+                    },
+                },
+                "required": ["topic"],
+            },
+            handler=self._handle_prompt_debate,
+        )
+
     def register_tool(
         self,
         name: str,
@@ -538,6 +587,75 @@ Estimated Tokens: {result.estimated_tokens_before} -> {result.estimated_tokens_a
                 "defense_layers_detected": report.defense_layers_detected,
                 "hardened_prompt": report.hardened_prompt_suggestion,
             },
+        }
+
+    def _handle_prompt_cove(self, arguments: Dict[str, Any]) -> Dict[str, Any]:
+        from promptmaster_studio.engine.cove_and_debate import decompose_cove_pipeline
+        prompt_text = arguments.get("prompt", "")
+        domain = arguments.get("domain", "general")
+
+        if not prompt_text:
+            raise ValueError("Parameter 'prompt' is required.")
+
+        pipeline = decompose_cove_pipeline(prompt_text, domain=domain)
+        text_out = f"""# Chain-of-Verification (CoVe) Pipeline
+Task: {pipeline.task_description}
+Domain: {pipeline.domain}
+Estimated Token Overhead: ~{pipeline.estimated_token_overhead} tokens
+
+## Stage 1: Baseline Generation
+```
+{pipeline.baseline_prompt}
+```
+
+## Stage 2: Verification Query Planning
+```
+{pipeline.question_generation_prompt}
+```
+
+## Stage 3: Independent Execution
+```
+{pipeline.verification_execution_prompt}
+```
+
+## Stage 4: Verified Final Synthesis
+```
+{pipeline.final_synthesis_prompt}
+```
+"""
+        return {
+            "content": [{"type": "text", "text": text_out}],
+            "data": pipeline.to_dict(),
+        }
+
+    def _handle_prompt_debate(self, arguments: Dict[str, Any]) -> Dict[str, Any]:
+        from promptmaster_studio.engine.cove_and_debate import synthesize_debate_ensemble
+        topic = arguments.get("topic", "")
+        rounds = int(arguments.get("rounds", 3))
+
+        if not topic:
+            raise ValueError("Parameter 'topic' is required.")
+
+        ensemble = synthesize_debate_ensemble(topic, rounds=rounds)
+        lines = [
+            f"# Multi-Agent Society-of-Mind Debate Ensemble",
+            f"Topic: {ensemble.topic}",
+            f"Complexity: {ensemble.complexity_level} | Total Rounds: {ensemble.total_rounds}",
+            "",
+            "## Participating Personas:",
+        ]
+        for p in ensemble.personas:
+            lines.append(f"- **{p.role_name}** (`{p.id}`): {p.stance}")
+
+        lines.extend([
+            "",
+            "## Arbiter Consensus Synthesis Protocol:",
+            ensemble.arbiter_synthesis_prompt,
+        ])
+
+        return {
+            "content": [{"type": "text", "text": "\n".join(lines)}],
+            "data": ensemble.to_dict(),
         }
 
     # -------------------------------------------------------------------------

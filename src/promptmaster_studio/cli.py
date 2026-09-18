@@ -540,6 +540,81 @@ def cmd_redteam(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_cove(args: argparse.Namespace) -> int:
+    """Execute Chain-of-Verification (CoVe) decomposition subcommand."""
+    from promptmaster_studio.engine.cove_and_debate import decompose_cove_pipeline
+    raw_prompt = read_prompt_input(args.prompt_or_file)
+    if not raw_prompt.strip():
+        print(Color.red("Error: Input prompt is empty."), file=sys.stderr)
+        return 1
+
+    domain = getattr(args, "domain", "general")
+    pipeline = decompose_cove_pipeline(raw_prompt, domain=domain)
+
+    if getattr(args, "json", False):
+        print(json.dumps(pipeline.to_dict(), indent=2, ensure_ascii=False))
+        return 0
+
+    print(Color.bold(Color.cyan("\n🔍 Chain-of-Verification (CoVe) 4-Stage Pipeline")))
+    print(Color.dim("======================================================================"))
+    print(f"Task             : {pipeline.task_description}")
+    print(f"Domain           : {pipeline.domain}")
+    print(f"Est. Overhead    : ~{pipeline.estimated_token_overhead} tokens")
+    print(Color.dim("----------------------------------------------------------------------"))
+    for stage in pipeline.stages:
+        print(f"\n{Color.bold(f'Stage {stage.stage_number}: {stage.name}')}")
+        print(Color.dim(f"  Description: {stage.description}"))
+        print(Color.yellow(f"  Output Format: {stage.expected_output_format}"))
+        print(Color.dim("  Template:"))
+        for l in stage.prompt_template.strip().split("\n")[:6]:
+            print(f"    {l}")
+        print(Color.dim("    ..."))
+
+    if getattr(args, "output", None):
+        atomic_write_text(args.output, json.dumps(pipeline.to_dict(), indent=2))
+        print(Color.green(f"\nSaved CoVe pipeline JSON to {args.output}"))
+    print()
+    return 0
+
+
+def cmd_debate(args: argparse.Namespace) -> int:
+    """Execute Multi-Agent Debate synthesis subcommand."""
+    from promptmaster_studio.engine.cove_and_debate import synthesize_debate_ensemble
+    topic = read_prompt_input(args.topic_or_file)
+    if not topic.strip():
+        print(Color.red("Error: Topic is empty."), file=sys.stderr)
+        return 1
+
+    rounds = int(getattr(args, "rounds", 3))
+    ensemble = synthesize_debate_ensemble(topic, rounds=rounds)
+
+    if getattr(args, "json", False):
+        print(json.dumps(ensemble.to_dict(), indent=2, ensure_ascii=False))
+        return 0
+
+    print(Color.bold(Color.cyan("\n🏛️ Multi-Agent Society-of-Mind Debate Ensemble")))
+    print(Color.dim("======================================================================"))
+    print(f"Topic            : {ensemble.topic}")
+    print(f"Complexity       : {ensemble.complexity_level}")
+    print(f"Total Rounds     : {ensemble.total_rounds}")
+    print(Color.dim("----------------------------------------------------------------------"))
+    print(Color.bold("Ensemble Personas:"))
+    for p in ensemble.personas:
+        print(f"  • {Color.yellow(p.role_name)} [{p.id}]")
+        print(f"    {Color.dim(p.stance)}")
+
+    print(Color.dim("----------------------------------------------------------------------"))
+    print(Color.bold("Discourse Structure:"))
+    for r in ensemble.rounds:
+        print(f"  Round {r.round_number}: {r.name} ({', '.join(r.participating_agents)})")
+
+    if getattr(args, "output", None):
+        atomic_write_text(args.output, json.dumps(ensemble.to_dict(), indent=2))
+        print(Color.green(f"\nSaved Debate ensemble JSON to {args.output}"))
+    print()
+    return 0
+
+
 # ============================================================================
 # SELF-TEST RUNNER (cmd_test)
 # ============================================================================
@@ -1129,6 +1204,22 @@ class PromptMasterHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self._send_json(res_dict)
             return
 
+        if path == "/api/cove":
+            from promptmaster_studio.engine.cove_and_debate import decompose_cove_pipeline
+            prompt = body.get("prompt", "")
+            domain = body.get("domain", "general")
+            pip = decompose_cove_pipeline(prompt, domain=domain)
+            self._send_json(pip.to_dict())
+            return
+
+        if path == "/api/debate":
+            from promptmaster_studio.engine.cove_and_debate import synthesize_debate_ensemble
+            topic = body.get("topic", "")
+            rounds = int(body.get("rounds", 3))
+            ens = synthesize_debate_ensemble(topic, rounds=rounds)
+            self._send_json(ens.to_dict())
+            return
+
         self._send_json({"error": "Endpoint not found"}, status=404)
 
 
@@ -1265,6 +1356,23 @@ def build_parser() -> argparse.ArgumentParser:
     p_red.add_argument("--json", action="store_true", help="Output JSON results.")
     p_red.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
 
+    # 12. cove
+    p_cove = subparsers.add_parser("cove", help="Decompose a prompt into a 4-stage Chain-of-Verification (CoVe) hallucination prevention pipeline.")
+    p_cove.add_argument("prompt_or_file", help="Prompt text, file path, or '-' for stdin.")
+    p_cove.add_argument("-d", "--domain", default="general", help="Target domain context (medical, legal, financial, technical, general).")
+    p_cove.add_argument("-o", "--output", help="Save CoVe pipeline JSON to file.")
+    p_cove.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_cove.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
+    # 13. debate
+    p_deb = subparsers.add_parser("debate", help="Synthesize a multi-agent society-of-mind debate ensemble for complex reasoning.")
+    p_deb.add_argument("topic_or_file", help="Topic text, decision dilemma, file path, or '-' for stdin.")
+    p_deb.add_argument("-r", "--rounds", type=int, default=3, help="Number of debate rounds (default: 3).")
+    p_deb.add_argument("-d", "--domain", default="general", help="Topic domain context.")
+    p_deb.add_argument("-o", "--output", help="Save debate ensemble JSON to file.")
+    p_deb.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_deb.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
     return parser
 
 
@@ -1317,6 +1425,10 @@ def main(argv: Optional[List[str]] = None) -> int:
         return cmd_test(args)
     elif sub == "redteam":
         return cmd_redteam(args)
+    elif sub == "cove":
+        return cmd_cove(args)
+    elif sub == "debate":
+        return cmd_debate(args)
     else:
         print(Color.red(f"Unknown subcommand: {sub}"), file=sys.stderr)
         return 1

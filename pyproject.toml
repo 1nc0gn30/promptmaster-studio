@@ -23,6 +23,10 @@ keywords = [
     "openai-chat",
     "google-gemini",
     "chain-of-thought",
+    "chain-of-verification",
+    "cove",
+    "multi-agent-debate",
+    "adversarial-jailbreak",
     "curriculum",
     "zero-dependency",
 ]

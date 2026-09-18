@@ -152,6 +152,26 @@ class TestUIServerRoutes:
         assert res["estimated_tokens"] > 0
         assert res["fits_in_context"] is True
 
+    def test_post_api_cove(self, live_ui_server: str):
+        payload = {
+            "prompt": "Explain the safety benchmarks for autonomous driving systems.",
+            "domain": "automotive_engineering",
+        }
+        status, res, _ = self._http_post(f"{live_ui_server}/api/cove", payload)
+        assert status == 200
+        assert res["domain"] == "automotive_engineering"
+        assert len(res["stages"]) == 4
+
+    def test_post_api_debate(self, live_ui_server: str):
+        payload = {
+            "topic": "SQL vs NoSQL for distributed timeseries telemetry data",
+            "rounds": 3,
+        }
+        status, res, _ = self._http_post(f"{live_ui_server}/api/debate", payload)
+        assert status == 200
+        assert res["total_rounds"] == 3
+        assert len(res["personas"]) == 4
+
     def test_404_on_unknown_endpoint(self, live_ui_server: str):
         url = f"{live_ui_server}/api/unknown_route_999"
         req = urllib.request.Request(url, method="GET")
