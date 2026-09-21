@@ -45,6 +45,20 @@ from .compat import (
     safe_path,
 )
 from .mcp_server import MCPServer, PROTOCOL_VERSION, run_mcp_server
+from .engine.prompt_diff import compare_prompts, format_comparison_report
+from .engine.version_history import PromptVersionHistory, PromptVersion, PromptBranch
+from .engine.v3_enhancements import (
+    ContextWindowOptimizer,
+    ContextWindowPlan,
+    ProviderMigrator,
+    MigrationResult,
+    PromptBatchProcessor,
+    BatchResult,
+    PromptScoringRubric,
+    RubricScore,
+    EnhancedHistory,
+    ExportFormatter,
+)
 
 # ============================================================================
 # COLOR & FORMATTING SYSTEM
@@ -615,9 +629,407 @@ def cmd_debate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_diff(args: argparse.Namespace) -> int:
+    """Execute prompt comparison/diff subcommand."""
+    left_text = read_prompt_input(args.left)
+    right_text = read_prompt_input(args.right)
+
+    if not left_text.strip() or not right_text.strip():
+        print(Color.red("Error: Both prompts must be non-empty."), file=sys.stderr)
+        return 1
+
+    model = getattr(args, "model", "gpt-4o")
+    result = compare_prompts(left_text, right_text, model_name=model)
+
+    if getattr(args, "json", False):
+        print(json.dumps(result.to_dict(), indent=2, ensure_ascii=False))
+        return 0
+
+    report = format_comparison_report(result)
+    print(report)
+
+    if getattr(args, "output", None):
+        atomic_write_text(args.output, report)
+        print(Color.green(f"\nSaved comparison report to {args.output}"))
+
+    return 0
+
+
+def cmd_history(args: argparse.Namespace) -> int:
+    """Execute version history management subcommand."""
+    store = PromptVersionHistory()
+    action = getattr(args, "action", "list")
+
+    if action == "save":
+        prompt_text = read_prompt_input(args.prompt_or_file)
+        if not prompt_text.strip():
+            print(Color.red("Error: Prompt is empty."), file=sys.stderr)
+            return 1
+        label = getattr(args, "label", "")
+        message = getattr(args, "message", "")
+        branch = getattr(args, "branch", "main")
+        version = store.save_version(prompt_text, label=label, branch=branch, message=message)
+        print(Color.green(f"✓ Saved version: {version.version_id} ({version.label}) "
+                          f"[{version.tokens} tokens, branch: {version.branch}]"))
+
+    elif action == "list":
+        branch = getattr(args, "branch", None)
+        limit = int(getattr(args, "limit", 20))
+        versions = store.list_versions(branch=branch, limit=limit)
+        if not versions:
+            print(Color.dim("No versions saved yet. Use 'history save' to start tracking."))
+            return 0
+        print(Color.bold(Color.cyan(f"\n📜 Prompt Version History ({len(versions)} versions)")))
+        print(Color.dim("======================================================================"))
+        for v in versions:
+            parent_str = f" ← {v.parent_version_id[:8]}" if v.parent_version_id else ""
+            msg_str = f" | {v.message}" if v.message else ""
+            print(f"  {Color.yellow(v.version_id[:8])} {Color.bold(v.label)} "
+                  f"{Color.dim(f'[{v.branch}] {v.tokens} tags:{len(v.tags)}{parent_str}{msg_str}')}")
+
+    elif action == "show":
+        version_id = args.prompt_or_file or ""
+        version = store.get_version(version_id)
+        if not version:
+            print(Color.red(f"Version '{version_id}' not found."), file=sys.stderr)
+            return 1
+        print(Color.bold(Color.cyan(f"\n📋 Version: {version.version_id}")))
+        print(Color.dim("======================================================================"))
+        print(f"Label    : {version.label}")
+        print(f"Branch   : {version.branch}")
+        print(f"Tokens   : {version.tokens}")
+        print(f"Tags     : {', '.join(version.tags) or 'None'}")
+        print(f"Vars     : {', '.join(version.variables) or 'None'}")
+        print(f"Created  : {version.created_at}")
+        print(f"Parent   : {version.parent_version_id or 'None'}")
+        print(f"Message  : {version.message or 'None'}")
+        print(Color.dim("----------------------------------------------------------------------"))
+        print(version.prompt_text)
+
+    elif action == "compare":
+        version_id_a = args.prompt_or_file or ""
+        version_id_b = getattr(args, "right", "") or ""
+        report = store.compare_versions(version_id_a, version_id_b)
+        if not report:
+            print(Color.red("Could not compare versions. Check version IDs."), file=sys.stderr)
+            return 1
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+
+    elif action == "rollback":
+        version_id = args.prompt_or_file or ""
+        branch = getattr(args, "branch", None)
+        version = store.rollback(version_id, branch=branch)
+        if not version:
+            print(Color.red(f"Version '{version_id}' not found."), file=sys.stderr)
+            return 1
+        print(Color.green(f"✓ Rolled back to {version_id} → new version {version.version_id}"))
+
+    elif action == "branches":
+        branches = store.list_branches()
+        if not branches:
+            print(Color.dim("No branches found."))
+            return 0
+        print(Color.bold(Color.cyan(f"\n🌿 Branches ({len(branches)})")))
+        for b in branches:
+            head_str = b.head_version_id[:8] if b.head_version_id else "empty"
+            print(f"  {Color.yellow(b.name)} ({b.version_count} versions, head: {head_str})")
+
+    elif action == "tree":
+        branch = getattr(args, "branch", "main")
+        tree = store.get_history_tree(branch=branch)
+        if not tree:
+            print(Color.dim(f"No history on branch '{branch}'."))
+            return 0
+        print(Color.bold(Color.cyan(f"\n🌳 History Tree: {branch}")))
+        for entry in tree:
+            indent = "  " * entry["depth"]
+            tokens = entry["tokens"]
+            tags_count = entry["tags_count"]
+            print(f"{indent}├─ {Color.yellow(entry['version_id'][:8])} {entry['label']} "
+                  f"{Color.dim(f'({tokens} tok, {tags_count} tags)')}")
+
+    elif action == "stats":
+        stats = store.stats()
+        print(Color.bold(Color.cyan("\n📊 Version Store Statistics")))
+        print(Color.dim("======================================================================"))
+        for k, v in stats.items():
+            print(f"  {k}: {v}")
+
+    elif action == "search":
+        query = getattr(args, "query", "")
+        if not query:
+            print(Color.red("Error: --query is required for search."), file=sys.stderr)
+            return 1
+        results = store.search_versions(query)
+        if not results:
+            print(Color.dim(f"No versions matching '{query}'."))
+            return 0
+        print(Color.bold(Color.cyan(f"\n🔍 Search Results ({len(results)})")))
+        for v in results:
+            print(f"  {Color.yellow(v.version_id[:8])} {v.label} {Color.dim(f'[{v.branch}]')}")
+
+    return 0
+
+
 # ============================================================================
-# SELF-TEST RUNNER (cmd_test)
+# CONTEXT WINDOW OPTIMIZER (cmd_context)
 # ============================================================================
+
+def cmd_context(args: argparse.Namespace) -> int:
+    """Analyze and optimize prompt for context window limits."""
+    from promptmaster_studio.engine.v3_enhancements import ContextWindowOptimizer
+
+    text = read_prompt_input(args.prompt_or_file)
+    if text is None:
+        return 1
+
+    model = getattr(args, "model", "gpt-4o")
+
+    if getattr(args, "analyze", False):
+        analysis = ContextWindowOptimizer.analyze(text, model)
+        print(Color.bold(Color.cyan(f"\n📊 Context Window Analysis — {model}")))
+        print(Color.dim("=" * 60))
+        print(f"  Total Tokens: {analysis['total_tokens']:,}")
+        print(f"  Context Window: {analysis['context_window']:,}")
+        print(f"  Max Output: {analysis['max_output']:,}")
+        print(f"  Available Input: {analysis['available_input']:,}")
+        print(f"  Headroom: {analysis['headroom']:,}")
+        print(f"  Fits: {'✅ Yes' if analysis['fits'] else '❌ No'}")
+        if analysis['overage'] > 0:
+            print(Color.red(f"  Overage: {analysis['overage']:,} tokens"))
+        print()
+        print("  Sections:")
+        for name, info in analysis['segments'].items():
+            print(f"    {name}: {info['tokens']:,} tokens (priority {info['priority']})")
+        return 0
+
+    plan = ContextWindowOptimizer.optimize(text, model_name=model)
+    print(Color.bold(Color.cyan(f"\n🔧 Context Window Optimization — {model}")))
+    print(Color.dim("=" * 60))
+    print(f"  Before: {plan.original_tokens:,} tokens")
+    print(f"  After: {plan.optimized_tokens:,} tokens")
+    print(f"  Saved: {plan.original_tokens - plan.optimized_tokens:,} tokens")
+    print(f"  Available: {plan.available_input_tokens:,} tokens")
+    print(f"  Truncation Applied: {'Yes' if plan.truncation_applied else 'No'}")
+    print()
+    print("  Actions:")
+    for action in plan.actions_taken:
+        print(f"    • {action}")
+    if plan.warnings:
+        print()
+        for w in plan.warnings:
+            print(Color.yellow(f"  ⚠️  {w}"))
+    print()
+
+    if not getattr(args, "json", False):
+        print(Color.bold("Optimized Prompt:"))
+        print(Color.dim("-" * 60))
+        print(plan.optimized_text)
+
+    if getattr(args, "output", None):
+        Path(args.output).write_text(plan.optimized_text)
+        print(f"\nSaved to {args.output}")
+
+    if getattr(args, "json", False):
+        import json
+        print(json.dumps({
+            "target_model": plan.target_model,
+            "original_tokens": plan.original_tokens,
+            "optimized_tokens": plan.optimized_tokens,
+            "saved_tokens": plan.original_tokens - plan.optimized_tokens,
+            "context_window": plan.context_window,
+            "available_input": plan.available_input_tokens,
+            "truncation_applied": plan.truncation_applied,
+            "actions": plan.actions_taken,
+            "warnings": plan.warnings,
+            "optimized_text": plan.optimized_text,
+        }, indent=2))
+
+    return 0
+
+
+# ============================================================================
+# PROVIDER MIGRATION (cmd_migrate)
+# ============================================================================
+
+def cmd_migrate(args: argparse.Namespace) -> int:
+    """Migrate a prompt from one provider format to another."""
+    from promptmaster_studio.engine.v3_enhancements import ProviderMigrator
+
+    text = read_prompt_input(args.prompt_or_file)
+
+    target = getattr(args, "target", "anthropic")
+    source = getattr(args, "source", None)
+
+    result = ProviderMigrator.migrate(text, target, source)
+
+    print(Color.bold(Color.cyan(f"\n🔄 Provider Migration — {result.source_provider} → {result.target_provider}")))
+    print(Color.dim("=" * 60))
+    print(f"  Changes: {len(result.changes)}")
+    for change in result.changes:
+        print(f"    • {change}")
+    if result.warnings:
+        print()
+        for w in result.warnings:
+            print(Color.yellow(f"  ⚠️  {w}"))
+    print(f"  Tokens: {result.tokens_before} → {result.tokens_after}")
+    print()
+
+    if not getattr(args, "json", False):
+        print(Color.bold("Migrated Prompt:"))
+        print(Color.dim("-" * 60))
+        print(result.migrated_text)
+
+    if getattr(args, "output", None):
+        Path(args.output).write_text(result.migrated_text)
+        print(f"\nSaved to {args.output}")
+
+    if getattr(args, "json", False):
+        import json
+        print(json.dumps({
+            "source_provider": result.source_provider,
+            "target_provider": result.target_provider,
+            "changes": result.changes,
+            "warnings": result.warnings,
+            "tokens_before": result.tokens_before,
+            "tokens_after": result.tokens_after,
+            "migrated_text": result.migrated_text,
+        }, indent=2))
+
+    return 0
+
+
+# ============================================================================
+# BATCH PROCESSOR (cmd_batch)
+# ============================================================================
+
+def cmd_batch(args: argparse.Namespace) -> int:
+    """Process a batch of prompts through a pipeline."""
+    from promptmaster_studio.engine.v3_enhancements import PromptBatchProcessor
+
+    input_file = getattr(args, "input_file", None)
+    if input_file:
+        prompts = Path(input_file).read_text().strip().split(getattr(args, "separator", "\n---\n"))
+    elif args.prompt_or_file:
+        prompts = [args.prompt_or_file]
+    else:
+        print(Color.red("Error: Provide prompts or --input-file"))
+        return 1
+
+    operations = getattr(args, "operations", "lint,tokens").split(",")
+    model = getattr(args, "model", "gpt-4o")
+
+    batch_result = PromptBatchProcessor.process_batch(prompts, operations, model)
+
+    print(Color.bold(Color.cyan(f"\n📦 Batch Processing Results")))
+    print(Color.dim("=" * 60))
+    print(f"  Total: {batch_result.total} | Processed: {batch_result.processed} | Errors: {batch_result.errors}")
+    print(f"  Operations: {', '.join(operations)}")
+    print(f"  Total Tokens: {batch_result.summary['total_tokens_before']:,} → {batch_result.summary['total_tokens_after']:,}")
+    print(f"  Delta: {batch_result.summary['token_delta']:,}")
+    print()
+
+    if not getattr(args, "json", False):
+        for entry in batch_result.results:
+            status_icon = "✅" if entry["status"] == "ok" else "❌"
+            print(f"  {status_icon} [{entry['index']}] {entry.get('final_text', entry.get('error', 'N/A'))[:80]}")
+
+    if getattr(args, "json", False):
+        import json
+        print(json.dumps({
+            "total": batch_result.total,
+            "processed": batch_result.processed,
+            "errors": batch_result.errors,
+            "summary": batch_result.summary,
+            "results": batch_result.results,
+        }, indent=2))
+
+    return 0
+
+
+# ============================================================================
+# SCORING RUBRIC (cmd_score)
+# ============================================================================
+
+def cmd_score(args: argparse.Namespace) -> int:
+    """Score a prompt using multi-dimensional rubric."""
+    from promptmaster_studio.engine.v3_enhancements import PromptScoringRubric
+
+    text = read_prompt_input(args.prompt_or_file)
+
+    rubric = PromptScoringRubric.score(text)
+
+    print(Color.bold(Color.cyan(f"\n📊 Prompt Scoring Rubric")))
+    print(Color.dim("=" * 60))
+    print(f"  Overall Score: {rubric.overall}/100 (Grade: {rubric.grade})")
+    print()
+    print("  Dimensions:")
+    for dim, score in rubric.dimensions.items():
+        color = "🟢" if score >= 80 else "🟡" if score >= 60 else "🔴"
+        print(f"    {color} {dim}: {score}/100")
+    if rubric.strengths:
+        print("\n  Strengths:")
+        for s in rubric.strengths[:5]:
+            print(f"    ✅ {s}")
+    if rubric.weaknesses:
+        print("\n  Weaknesses:")
+        for w in rubric.weaknesses[:5]:
+            print(f"    ⚠️  {w}")
+    if rubric.recommendations:
+        print("\n  Recommendations:")
+        for r in rubric.recommendations[:3]:
+            print(f"    💡 {r}")
+
+    if getattr(args, "json", False):
+        import json
+        print(json.dumps({
+            "overall": rubric.overall,
+            "grade": rubric.grade,
+            "dimensions": rubric.dimensions,
+            "strengths": rubric.strengths,
+            "weaknesses": rubric.weaknesses,
+            "recommendations": rubric.recommendations,
+        }, indent=2))
+
+    return 0
+
+
+# ============================================================================
+# EXPORT FORMATTER (cmd_export)
+# ============================================================================
+
+def cmd_export(args: argparse.Namespace) -> int:
+    """Export prompt in various formats."""
+    from promptmaster_studio.engine.v3_enhancements import ExportFormatter
+
+    text = read_prompt_input(args.prompt_or_file)
+
+    fmt = getattr(args, "format", "json")
+    metadata = {}
+    if hasattr(args, "metadata") and args.metadata:
+        metadata = dict(item.split("=") for item in args.metadata.split(",") if "=" in item)
+
+    if fmt == "json":
+        result = ExportFormatter.to_json(text, metadata)
+    elif fmt == "yaml":
+        result = ExportFormatter.to_yaml(text, metadata)
+    elif fmt == "markdown":
+        title = getattr(args, "title", "Prompt")
+        result = ExportFormatter.to_markdown(text, title, metadata)
+    elif fmt == "env":
+        var_name = getattr(args, "var_name", "PROMPT")
+        result = ExportFormatter.to_env_file(text, var_name)
+    else:
+        print(Color.red(f"Unknown format: {fmt}"))
+        return 1
+
+    print(result)
+
+    if getattr(args, "output", None):
+        Path(args.output).write_text(result)
+        print(f"\nSaved to {args.output}")
+
+    return 0
 
 def cmd_test(args: argparse.Namespace) -> int:
     """Execute the internal test suite verifying all modules, tools, and protocols."""
@@ -1220,6 +1632,70 @@ class PromptMasterHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self._send_json(ens.to_dict())
             return
 
+        if path == "/api/diff":
+            from promptmaster_studio.engine.prompt_diff import compare_prompts
+            left_text = body.get("left_prompt", "")
+            right_text = body.get("right_prompt", "")
+            model = body.get("model", "gpt-4o")
+            if not left_text or not right_text:
+                self._send_json({"error": "Both left_prompt and right_prompt are required."}, status=400)
+                return
+            result = compare_prompts(left_text, right_text, model_name=model)
+            self._send_json(result.to_dict())
+            return
+
+        if path == "/api/history":
+            from promptmaster_studio.engine.version_history import PromptVersionHistory
+            store = PromptVersionHistory()
+            action = body.get("action", "list")
+            if action == "save":
+                prompt_text = body.get("prompt", "")
+                if not prompt_text:
+                    self._send_json({"error": "prompt is required"}, status=400)
+                    return
+                version = store.save_version(
+                    prompt_text,
+                    label=body.get("label", ""),
+                    message=body.get("message", ""),
+                    branch=body.get("branch", "main"),
+                )
+                self._send_json(version.to_dict())
+            elif action == "list":
+                branch = body.get("branch")
+                limit = int(body.get("limit", 20))
+                versions = store.list_versions(branch=branch, limit=limit)
+                self._send_json([v.to_dict() for v in versions])
+            elif action == "get":
+                vid = body.get("version_id", "")
+                v = store.get_version(vid)
+                if not v:
+                    self._send_json({"error": "Version not found"}, status=404)
+                    return
+                self._send_json(v.to_dict())
+            elif action == "compare":
+                report = store.compare_versions(body.get("version_id_a", ""), body.get("version_id_b", ""))
+                if not report:
+                    self._send_json({"error": "Could not compare"}, status=400)
+                    return
+                self._send_json(report)
+            elif action == "rollback":
+                v = store.rollback(body.get("version_id", ""), body.get("branch"))
+                if not v:
+                    self._send_json({"error": "Version not found"}, status=404)
+                    return
+                self._send_json(v.to_dict())
+            elif action == "branches":
+                branches = store.list_branches()
+                self._send_json([b.name for b in branches])
+            elif action == "tree":
+                tree = store.get_history_tree(body.get("branch", "main"))
+                self._send_json(tree)
+            elif action == "stats":
+                self._send_json(store.stats())
+            else:
+                self._send_json({"error": "Unknown action"}, status=400)
+            return
+
         self._send_json({"error": "Endpoint not found"}, status=404)
 
 
@@ -1373,6 +1849,76 @@ def build_parser() -> argparse.ArgumentParser:
     p_deb.add_argument("--json", action="store_true", help="Output JSON results.")
     p_deb.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
 
+    # 14. diff
+    p_diff = subparsers.add_parser("diff", help="Compare two prompts and generate a structural diff report.")
+    p_diff.add_argument("left", help="Left (original) prompt text, file path, or '-' for stdin.")
+    p_diff.add_argument("right", help="Right (modified) prompt text, file path, or '-' for stdin.")
+    p_diff.add_argument("-m", "--model", default="gpt-4o", help="Model for cost estimation.")
+    p_diff.add_argument("-o", "--output", help="Save diff report to file.")
+    p_diff.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_diff.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
+    # 15. history
+    p_hist = subparsers.add_parser("history", help="Manage prompt version history.")
+    p_hist.add_argument("action", choices=["save", "list", "show", "compare", "rollback",
+                                            "branches", "tree", "stats", "search"],
+                         nargs="?", default="list", help="History action to perform.")
+    p_hist.add_argument("prompt_or_file", nargs="?", default=None,
+                        help="Prompt text/file for 'save', version ID for 'show'/'rollback', "
+                             "or first version ID for 'compare'.")
+    p_hist.add_argument("--right", help="Second version ID for 'compare' action.")
+    p_hist.add_argument("-l", "--label", help="Version label for 'save'.")
+    p_hist.add_argument("--message", "-M", help="Commit message for 'save'.")
+    p_hist.add_argument("-b", "--branch", help="Branch name.")
+    p_hist.add_argument("--limit", type=int, default=20, help="Limit results for 'list'.")
+    p_hist.add_argument("-q", "--query", help="Search query for 'search' action.")
+    p_hist.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_hist.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
+    # 16. context
+    p_ctx = subparsers.add_parser("context", help="Analyze and optimize prompt for context window limits.")
+    p_ctx.add_argument("prompt_or_file", help="Prompt text, file path, or '-' for stdin.")
+    p_ctx.add_argument("-m", "--model", default="gpt-4o", help="Target model for context window analysis.")
+    p_ctx.add_argument("--analyze", action="store_true", help="Only analyze, don't optimize.")
+    p_ctx.add_argument("-o", "--output", help="Save optimized prompt to file.")
+    p_ctx.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_ctx.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
+    # 17. migrate
+    p_mig = subparsers.add_parser("migrate", help="Migrate a prompt from one provider format to another.")
+    p_mig.add_argument("prompt_or_file", help="Prompt text, file path, or '-' for stdin.")
+    p_mig.add_argument("-t", "--target", default="anthropic", help="Target provider (anthropic, openai, gemini, mistral, cohere).")
+    p_mig.add_argument("-s", "--source", help="Source provider (auto-detect if not specified).")
+    p_mig.add_argument("-o", "--output", help="Save migrated prompt to file.")
+    p_mig.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_mig.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
+    # 18. batch
+    p_batch = subparsers.add_parser("batch", help="Process a batch of prompts through a pipeline.")
+    p_batch.add_argument("prompt_or_file", nargs="?", help="Prompt(s) or file path.")
+    p_batch.add_argument("-i", "--input-file", help="Input file with prompts separated by ---.")
+    p_batch.add_argument("--separator", default="\n---\n", help="Separator for batch input file.")
+    p_batch.add_argument("-o", "--operations", default="lint,tokens", help="Comma-separated operations (lint,optimize,tokens,context_check,render).")
+    p_batch.add_argument("-m", "--model", default="gpt-4o", help="Target model.")
+    p_batch.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_batch.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
+    # 19. score
+    p_score = subparsers.add_parser("score", help="Score a prompt using multi-dimensional rubric.")
+    p_score.add_argument("prompt_or_file", help="Prompt text, file path, or '-' for stdin.")
+    p_score.add_argument("--json", action="store_true", help="Output JSON results.")
+    p_score.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
+    # 20. export
+    p_export = subparsers.add_parser("export", help="Export prompt in various formats.")
+    p_export.add_argument("prompt_or_file", help="Prompt text, file path, or '-' for stdin.")
+    p_export.add_argument("-f", "--format", default="json", choices=["json", "yaml", "markdown", "env"], help="Export format.")
+    p_export.add_argument("--metadata", help="Metadata as key=value,key=value.")
+    p_export.add_argument("--title", default="Prompt", help="Title for markdown export.")
+    p_export.add_argument("--var-name", default="PROMPT", help="Variable name for env export.")
+    p_export.add_argument("-o", "--output", help="Save to file.")
+    p_export.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
+
     return parser
 
 
@@ -1429,6 +1975,20 @@ def main(argv: Optional[List[str]] = None) -> int:
         return cmd_cove(args)
     elif sub == "debate":
         return cmd_debate(args)
+    elif sub == "diff":
+        return cmd_diff(args)
+    elif sub == "history":
+        return cmd_history(args)
+    elif sub == "context":
+        return cmd_context(args)
+    elif sub == "migrate":
+        return cmd_migrate(args)
+    elif sub == "batch":
+        return cmd_batch(args)
+    elif sub == "score":
+        return cmd_score(args)
+    elif sub == "export":
+        return cmd_export(args)
     else:
         print(Color.red(f"Unknown subcommand: {sub}"), file=sys.stderr)
         return 1

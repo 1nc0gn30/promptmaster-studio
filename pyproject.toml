@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "promptmaster-studio"
-version = "1.0.0"
-description = "Zero-dependency Prompt Engineering & Meta-Optimization Studio, Linter, Token Estimator, MCP Server, and Interactive Curriculum."
+version = "3.0.0"
+description = "Zero-dependency Prompt Engineering & Meta-Optimization Studio, Linter, Token Estimator, Diff Engine, Version History, Context Optimizer, Provider Migration, Batch Processor, Scoring Rubric, MCP Server, and Interactive Curriculum."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }

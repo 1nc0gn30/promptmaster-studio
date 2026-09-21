@@ -261,7 +261,78 @@ class MCPServer:
             handler=self._handle_prompt_cove,
         )
 
-        # 10. prompt_multi_agent_debate
+        # 10. prompt_diff
+        self.register_tool(
+            name="prompt_diff",
+            description="Compare two prompts and generate a structural diff report with token delta, tag analysis, variable overlap, and quality score comparison.",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "left_prompt": {
+                        "type": "string",
+                        "description": "The original or baseline prompt to compare.",
+                    },
+                    "right_prompt": {
+                        "type": "string",
+                        "description": "The modified or candidate prompt to compare against.",
+                    },
+                    "model": {
+                        "type": "string",
+                        "default": "gpt-4o",
+                        "description": "Model for cost estimation.",
+                    },
+                },
+                "required": ["left_prompt", "right_prompt"],
+            },
+            handler=self._handle_prompt_diff,
+        )
+
+        # 11. prompt_version_history
+        self.register_tool(
+            name="prompt_version_history",
+            description="Save, list, retrieve, compare, and rollback prompt versions. Tracks iterations with branches, tags, and metadata.",
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": ["save", "list", "get", "compare", "rollback", "branches", "tree", "stats"],
+                        "description": "History action to perform.",
+                    },
+                    "prompt": {
+                        "type": "string",
+                        "description": "Prompt text for 'save' action.",
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "Label for saved version.",
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "Commit message for saved version.",
+                    },
+                    "branch": {
+                        "type": "string",
+                        "description": "Branch name.",
+                    },
+                    "version_id": {
+                        "type": "string",
+                        "description": "Version ID for 'get' or 'rollback' action.",
+                    },
+                    "version_id_a": {
+                        "type": "string",
+                        "description": "First version ID for 'compare' action.",
+                    },
+                    "version_id_b": {
+                        "type": "string",
+                        "description": "Second version ID for 'compare' action.",
+                    },
+                },
+            },
+            handler=self._handle_prompt_version_history,
+        )
+
+        # 12. prompt_multi_agent_debate
         self.register_tool(
             name="prompt_multi_agent_debate",
             description="Synthesize a multi-agent society-of-mind debate ensemble (Proponent, Adversarial Skeptic, Pragmatist, and Impartial Arbiter) to resolve complex, ambiguous, or critical reasoning tasks.",
@@ -657,6 +728,80 @@ Estimated Token Overhead: ~{pipeline.estimated_token_overhead} tokens
             "content": [{"type": "text", "text": "\n".join(lines)}],
             "data": ensemble.to_dict(),
         }
+
+    def _handle_prompt_diff(self, arguments: Dict[str, Any]) -> Dict[str, Any]:
+        from promptmaster_studio.engine.prompt_diff import compare_prompts, format_comparison_report
+        left_text = arguments.get("left_prompt", "")
+        right_text = arguments.get("right_prompt", "")
+        model = arguments.get("model", "gpt-4o")
+
+        if not left_text or not right_text:
+            raise ValueError("Both 'left_prompt' and 'right_prompt' are required.")
+
+        result = compare_prompts(left_text, right_text, model_name=model)
+        report = format_comparison_report(result)
+
+        return {
+            "content": [{"type": "text", "text": report}],
+            "data": result.to_dict(),
+        }
+
+    def _handle_prompt_version_history(self, arguments: Dict[str, Any]) -> Dict[str, Any]:
+        from promptmaster_studio.engine.version_history import PromptVersionHistory
+        store = PromptVersionHistory()
+        action = arguments.get("action", "list")
+
+        if action == "save":
+            prompt_text = arguments.get("prompt", "")
+            if not prompt_text:
+                raise ValueError("'prompt' is required for save action.")
+            version = store.save_version(
+                prompt_text,
+                label=arguments.get("label", ""),
+                message=arguments.get("message", ""),
+                branch=arguments.get("branch", "main"),
+            )
+            return {
+                "content": [{"type": "text", "text": f"Version saved: {version.version_id}"}],
+                "data": version.to_dict(),
+            }
+        elif action == "list":
+            limit = int(arguments.get("limit", 20))
+            branch = arguments.get("branch")
+            versions = store.list_versions(branch=branch, limit=limit)
+            return {
+                "content": [{"type": "text", "text": json.dumps([v.to_dict() for v in versions], indent=2)}],
+                "data": [v.to_dict() for v in versions],
+            }
+        elif action == "get":
+            vid = arguments.get("version_id", "")
+            v = store.get_version(vid)
+            if not v:
+                return {"content": [{"type": "text", "text": f"Version '{vid}' not found"}], "data": None}
+            return {"content": [{"type": "text", "text": v.prompt_text}], "data": v.to_dict()}
+        elif action == "compare":
+            report = store.compare_versions(
+                arguments.get("version_id_a", ""),
+                arguments.get("version_id_b", ""),
+            )
+            if not report:
+                return {"content": [{"type": "text", "text": "Could not compare."}], "data": None}
+            return {"content": [{"type": "text", "text": json.dumps(report, indent=2)}], "data": report}
+        elif action == "rollback":
+            v = store.rollback(arguments.get("version_id", ""), arguments.get("branch"))
+            if not v:
+                return {"content": [{"type": "text", "text": "Version not found"}], "data": None}
+            return {"content": [{"type": "text", "text": f"Rolled back: {v.version_id}"}], "data": v.to_dict()}
+        elif action == "branches":
+            branches = store.list_branches()
+            return {"content": [{"type": "text", "text": "\n".join(b.name for b in branches)}], "data": [b.name for b in branches]}
+        elif action == "tree":
+            tree = store.get_history_tree(arguments.get("branch", "main"))
+            return {"content": [{"type": "text", "text": json.dumps(tree, indent=2)}], "data": tree}
+        elif action == "stats":
+            return {"content": [{"type": "text", "text": json.dumps(store.stats(), indent=2)}], "data": store.stats()}
+
+        return {"content": [{"type": "text", "text": "Unknown action"}], "data": None}
 
     # -------------------------------------------------------------------------
     # JSON-RPC 2.0 Dispatcher

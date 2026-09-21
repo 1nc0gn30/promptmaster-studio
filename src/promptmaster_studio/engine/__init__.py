@@ -57,6 +57,29 @@ from promptmaster_studio.engine.tokenizer_estimator import (
     MODEL_CATALOG,
     TokenizerEstimator,
 )
+from promptmaster_studio.engine.prompt_diff import (
+    PromptComparisonResult,
+    PromptDiffEntry,
+    compare_prompts,
+    format_comparison_report,
+)
+from promptmaster_studio.engine.version_history import (
+    PromptBranch,
+    PromptVersion,
+    PromptVersionHistory,
+)
+from promptmaster_studio.engine.v3_enhancements import (
+    ContextWindowOptimizer,
+    ContextWindowPlan,
+    ProviderMigrator,
+    MigrationResult,
+    PromptBatchProcessor,
+    BatchResult,
+    PromptScoringRubric,
+    RubricScore,
+    EnhancedHistory,
+    ExportFormatter,
+)
 
 __all__ = [
     "BuiltinFilters",
@@ -98,4 +121,21 @@ __all__ = [
     "debate_synthesizer",
     "decompose_cove_pipeline",
     "synthesize_debate_ensemble",
+    "PromptComparisonResult",
+    "PromptDiffEntry",
+    "compare_prompts",
+    "format_comparison_report",
+    "PromptBranch",
+    "PromptVersion",
+    "PromptVersionHistory",
+    "ContextWindowOptimizer",
+    "ContextWindowPlan",
+    "ProviderMigrator",
+    "MigrationResult",
+    "PromptBatchProcessor",
+    "BatchResult",
+    "PromptScoringRubric",
+    "RubricScore",
+    "EnhancedHistory",
+    "ExportFormatter",
 ]

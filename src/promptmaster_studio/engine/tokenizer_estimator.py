@@ -252,6 +252,44 @@ MODEL_CATALOG: Dict[str, ModelSpec] = {
         supports_json_mode=True,
         tokenizer_type="mistral_sp",
     ),
+    "mistral-7b": ModelSpec(
+        name="mistral-7b",
+        family="Mistral",
+        context_window=32768,
+        max_output_tokens=4096,
+        cost_per_million_input=0.15,
+        cost_per_million_output=0.25,
+        supports_system_prompt=True,
+        supports_vision=False,
+        supports_json_mode=True,
+        tokenizer_type="mistral_sp",
+    ),
+
+    # Cohere Models
+    "command-r-plus": ModelSpec(
+        name="command-r-plus",
+        family="Cohere",
+        context_window=128000,
+        max_output_tokens=4096,
+        cost_per_million_input=3.00,
+        cost_per_million_output=15.00,
+        supports_system_prompt=True,
+        supports_vision=True,
+        supports_json_mode=True,
+        tokenizer_type="cohere_bpe",
+    ),
+    "command-r": ModelSpec(
+        name="command-r",
+        family="Cohere",
+        context_window=128000,
+        max_output_tokens=4096,
+        cost_per_million_input=0.50,
+        cost_per_million_output=1.50,
+        supports_system_prompt=True,
+        supports_vision=False,
+        supports_json_mode=True,
+        tokenizer_type="cohere_bpe",
+    ),
 
     # DeepSeek Models
     "deepseek-v3": ModelSpec(
@@ -326,6 +364,10 @@ class TokenizerEstimator:
             family_mult = 0.95
         elif "deepseek" in family_clean:
             family_mult = 0.97
+        elif "mistral" in family_clean:
+            family_mult = 1.01
+        elif "cohere" in family_clean:
+            family_mult = 0.99
         else:
             family_mult = 1.00
 

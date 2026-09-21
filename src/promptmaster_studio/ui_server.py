@@ -370,6 +370,70 @@ class PromptMasterStudioRequestHandler(BaseHTTPRequestHandler):
                 self._send_json(ensemble.to_dict())
                 return
 
+            if path == "/api/diff":
+                from promptmaster_studio.engine.prompt_diff import compare_prompts
+                left_text = body.get("left_prompt", "")
+                right_text = body.get("right_prompt", "")
+                model = body.get("model", "gpt-4o")
+                if not left_text or not right_text:
+                    self._send_json({"error": "Both left_prompt and right_prompt are required."}, status=400)
+                    return
+                result = compare_prompts(left_text, right_text, model_name=model)
+                self._send_json(result.to_dict())
+                return
+
+            if path == "/api/history":
+                from promptmaster_studio.engine.version_history import PromptVersionHistory
+                store = PromptVersionHistory()
+                action = body.get("action", "list")
+                if action == "save":
+                    prompt_text = body.get("prompt", "")
+                    if not prompt_text:
+                        self._send_json({"error": "prompt is required"}, status=400)
+                        return
+                    version = store.save_version(
+                        prompt_text,
+                        label=body.get("label", ""),
+                        message=body.get("message", ""),
+                        branch=body.get("branch", "main"),
+                    )
+                    self._send_json(version.to_dict())
+                elif action == "list":
+                    branch = body.get("branch")
+                    limit = int(body.get("limit", 20))
+                    versions = store.list_versions(branch=branch, limit=limit)
+                    self._send_json([v.to_dict() for v in versions])
+                elif action == "get":
+                    vid = body.get("version_id", "")
+                    v = store.get_version(vid)
+                    if not v:
+                        self._send_json({"error": "Version not found"}, status=404)
+                        return
+                    self._send_json(v.to_dict())
+                elif action == "compare":
+                    report = store.compare_versions(body.get("version_id_a", ""), body.get("version_id_b", ""))
+                    if not report:
+                        self._send_json({"error": "Could not compare"}, status=400)
+                        return
+                    self._send_json(report)
+                elif action == "rollback":
+                    v = store.rollback(body.get("version_id", ""), body.get("branch"))
+                    if not v:
+                        self._send_json({"error": "Version not found"}, status=404)
+                        return
+                    self._send_json(v.to_dict())
+                elif action == "branches":
+                    branches = store.list_branches()
+                    self._send_json([b.name for b in branches])
+                elif action == "tree":
+                    tree = store.get_history_tree(body.get("branch", "main"))
+                    self._send_json(tree)
+                elif action == "stats":
+                    self._send_json(store.stats())
+                else:
+                    self._send_json({"error": "Unknown action"}, status=400)
+                return
+
             # Unknown POST route
             self._send_error_json(f"POST route '{path}' not recognized", status=404)
 
