@@ -1,0 +1,31 @@
+{
+  "name": "promptmaster-studio",
+  "version": "3.0.0",
+  "description": "Sovereign Prompt Engineering & Meta-Optimization Studio — PromptMaster Studio Desktop Workstation",
+  "main": "electron/main.cjs",
+  "bin": {
+    "promptmaster": "./bin/promptmaster.js",
+    "promptmaster-studio": "./bin/promptmaster.js"
+  },
+  "scripts": {
+    "start": "python3 -m promptmaster_studio.ui_server --port 8765",
+    "electron": "electron .",
+    "app": "electron .",
+    "test": "pytest tests/"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "meta-optimization",
+    "linter",
+    "adversarial-testing",
+    "cove-debate",
+    "electron",
+    "sovereign",
+    "zoth"
+  ],
+  "author": "NullAI Tech / Zoth Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^34.5.8"
+  }
+}

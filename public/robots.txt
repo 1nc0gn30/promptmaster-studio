@@ -1,0 +1,29 @@
+User-agent: *
+Allow: /
+
+# Answer Engine & AI Crawlers (AEO Full Access)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://promptmaster-studio.netlify.app/sitemap.xml

@@ -4,12 +4,12 @@
 
 **Zero-dependency Prompt Engineering & Meta-Optimization Suite**
 
-[![CI](https://github.com/1nc0gn30/promptmaster-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/promptmaster-studio/actions/workflows/ci.yml)
+[![CI](https://github.com/NullAITech/promptmaster-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/promptmaster-studio/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP Compliant](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20external-brightgreen.svg)](https://pypi.org/project/promptmaster-studio/)
-[![Tests](https://img.shields.io/badge/tests-233%20passed-success.svg)](https://github.com/1nc0gn30/promptmaster-studio)
+[![Tests](https://img.shields.io/badge/tests-233%20passed-success.svg)](https://github.com/NullAITech/promptmaster-studio)
 
 *From ad-hoc prompts to production-grade prompt engineering — built with 100% Python Standard Library.*
 
@@ -103,7 +103,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/1nc0gn30/promptmaster-studio.git
+git clone https://github.com/NullAITech/promptmaster-studio.git
 cd promptmaster-studio
 
 # Install in editable mode
