@@ -3,59 +3,112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PromptMaster Studio — Sovereign AI Prompt Engineering & Meta-Optimization</title>
-  <meta name="description" content="Production-grade AI prompt engineering and meta-optimization workstation. Lint, audit, estimate token costs, and adversarially test prompts for Gemini, Claude 3.7, and GPT-4o.">
-  <meta name="keywords" content="prompt engineering, meta prompt optimizer, llm linter, adversarial prompt testing, ai developer workstation, nullai tech, neal frazier">
+  <title>PromptMaster Studio: Prompt Optimizer &amp; Linter for Claude, ChatGPT &amp; Gemini</title>
+  <meta name="description" content="Paste a rough prompt and get a production-ready one. PromptMaster Studio lints, scores and rewrites prompts for Claude, ChatGPT and Gemini in your browser. Free to try, Pro is $19 once.">
   <meta name="author" content="Neal Frazier">
+  <meta name="theme-color" content="#07090E">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://promptmaster-studio.netlify.app/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
   <!-- OpenGraph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://promptmaster-studio.netlify.app/">
-  <meta property="og:title" content="PromptMaster Studio — Prompt Engineering Workstation">
-  <meta property="og:description" content="Professional AI prompt optimization and security linter. Optimize prompts in seconds with dual checkout via Stripe ($19) or Solana DePay.">
-  <meta property="og:site_name" content="Neal Frazier Tech / NullAI">
-  <meta property="og:image" content="https://promptmaster-studio.netlify.app/screenshots/studio-main.png">
-  <meta property="og:image:width" content="1440">
-  <meta property="og:image:height" content="900">
-  <meta property="og:image:alt" content="PromptMaster Studio AI Workstation">
+  <meta property="og:title" content="PromptMaster Studio: rough prompt in, production prompt out">
+  <meta property="og:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. Free to try. Pro is a one-time $19.">
+  <meta property="og:site_name" content="PromptMaster Studio by Neal Frazier Tech">
+  <meta property="og:image" content="https://promptmaster-studio.netlify.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PromptMaster Studio: rough prompt in, production prompt out. Prompt optimizer and linter for Claude, ChatGPT and Gemini.">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@1nc0gn30">
   <meta name="twitter:creator" content="@1nc0gn30">
-  <meta name="twitter:title" content="PromptMaster Studio — Sovereign AI Prompt Engineering">
-  <meta name="twitter:description" content="Lint, optimize, and secure AI system prompts with instant Web3 & fiat checkout.">
-  <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/screenshots/studio-main.png">
-  <meta name="twitter:image:alt" content="PromptMaster Studio AI Workstation">
+  <meta name="twitter:title" content="PromptMaster Studio: rough prompt in, production prompt out">
+  <meta name="twitter:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. Free to try. Pro is a one-time $19.">
+  <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/og-image.png">
+  <meta name="twitter:image:alt" content="PromptMaster Studio: rough prompt in, production prompt out. Prompt optimizer and linter for Claude, ChatGPT and Gemini.">
 
-  <!-- Answer Engine Optimization (AEO) JSON-LD Structured Data -->
+  <!-- Answer Engine Optimization (AEO): Organization + WebSite + SoftwareApplication + VideoObject + FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebApplication",
+        "@type": "Organization",
+        "@id": "https://promptmaster-studio.netlify.app/#org",
+        "name": "Neal Frazier Tech",
+        "alternateName": "NullAITech",
+        "url": "https://nealfrazier.tech",
+        "logo": "https://promptmaster-studio.netlify.app/favicon.svg",
+        "email": "support@nealfrazier.tech",
+        "founder": { "@type": "Person", "name": "Neal Frazier", "url": "https://nealfrazier.tech" },
+        "sameAs": ["https://github.com/1nc0gn30", "https://x.com/1nc0gn30", "https://nullai.tech"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://promptmaster-studio.netlify.app/#website",
+        "name": "PromptMaster Studio",
+        "url": "https://promptmaster-studio.netlify.app/",
+        "publisher": { "@id": "https://promptmaster-studio.netlify.app/#org" }
+      },
+      {
+        "@type": "SoftwareApplication",
         "@id": "https://promptmaster-studio.netlify.app/#app",
         "name": "PromptMaster Studio",
         "url": "https://promptmaster-studio.netlify.app/",
         "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "All",
-        "description": "Production-grade AI prompt engineering, meta-optimization, and adversarial security testing workstation.",
-        "creator": {
-          "@type": "Person",
-          "name": "Neal Frazier",
-          "url": "https://nealfrazier.tech",
-          "sameAs": "https://github.com/1nc0gn30"
-        },
-        "offers": {
-          "@type": "Offer",
-          "price": "19.00",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock",
-          "url": "https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D"
-        }
+        "operatingSystem": "Any (web browser)",
+        "description": "Browser-based prompt engineering studio. Lints and scores prompts, estimates token cost, and rewrites prompts for Claude (XML), OpenAI chat, Google Gemini and chain-of-thought formats. Prompts are processed on the user's device.",
+        "image": "https://promptmaster-studio.netlify.app/og-image.png",
+        "screenshot": "https://promptmaster-studio.netlify.app/screenshots/studio-main.png",
+        "featureList": [
+          "Prompt linter for negative constraints, vague directives, injection risks and broken variables",
+          "Clarity, security and structure scores",
+          "Token and cost estimator",
+          "Prompt rewriting for Claude XML, OpenAI chat, Google Gemini and chain-of-thought",
+          "Prompt diff and local version history"
+        ],
+        "publisher": { "@id": "https://promptmaster-studio.netlify.app/#org" },
+        "video": { "@id": "https://promptmaster-studio.netlify.app/#reel" },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Free",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Linter, scores, token estimator, diff, history and one full optimization."
+          },
+          {
+            "@type": "Offer",
+            "name": "PromptMaster Studio Pro (lifetime)",
+            "price": "19.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "url": "https://promptmaster-studio.netlify.app/#pricing",
+            "description": "One-time payment. Full optimized output for every target format, copy and export, unlimited optimizations.",
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "US",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 30,
+              "returnFees": "https://schema.org/FreeReturn",
+              "url": "https://promptmaster-studio.netlify.app/terms.html#refunds"
+            }
+          }
+        ]
+      },
+      {
+        "@type": "VideoObject",
+        "@id": "https://promptmaster-studio.netlify.app/#reel",
+        "name": "PromptMaster Studio product reel",
+        "description": "A short silent product reel showing a rough prompt being linted, scored and rewritten in PromptMaster Studio.",
+        "thumbnailUrl": "https://promptmaster-studio.netlify.app/media/promptmaster-reel-poster.jpg",
+        "contentUrl": "https://promptmaster-studio.netlify.app/media/promptmaster-reel.mp4",
+        "uploadDate": "2026-10-03",
+        "publisher": { "@id": "https://promptmaster-studio.netlify.app/#org" }
       },
       {
         "@type": "FAQPage",
@@ -64,18 +117,42 @@
           {
             "@type": "Question",
             "name": "What is PromptMaster Studio?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "PromptMaster Studio is a high-performance prompt engineering workstation created by Neal Frazier Tech. It features automated prompt linting, token cost estimation, adversarial red-team testing, and meta-prompt optimization."
-            }
+            "acceptedAnswer": { "@type": "Answer", "text": "PromptMaster Studio is a browser-based prompt engineering tool by Neal Frazier Tech. It lints and scores your prompt, estimates token cost, and rewrites it into a structured format for Claude (XML), OpenAI chat, Google Gemini or chain-of-thought reasoning." }
           },
           {
             "@type": "Question",
-            "name": "How can I purchase or unlock PromptMaster Studio Pro?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "PromptMaster Studio Pro is $19.00. You can unlock it instantly using credit card/Apple Pay via Stripe or cryptocurrency (SOL/USDC) via the DePay Web3 checkout widget."
-            }
+            "name": "Are my prompts sent to a server?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Linting, scoring and rewriting run in JavaScript inside your browser. Your prompt text is not uploaded. Payments are handled by Stripe or by your own Solana wallet." }
+          },
+          {
+            "@type": "Question",
+            "name": "What can I do for free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "The linter, quality scores, token and cost estimator, prompt diff, version history, templates and curriculum are free and unlimited. Your first optimized prompt is shown in full. After that, optimized results show a preview of the first lines." }
+          },
+          {
+            "@type": "Question",
+            "name": "What does PromptMaster Studio Pro unlock?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Pro unlocks the full optimized output for every target format (Claude XML, OpenAI, Gemini and chain-of-thought), copy and export, and unlimited optimizations in that browser." }
+          },
+          {
+            "@type": "Question",
+            "name": "How much does Pro cost? Is it a subscription?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Pro is a one-time payment of $19 for lifetime access to the web studio. There is no subscription and no recurring charge." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the refund policy?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Every purchase has a 30-day money-back guarantee. Email support@nealfrazier.tech with your Stripe receipt email or Solana transaction signature within 30 days for a full refund. Details are in the Terms of Service." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I pay with crypto?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes, when crypto checkout is enabled you can pay in USDC on Solana with any Solana Pay compatible wallet such as Phantom or Solflare. Card, Apple Pay and Google Pay go through Stripe." }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I use Pro on another browser or device?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Pro is remembered in the browser you paid in. To unlock another browser, open the restore link shown after checkout, or use Restore access and paste your Stripe checkout session ID or Solana transaction signature. If you lose it, email support with your receipt." }
           }
         ]
       }
@@ -85,7 +162,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="/media/promptmaster-reel-poster.jpg" fetchpriority="high">
+  <script src="/config.js"></script>
   <style>
     :root {
       --primary: #10B981;
@@ -275,6 +354,8 @@
       justify-content: center;
     }
 
+    #templateSelector { max-width: 100%; min-width: 0; }
+    .card-header .chip-group { min-width: 0; max-width: 100%; }
     .chip-group {
       display: flex;
       flex-wrap: wrap;
@@ -302,13 +383,13 @@
     /* Layout Containers */
     main {
       flex: 1;
-      padding: 1.25rem 1.5rem;
-      max-width: 1920px;
+      padding: 0;
+      max-width: 100%;
       margin: 0 auto;
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0;
       box-sizing: border-box;
       min-width: 0;
       overflow-x: hidden;
@@ -334,35 +415,12 @@
     }
 
     @media (max-width: 860px) {
-      main {
-        padding: 0.75rem 0.5rem;
-        max-width: 100%;
-      }
       .panels-grid {
         grid-template-columns: 1fr;
         max-width: 100%;
       }
       .panels-grid > div:last-child {
         grid-column: span 1;
-      }
-      header {
-        padding: 0.75rem 1rem;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-        max-width: 100%;
-      }
-      .header-actions {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-      .header-actions .btn {
-        font-size: 0.78rem;
-        padding: 0.4rem 0.75rem;
-        flex: 1 1 auto;
-        justify-content: center;
       }
       .mode-tabs {
         display: flex;
@@ -797,140 +855,6 @@
       transform: translateY(0);
     }
 
-    /* ====================================================================
-       HIGH-CONVERTING SOVEREIGN SALES FUNNEL & PAYWALL ARCHITECTURE
-       ==================================================================== */
-    .funnel-banner {
-      margin-bottom: 0.75rem;
-      background: linear-gradient(135deg, rgba(16, 20, 36, 0.95), rgba(9, 11, 20, 0.98));
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      border-radius: var(--radius-lg);
-      padding: 1.1rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6), 0 0 25px rgba(99, 102, 241, 0.12);
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .funnel-banner::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.15), transparent 60%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .funnel-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.25rem;
-    }
-    .funnel-left {
-      flex: 1 1 480px;
-      min-width: 0;
-    }
-    .funnel-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 3px 10px;
-      border-radius: 9999px;
-      background: rgba(239, 68, 68, 0.15);
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      color: #F87171;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.4rem;
-    }
-    .funnel-badge .badge-tag {
-      background: rgba(99, 102, 241, 0.25);
-      border: 1px solid rgba(99, 102, 241, 0.5);
-      color: #A5B4FC;
-      padding: 1px 6px;
-      border-radius: 4px;
-      margin-left: 4px;
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #EF4444;
-      animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    }
-    .funnel-title {
-      font-family: var(--font-brand);
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #F8FAFC;
-      margin: 0 0 0.3rem 0;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-    }
-    .funnel-desc {
-      font-size: 0.82rem;
-      color: var(--on-surface-variant);
-      margin: 0 0 0.5rem 0;
-      line-height: 1.4;
-    }
-    .funnel-proof {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: #10B981;
-    }
-    .funnel-right {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.5rem;
-      flex: 0 0 auto;
-    }
-    .funnel-price-box {
-      display: flex;
-      align-items: baseline;
-      gap: 0.4rem;
-    }
-    .price-strike {
-      font-size: 0.95rem;
-      text-decoration: line-through;
-      color: var(--on-surface-variant);
-      opacity: 0.7;
-    }
-    .price-main {
-      font-family: var(--font-brand);
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #10B981;
-      letter-spacing: -0.02em;
-    }
-    .price-term {
-      font-family: var(--font-text);
-      font-size: 0.78rem;
-      color: var(--on-surface-variant);
-      font-weight: 500;
-    }
-    .funnel-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: flex-end;
-    }
     .btn-solana {
       background: rgba(20, 241, 149, 0.15);
       border: 1px solid rgba(20, 241, 149, 0.4);
@@ -950,35 +874,6 @@
       box-shadow: 0 0 15px rgba(20, 241, 149, 0.3);
       transform: translateY(-1px);
     }
-    .funnel-btn-pulse {
-      background: linear-gradient(135deg, #6366F1, #8B5CF6);
-      box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-      font-weight: 700;
-      font-size: 0.82rem;
-      padding: 0.5rem 1rem;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .funnel-btn-pulse:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 25px rgba(99, 102, 241, 0.7);
-    }
-    .funnel-key-link {
-      background: none;
-      border: none;
-      color: #94A3B8;
-      font-size: 0.75rem;
-      cursor: pointer;
-      text-decoration: underline;
-      padding: 0;
-      transition: var(--transition);
-    }
-    .funnel-key-link:hover {
-      color: #F8FAFC;
-    }
-
     /* Output Locked Overlay & Blur */
     .preview-container {
       position: relative;
@@ -1090,113 +985,546 @@
     }
 
     @media (max-width: 860px) {
-      .funnel-right {
-        align-items: flex-start;
-        width: 100%;
-      }
-      .funnel-actions {
-        width: 100%;
-        justify-content: flex-start;
-      }
       .pro-feature-grid {
         grid-template-columns: 1fr;
       }
-      .funnel-title {
-        font-size: 1.1rem;
-      }
+    }
+    /* ====================================================================
+       LANDING / FUNNEL LAYER
+       Syne for display, Instrument Serif italic for accents, Fira Code for labels
+       ==================================================================== */
+    :root {
+      --font-brand: 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+      --emerald: #10B981;
+      --emerald-soft: rgba(16, 185, 129, 0.14);
+      --indigo: #6366F1;
+      --indigo-soft: rgba(99, 102, 241, 0.16);
+      --ink: #07090E;
+      --wrap: 1240px;
+      --gutter: clamp(1rem, 4vw, 2.5rem);
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+    [hidden] { display: none !important; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--emerald); outline-offset: 3px; border-radius: 6px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .skip-link { position: absolute; left: 1rem; top: -60px; z-index: 1000; background: var(--emerald); color: #04110C; padding: 0.5rem 0.9rem; border-radius: 8px; font-weight: 700; text-decoration: none; }
+    .skip-link:focus { top: 0.75rem; }
+    .lp-wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gutter); box-sizing: border-box; }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(7, 9, 14, 0.78);
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      border-bottom: 1px solid var(--outline-light);
+      padding: 0;
+      display: block;
+    }
+    [data-theme="light"] .site-header { background: rgba(255,255,255,0.85); }
+    .site-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 64px; }
+    .brand { text-decoration: none; color: var(--on-surface); }
+    .brand-title { font-size: 1.12rem; }
+    .site-nav { display: flex; align-items: center; gap: 0.25rem; }
+    .site-nav a {
+      font-family: var(--font-tech); font-size: 0.88rem; font-weight: 500;
+      color: var(--on-surface-variant); text-decoration: none; padding: 0.45rem 0.7rem; border-radius: 999px;
+      transition: var(--transition);
+    }
+    .site-nav a:hover { color: var(--on-surface); background: var(--surface-container-low); }
+    .header-cta-wrap { display: flex; align-items: center; gap: 0.5rem; }
+    @media (max-width: 420px) { .hide-xs { display: none; } }
+    @media (max-width: 560px) { .hide-sm { display: none; } }
+    .pro-pill {
+      display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-tech); font-weight: 700; font-size: 0.78rem;
+      color: var(--emerald); background: var(--emerald-soft); border: 1px solid rgba(16,185,129,0.45); padding: 0.35rem 0.75rem; border-radius: 999px;
+    }
+
+    /* Buttons */
+    .cta-primary {
+      --cta-bg: linear-gradient(135deg, #10B981 0%, #0EA371 45%, #6366F1 130%);
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+      font-family: var(--font-brand); font-weight: 700; font-size: 1rem; letter-spacing: -0.01em;
+      color: #03120C; background: var(--cta-bg); border: 0; border-radius: 14px;
+      padding: 0.95rem 1.35rem; text-decoration: none; cursor: pointer;
+      box-shadow: 0 10px 30px -10px rgba(16,185,129,0.65), inset 0 1px 0 rgba(255,255,255,0.35);
+      transition: transform .18s cubic-bezier(.16,1,.3,1), box-shadow .18s ease;
+    }
+    .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -12px rgba(16,185,129,0.8), inset 0 1px 0 rgba(255,255,255,0.35); }
+    .cta-primary .arrow { transition: transform .18s ease; }
+    .cta-primary:hover .arrow { transform: translateX(3px); }
+    .cta-sm { font-size: 0.86rem; padding: 0.55rem 0.95rem; border-radius: 11px; }
+    .cta-block { width: 100%; }
+    .cta-link { font-family: var(--font-tech); font-weight: 600; font-size: 0.95rem; color: var(--on-surface); text-decoration: none; border-bottom: 1px solid var(--outline); padding-bottom: 2px; }
+    .cta-link:hover { border-color: var(--emerald); color: var(--emerald); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%;
+      font-family: var(--font-tech); font-weight: 600; font-size: 0.95rem; color: var(--on-surface);
+      background: transparent; border: 1px solid var(--outline); border-radius: 14px; padding: 0.85rem 1.2rem; cursor: pointer; text-decoration: none;
+    }
+    .btn-ghost:hover { border-color: #14F195; color: #14F195; }
+    .btn-ghost[aria-disabled="true"], .cta-primary[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+    .text-btn { background: none; border: 0; padding: 0; color: var(--on-surface-variant); font-size: 0.84rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-family: var(--font-text); border-radius: 4px; }
+    .text-btn:hover { color: var(--on-surface); }
+
+    /* Labels */
+    .kicker { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.02em; color: var(--emerald); margin-bottom: 0.9rem; }
+    .section-head { max-width: 860px; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+    .section-title {
+      font-family: var(--font-brand); font-weight: 800; color: var(--on-surface);
+      font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.7rem); line-height: 1.06; letter-spacing: -0.035em;
+    }
+    .section-title em, .hero-title em { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+    .answer { margin-top: 1rem; font-size: clamp(1rem, 0.95rem + 0.25vw, 1.12rem); color: var(--on-surface-variant); line-height: 1.6; max-width: 62ch; }
+    .answer strong { color: var(--on-surface); }
+
+    /* Hero */
+    .hero { position: relative; padding: clamp(2.5rem, 6vw, 5.5rem) 0 clamp(2.25rem, 5vw, 4rem); overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+      background-image: linear-gradient(var(--outline-light) 1px, transparent 1px), linear-gradient(90deg, var(--outline-light) 1px, transparent 1px);
+      background-size: 56px 56px;
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
+    }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(2rem, 4.5vw, 4rem); align-items: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--on-surface-variant);
+      border: 1px solid var(--outline-light); background: var(--surface-container-low); padding: 0.35rem 0.8rem 0.35rem 0.6rem; border-radius: 999px; margin-bottom: 1.4rem;
+    }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--emerald); box-shadow: 0 0 0 4px var(--emerald-soft); flex: none; }
+    .hero-title {
+      font-family: var(--font-brand); font-weight: 800; color: var(--on-surface);
+      font-size: clamp(2.5rem, 1.5rem + 3.4vw, 4.35rem); line-height: 0.98; letter-spacing: -0.05em;
+    }
+    .hero-title .line { display: block; }
+    .hero-title em { color: var(--emerald); padding-right: 0.06em; }
+    .hero-title .out { color: var(--on-surface-variant); }
+    .hero-sub { margin-top: 1.4rem; font-size: clamp(1.02rem, 0.95rem + 0.35vw, 1.2rem); line-height: 1.6; color: var(--on-surface-variant); max-width: 34rem; }
+    .hero-sub strong { color: var(--on-surface); font-weight: 600; }
+    .hero-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+    .hero-assurances { list-style: none; margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; font-family: var(--font-tech); font-size: 0.86rem; color: var(--on-surface-variant); }
+    .hero-assurances li { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .hero-assurances li::before { content: ""; width: 14px; height: 14px; flex: none; background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2310B981' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' d='M3 8.5l3.2 3L13 4.5'/%3E%3C/svg%3E"); }
+
+    /* Hero reel */
+    .hero-reel { margin: 0; position: relative; min-width: 0; }
+    .hero-reel::before {
+      content: ""; position: absolute; inset: 8% -6% -8% 6%; z-index: -1; border-radius: 28px;
+      background: radial-gradient(60% 60% at 30% 30%, rgba(16,185,129,0.35), transparent 70%), radial-gradient(60% 60% at 80% 80%, rgba(99,102,241,0.35), transparent 70%);
+      filter: blur(40px);
+    }
+    .reel-frame {
+      position: relative; border-radius: 18px; padding: 6px; background: linear-gradient(160deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03) 40%, rgba(99,102,241,0.25));
+      box-shadow: 0 40px 80px -30px rgba(0,0,0,0.8);
+      transform: perspective(1600px) rotateY(-4deg) rotateX(2deg);
+      transition: transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .hero-reel:hover .reel-frame { transform: perspective(1600px) rotateY(0) rotateX(0); }
+    .reel-chrome { display: flex; align-items: center; gap: 6px; padding: 8px 10px 10px; }
+    .reel-chrome i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.18); display: block; }
+    .reel-chrome-title { margin-left: 8px; font-family: var(--font-mono); font-size: 0.72rem; color: rgba(255,255,255,0.5); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .reel-box {
+      position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #07090E;
+      isolation: isolate;
+    }
+    .reel-placeholder {
+      position: absolute; inset: 0; z-index: 0; display: grid; place-items: center; text-align: center; color: rgba(255,255,255,0.55);
+      background: radial-gradient(80% 90% at 20% 10%, rgba(16,185,129,0.18), transparent 60%), radial-gradient(70% 80% at 90% 90%, rgba(99,102,241,0.22), transparent 60%), #07090E;
+      font-family: var(--font-mono); font-size: 0.8rem;
+    }
+    .reel-placeholder-logo { width: 56px; height: 56px; border-radius: 14px; margin: 0 auto 0.75rem; display: grid; place-items: center; font-size: 1.7rem; background: linear-gradient(135deg, #10B981, #6366F1); box-shadow: 0 0 40px rgba(16,185,129,0.45); }
+    .reel-video { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; display: block; background: transparent; }
+    .reel-toggle {
+      position: absolute; z-index: 2; right: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-tech); font-size: 0.75rem; font-weight: 600; color: #fff; background: rgba(7,9,14,0.7);
+      border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; padding: 0.35rem 0.7rem; cursor: pointer;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    .reel-toggle:hover { background: rgba(7,9,14,0.9); }
+    .hero-reel figcaption { margin-top: 0.9rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--on-surface-variant); text-align: right; }
+
+    /* Facts strip */
+    .facts { border-block: 1px solid var(--outline-light); background: var(--surface-container-lowest); }
+    .facts-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .fact { padding: 1.4rem 1.25rem; border-left: 1px solid var(--outline-light); }
+    .fact:first-child { border-left: 0; padding-left: 0; }
+    .fact-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--emerald); text-transform: uppercase; letter-spacing: 0.06em; }
+    .fact-value { margin-top: 0.35rem; font-family: var(--font-brand); font-weight: 700; font-size: 1.05rem; color: var(--on-surface); letter-spacing: -0.01em; line-height: 1.25; }
+
+    /* How it works */
+    .how { padding: clamp(3.5rem, 8vw, 6.5rem) 0; }
+    .steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2.5vw, 1.75rem); counter-reset: step; }
+    .step { position: relative; padding: 1.6rem 1.5rem 1.6rem; border-radius: 20px; background: var(--surface-container-low); border: 1px solid var(--outline-light); overflow: hidden; }
+    .step-num {
+      display: block; font-family: var(--font-brand); font-weight: 800; font-size: 4.6rem; line-height: 0.85; letter-spacing: -0.06em;
+      color: transparent; -webkit-text-stroke: 1.5px rgba(16,185,129,0.65); margin-bottom: 1.1rem;
+    }
+    .step:nth-child(2) .step-num { -webkit-text-stroke-color: rgba(129,140,248,0.75); }
+    .step:nth-child(3) .step-num { -webkit-text-stroke-color: rgba(20,241,149,0.6); }
+    .step h3 { font-family: var(--font-brand); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; color: var(--on-surface); margin-bottom: 0.55rem; }
+    .step p { font-size: 0.97rem; line-height: 1.6; color: var(--on-surface-variant); }
+    .step code { font-family: var(--font-mono); font-size: 0.85em; color: var(--emerald); background: var(--emerald-soft); padding: 1px 5px; border-radius: 5px; }
+    .step-tag { display: inline-block; margin-top: 1rem; font-family: var(--font-mono); font-size: 0.72rem; padding: 3px 9px; border-radius: 999px; border: 1px solid var(--outline); color: var(--on-surface-variant); }
+    .step-tag.free { color: var(--emerald); border-color: rgba(16,185,129,0.45); }
+    .step-tag.pro { color: #A5B4FC; border-color: rgba(129,140,248,0.5); }
+
+    /* Studio section */
+    .studio-section { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(2.5rem, 6vw, 4rem); border-top: 1px solid var(--outline-light); background: linear-gradient(180deg, rgba(99,102,241,0.05), transparent 320px); display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+    .studio-inner { width: 100%; max-width: calc(var(--wrap) + 120px); padding-inline: var(--gutter); box-sizing: border-box; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; min-width: 0; }
+    .studio-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem 2rem; margin-bottom: 0.5rem; }
+    .studio-head .section-head { margin-bottom: 0; }
+    .taste-meter {
+      display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0.95rem; border-radius: 14px; max-width: 420px;
+      background: var(--surface-container-low); border: 1px solid var(--outline-light); font-size: 0.86rem; color: var(--on-surface-variant); line-height: 1.4;
+    }
+    .taste-meter strong { color: var(--on-surface); }
+    .taste-icon { flex: none; width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--emerald-soft); color: var(--emerald); font-size: 1rem; }
+    .taste-meter.is-preview .taste-icon { background: var(--indigo-soft); color: #A5B4FC; }
+    .taste-meter .text-btn { margin-left: 0.25rem; }
+    .studio-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .studio-toolbar .mode-tabs { flex: 1 1 auto; margin: 0 !important; }
+    .studio-tools { display: flex; gap: 0.5rem; }
+
+    /* Gated preview */
+    .preview-box.is-gated { overflow: hidden; }
+    .pv-locked { filter: blur(5px); opacity: 0.55; user-select: none; -webkit-user-select: none; }
+    .output-paywall-overlay {
+      top: auto; height: auto; min-height: 220px;
+      background: linear-gradient(180deg, rgba(9,10,15,0) 0%, rgba(9,10,15,0.86) 22%, rgba(9,10,15,0.96) 100%);
+      backdrop-filter: none; -webkit-backdrop-filter: none; border: 0; border-top: 1px dashed rgba(99,102,241,0.45); border-radius: 0 0 var(--radius-md) var(--radius-md);
+      justify-content: flex-end; padding: 2.25rem 1.25rem 1.25rem;
+    }
+    [data-theme="light"] .output-paywall-overlay { background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 22%, #fff 100%); }
+    .paywall-lock-title { font-family: var(--font-brand); }
+    [data-theme="light"] .paywall-lock-title { color: #0B0F19; }
+    .paywall-lock-icon { animation: none; font-size: 1.4rem; }
+    .paywall-lock-desc { margin-bottom: 0.85rem; }
+
+    /* Pricing */
+    .pricing { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--outline-light); position: relative; overflow: hidden; }
+    .price-layout { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: clamp(1.25rem, 3vw, 2.25rem); align-items: stretch; }
+    .plan-free { padding: 1.75rem; border-radius: 22px; border: 1px dashed var(--outline); display: flex; flex-direction: column; }
+    .plan-free h3, .plan-card h3 { font-family: var(--font-brand); font-weight: 700; font-size: 1.25rem; color: var(--on-surface); letter-spacing: -0.02em; }
+    .plan-free .plan-price-sm { font-family: var(--font-brand); font-weight: 800; font-size: 2.4rem; letter-spacing: -0.04em; color: var(--on-surface); margin: 0.6rem 0 0.2rem; }
+    .plan-free p.muted { color: var(--on-surface-variant); font-size: 0.92rem; margin-bottom: 1.1rem; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; font-size: 0.95rem; color: var(--on-surface); }
+    .check-list li { display: grid; grid-template-columns: 18px 1fr; gap: 0.65rem; align-items: start; line-height: 1.45; }
+    .check-list li::before { content: ""; width: 18px; height: 18px; margin-top: 2px; background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2310B981' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round' d='M3 8.5l3.2 3L13 4.5'/%3E%3C/svg%3E"); }
+    .check-list.muted li { color: var(--on-surface-variant); }
+    .check-list li span { color: var(--on-surface-variant); display: block; font-size: 0.85rem; }
+    .plan-free .text-link { margin-top: auto; padding-top: 1.25rem; }
+    .plan-card {
+      position: relative; padding: 2rem 1.9rem 1.6rem; border-radius: 22px; overflow: hidden;
+      background: radial-gradient(120% 90% at 100% 0%, rgba(99,102,241,0.2), transparent 55%), radial-gradient(90% 80% at 0% 100%, rgba(16,185,129,0.16), transparent 60%), var(--surface-container-low);
+      border: 1px solid rgba(99,102,241,0.4);
+      box-shadow: 0 30px 70px -40px rgba(99,102,241,0.6);
+    }
+    .plan-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .plan-badge { font-family: var(--font-mono); font-size: 0.72rem; color: var(--emerald); border: 1px solid rgba(16,185,129,0.45); background: var(--emerald-soft); padding: 3px 10px; border-radius: 999px; }
+    .plan-price { display: flex; align-items: baseline; gap: 0.6rem; margin: 1rem 0 0.35rem; }
+    .plan-price .amount { font-family: var(--font-brand); font-weight: 800; font-size: clamp(3.6rem, 2.6rem + 3vw, 5rem); line-height: 0.9; letter-spacing: -0.06em; color: var(--on-surface); }
+    .plan-price .term { font-family: var(--font-serif); font-style: italic; font-size: 1.5rem; color: var(--on-surface-variant); }
+    .plan-sub { color: var(--on-surface-variant); font-size: 0.95rem; margin-bottom: 1.4rem; }
+    .plan-card .check-list { margin-bottom: 1.6rem; }
+    .plan-perf {
+      position: relative; margin: 1.5rem -1.9rem 0; padding: 1.1rem 1.9rem 0; border-top: 1px dashed var(--outline);
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; font-size: 0.84rem; color: var(--on-surface-variant);
+    }
+    .plan-perf::before, .plan-perf::after { content: ""; position: absolute; top: -11px; width: 22px; height: 22px; border-radius: 50%; background: var(--surface-dim); border: 1px solid rgba(99,102,241,0.4); }
+    .plan-perf::before { left: -11px; } .plan-perf::after { right: -11px; }
+    .plan-perf a { color: var(--on-surface); text-underline-offset: 3px; }
+    .plan-actions { display: flex; flex-direction: column; gap: 0.75rem; }
+    .plan-actions .text-btn { align-self: center; }
+
+    /* FAQ */
+    .faq { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--outline-light); }
+    .faq-layout { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: start; }
+    .faq-layout .section-head { position: sticky; top: 96px; }
+    .faq-list { border-top: 1px solid var(--outline-light); }
+    .faq-item { border-bottom: 1px solid var(--outline-light); }
+    .faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 0.25rem; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary h3 { font-family: var(--font-brand); font-weight: 700; font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.18rem); letter-spacing: -0.015em; color: var(--on-surface); line-height: 1.3; }
+    .faq-item summary::after { content: "+"; flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--outline); display: grid; place-items: center; font-family: var(--font-mono); color: var(--on-surface-variant); transition: transform .25s ease; }
+    .faq-item[open] summary::after { transform: rotate(45deg); color: var(--emerald); border-color: rgba(16,185,129,0.5); }
+    .faq-answer { padding: 0 0.25rem 1.35rem; color: var(--on-surface-variant); line-height: 1.65; font-size: 0.98rem; max-width: 64ch; }
+    .faq-answer p + p { margin-top: 0.6rem; }
+    .faq-answer strong { color: var(--on-surface); }
+    .faq-answer a { color: var(--emerald); text-underline-offset: 3px; }
+
+    /* Final CTA */
+    .final-cta { padding: clamp(3rem, 7vw, 5.5rem) 0; border-top: 1px solid var(--outline-light); text-align: center; background: radial-gradient(60% 120% at 50% 100%, rgba(16,185,129,0.14), transparent 70%); }
+    .final-cta .section-title { max-width: 18ch; margin: 0 auto; }
+    .final-cta .answer { margin: 1rem auto 1.75rem; }
+    .final-cta .hero-actions { justify-content: center; margin-top: 0; }
+
+    /* Footer */
+    .site-footer { margin-top: auto; border-top: 1px solid var(--outline-light); padding: 2rem 0; font-size: 0.85rem; color: var(--on-surface-variant); background: var(--surface-container-lowest); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; }
+    .site-footer a { color: var(--on-surface-variant); text-decoration: none; }
+    .site-footer a:hover { color: var(--on-surface); }
+    .site-footer .brand-link { color: var(--emerald); }
+
+    /* Checkout modal */
+    .pm-modal { position: fixed; inset: 0; z-index: 600; display: none; align-items: center; justify-content: center; padding: 1rem; background: rgba(4,6,10,0.78); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .pm-modal.is-open { display: flex; }
+    .pm-dialog {
+      position: relative; width: 100%; max-width: 560px; max-height: calc(100vh - 2rem); max-height: calc(100dvh - 2rem); overflow-y: auto;
+      background: #0B0E16; color: #F3F4F6; border: 1px solid rgba(99,102,241,0.4); border-radius: 22px;
+      box-shadow: 0 40px 90px -30px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.03);
+    }
+    .pm-dialog-sm { max-width: 460px; }
+    .pm-dialog-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding: 1.5rem 1.5rem 0; }
+    .pm-dialog-title { font-family: var(--font-brand); font-weight: 800; font-size: 1.5rem; letter-spacing: -0.03em; line-height: 1.1; }
+    .pm-dialog-title em { font-family: var(--font-serif); font-weight: 400; font-style: italic; color: var(--emerald); }
+    .pm-close { flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: transparent; color: #CBD5E1; display: grid; place-items: center; cursor: pointer; padding: 0; font-size: 1rem; }
+    .pm-close:hover { background: rgba(255,255,255,0.06); color: #fff; }
+    .pm-dialog-body { padding: 1.1rem 1.5rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .pm-price-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem 1.1rem; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); }
+    .pm-price-row .amount { font-family: var(--font-brand); font-weight: 800; font-size: 2.3rem; letter-spacing: -0.05em; line-height: 1; }
+    .pm-price-row .term { font-family: var(--font-serif); font-style: italic; color: #94A3B8; font-size: 1.1rem; margin-left: 0.35rem; }
+    .pm-price-row .note { font-size: 0.8rem; color: #94A3B8; text-align: right; line-height: 1.4; }
+    .pm-dialog .check-list { font-size: 0.9rem; gap: 0.5rem; color: #E2E8F0; }
+    .pm-pay { display: flex; flex-direction: column; gap: 0.6rem; }
+    .pm-pay-hint { font-size: 0.78rem; color: #94A3B8; text-align: center; }
+    .pm-unavailable { font-size: 0.8rem; color: #FBBF24; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.3); border-radius: 10px; padding: 0.55rem 0.75rem; }
+    .pm-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; padding-top: 0.9rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: #94A3B8; }
+    .pm-foot a { color: #CBD5E1; text-underline-offset: 3px; }
+    .pm-dialog .text-btn { color: #94A3B8; }
+    .pm-dialog .text-btn:hover { color: #fff; }
+    .sol-panel { display: none; flex-direction: column; gap: 0.85rem; padding: 1rem; border-radius: 16px; border: 1px solid rgba(20,241,149,0.3); background: rgba(20,241,149,0.04); }
+    .sol-panel.is-open { display: flex; }
+    .sol-grid { display: grid; grid-template-columns: 148px 1fr; gap: 1rem; align-items: start; }
+    .sol-qr { width: 148px; height: 148px; border-radius: 12px; background: #fff; padding: 8px; display: grid; place-items: center; }
+    .sol-qr img, .sol-qr svg { width: 100%; height: 100%; display: block; }
+    .sol-meta { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.84rem; color: #CBD5E1; min-width: 0; }
+    .sol-meta .mono { font-family: var(--font-mono); font-size: 0.74rem; word-break: break-all; color: #E2E8F0; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 0.4rem 0.5rem; }
+    .sol-meta .row-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: #94A3B8; font-family: var(--font-mono); }
+    .sol-status { font-size: 0.82rem; color: #94A3B8; display: flex; align-items: center; gap: 0.5rem; }
+    .sol-status .spin { width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(20,241,149,0.25); border-top-color: #14F195; animation: spin 0.9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .pm-field { display: flex; gap: 0.5rem; }
+    .pm-input { flex: 1; min-width: 0; padding: 0.7rem 0.85rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.14); background: #07090E; color: #F3F4F6; font-family: var(--font-mono); font-size: 0.82rem; outline: none; }
+    .pm-input:focus { border-color: var(--emerald); }
+    .pm-mini-btn { flex: none; padding: 0.6rem 0.9rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.05); color: #F3F4F6; font-family: var(--font-tech); font-weight: 600; font-size: 0.82rem; cursor: pointer; }
+    .pm-mini-btn:hover { border-color: var(--emerald); }
+    .pm-msg { font-size: 0.82rem; min-height: 1.1em; color: #94A3B8; }
+    .pm-msg.err { color: #F87171; } .pm-msg.ok { color: #34D399; }
+
+    /* Responsive */
+    @media (max-width: 1080px) {
+      .site-nav { display: none; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-copy { max-width: 720px; }
+      .reel-frame { transform: none; }
+      .facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .fact:nth-child(3) { border-left: 0; padding-left: 0; }
+      .fact:nth-child(n+3) { border-top: 1px solid var(--outline-light); }
+      .price-layout, .faq-layout { grid-template-columns: 1fr; }
+      .faq-layout .section-head { position: static; }
+      .price-layout .plan-card { order: -1; }
+    }
+    @media (max-width: 860px) {
+      .site-header { padding: 0; flex-direction: row; align-items: center; }
+      .steps { grid-template-columns: 1fr; }
+      .step-num { font-size: 3rem; margin-bottom: 0.7rem; }
+      .studio-inner { padding-inline: 0.75rem; }
+      .studio-head { align-items: flex-start; }
+    }
+    @media (max-width: 560px) {
+      .brand-badge { display: none; }
+      .facts-grid { grid-template-columns: 1fr; }
+      .fact { border-left: 0 !important; padding-left: 0 !important; border-top: 1px solid var(--outline-light); padding-block: 1rem; }
+      .fact:first-child { border-top: 0; }
+      .hero-actions .cta-primary { width: 100%; }
+      .hero-actions { gap: 0.9rem; }
+      .hero-actions .cta-link { margin: 0 auto; }
+      .sol-grid { grid-template-columns: 1fr; }
+      .sol-qr { margin: 0 auto; }
+      .pm-price-row { flex-direction: column; align-items: flex-start; }
+      .pm-price-row .note { text-align: left; }
+      .plan-card { padding-inline: 1.3rem; }
+      .plan-perf { margin-inline: -1.3rem; padding-inline: 1.3rem; }
+      .header-cta-wrap .cta-sm { padding: 0.5rem 0.7rem; font-size: 0.78rem; white-space: nowrap; }
+      .brand { gap: 0.55rem; }
+      .brand-logo { width: 32px; height: 32px; font-size: 1.05rem; }
+      .brand-title { font-size: 0.98rem; white-space: nowrap; }
+      .eyebrow { font-size: 0.7rem; }
+      .plan-actions .text-btn { align-self: center; }
     }
   </style>
-  <script defer src="https://integrate.depay.com/widgets/v13.js"></script>
 </head>
 <body>
-  <!-- Ambient Aurora Glow Commodity -->
-  <div class="aurora-container">
+  <a class="skip-link" href="#studio">Skip to the prompt optimizer</a>
+
+  <!-- Ambient Aurora Glow -->
+  <div class="aurora-container" aria-hidden="true">
     <div class="aurora-blob-1"></div>
     <div class="aurora-blob-2"></div>
   </div>
 
   <!-- Header -->
-  <header>
-    <div class="brand">
-      <div class="brand-logo">⚡</div>
-      <div>
+  <header class="site-header">
+    <div class="lp-wrap site-header-inner">
+      <a class="brand" href="#top" aria-label="PromptMaster Studio home">
+        <div class="brand-logo" aria-hidden="true">⚡</div>
         <div class="brand-title">
-          PromptMaster Studio
-          <span class="brand-badge">v3.0.0 STABLE</span>
+          <span>PromptMaster<span class="hide-xs"> Studio</span></span>
+          <span class="brand-badge">v3</span>
         </div>
-      </div>
-    </div>
-
-    <div class="header-actions">
-      <div id="headerProContainer" style="display: inline-flex;">
-        <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" class="btn btn-tonal" id="headerProBtn" style="border: 1px solid #818CF8; color: #818CF8; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-          💳 Buy Pro ($19)
-        </a>
-      </div>
-      <button class="btn btn-tonal" id="depayPayBtn" onclick="openDePayCheckout()" style="border: 1px solid #14F195; color: #14F195; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-        ⚡ Pay with Crypto (SOL)
-      </button>
-      <button class="btn btn-tonal" id="curriculumBtn" onclick="openCurriculumDrawer()">
-        📚 Curriculum & KB
-      </button>
-      <a href="/support.html" class="btn btn-tonal" style="border: 1px solid var(--outline); color: var(--on-surface-variant); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-        ❓ Support & FAQ
       </a>
-      <button class="btn btn-tonal" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Theme">
-        🌓
-      </button>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#studio">Try it free</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="/support.html">Support</a>
+      </nav>
+      <div class="header-cta-wrap" id="headerProContainer">
+        <button type="button" class="cta-primary cta-sm" data-open-checkout><span>Get Pro<span class="hide-xs"> for</span> <span data-price>$19</span></span></button>
+      </div>
     </div>
   </header>
 
-  <!-- Main Grid -->
-  <main>
-    <!-- High-Converting Sovereign Sales Funnel Banner -->
-    <div id="funnelHeroBanner" class="funnel-banner">
-      <div class="funnel-content">
-        <div class="funnel-left">
-          <div class="funnel-badge">
-            <span class="pulse-dot"></span>
-            <span>🔥 LIMITED LIFETIME DEAL • 73% OFF</span>
-            <span class="badge-tag">FOUNDING ACCESS</span>
+  <!-- Main -->
+  <main id="top">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="lp-wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>Prompt engineering studio<span class="hide-sm"> · runs in your browser</span></p>
+          <h1 class="hero-title" id="heroTitle">
+            <span class="line">Rough prompt in.</span>
+            <span class="line"><em>Production prompt</em> <span class="out">out.</span></span>
+          </h1>
+          <p class="hero-sub">PromptMaster Studio <strong>lints, scores and rewrites</strong> your prompts for Claude, ChatGPT, Gemini and chain-of-thought in seconds. It all runs on your device, so nothing gets uploaded.</p>
+          <div class="hero-actions">
+            <a href="#studio" class="cta-primary" id="heroCta" data-focus-editor>Optimize a prompt free <span class="arrow" aria-hidden="true">→</span></a>
+            <a href="#pricing" class="cta-link">See Pro pricing</a>
           </div>
-          <h2 class="funnel-title">Supercharge Your Prompts with the Pro Sovereign License</h2>
-          <p class="funnel-desc">
-            Unlock 100% full AST code generation, Claude 3.5 XML scaffolds, multi-model diffing for a single $19 payment.
-          </p>
-          <div class="funnel-proof">
-            <span>⚡ 14 founding spots remaining</span>
-            <span>•</span>
-            <span>🛡️ 30-Day Money-Back Guarantee</span>
-            <span>•</span>
-            <span>🔒 100% Sovereign Client-Side Privacy</span>
-          </div>
+          <ul class="hero-assurances" aria-label="Key facts">
+            <li>No sign-up to try</li>
+            <li><span>Pro is <span data-price>$19</span> once</span></li>
+            <li>30-day money-back guarantee</li>
+          </ul>
         </div>
-        <div class="funnel-right">
-          <div class="funnel-price-box">
-            <div class="price-strike">$79</div>
-            <div class="price-main">$19 <span class="price-term">/ lifetime</span></div>
+
+        <figure class="hero-reel">
+          <div class="reel-frame">
+            <div class="reel-chrome" aria-hidden="true"><i></i><i></i><i></i><span class="reel-chrome-title">promptmaster-studio · product reel</span></div>
+            <div class="reel-box">
+              <div class="reel-placeholder" aria-hidden="true">
+                <div><div class="reel-placeholder-logo">⚡</div>PromptMaster Studio</div>
+              </div>
+              <video id="heroReel" class="reel-video" autoplay muted loop playsinline preload="metadata"
+                     width="1920" height="1080"
+                     poster="/media/promptmaster-reel-poster.jpg"
+                     aria-label="Product reel: a rough prompt is linted, scored and rewritten into a structured Claude, OpenAI or Gemini prompt in PromptMaster Studio."
+                     disablepictureinpicture>
+                <source src="/media/promptmaster-reel.webm" type="video/webm">
+                <source src="/media/promptmaster-reel.mp4" type="video/mp4">
+              </video>
+              <script>
+                /* Respect prefers-reduced-motion before autoplay kicks in: keep the poster frame, no motion. */
+                (function () {
+                  var v = document.getElementById("heroReel");
+                  if (v && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                    v.removeAttribute("autoplay"); v.autoplay = false; try { v.pause(); } catch (e) {}
+                    v.setAttribute("data-reduced-motion", "true");
+                  }
+                })();
+              </script>
+              <button type="button" class="reel-toggle" id="reelToggle" aria-controls="heroReel" hidden>❚❚ Pause</button>
+            </div>
           </div>
-          <div class="funnel-actions">
-            <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" class="btn btn-primary funnel-btn-pulse">
-              💳 Unlock Instant Access ($19)
-            </a>
-            <button class="btn btn-solana" onclick="openDePayCheckout()">
-              ⚡ Pay Crypto (SOL / USDC)
-            </button>
-          </div>
-          <button class="funnel-key-link" onclick="openLicenseActivationModal()">
-            Already purchased? Enter License Key / Email 🔑
-          </button>
+          <figcaption>Silent product reel: lint → score → rewrite</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- FACTS (only verifiable claims) -->
+    <section class="facts" aria-label="At a glance">
+      <div class="lp-wrap facts-grid">
+        <div class="fact"><div class="fact-label">Privacy</div><div class="fact-value">Runs 100% in your browser</div></div>
+        <div class="fact"><div class="fact-label">Targets</div><div class="fact-value">Claude XML · OpenAI · Gemini · CoT</div></div>
+        <div class="fact"><div class="fact-label">Price</div><div class="fact-value"><span data-price>$19</span> one-time, no subscription</div></div>
+        <div class="fact"><div class="fact-label">Guarantee</div><div class="fact-value">30-day money-back</div></div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how" id="how" aria-labelledby="howTitle">
+      <div class="lp-wrap">
+        <div class="section-head">
+          <p class="kicker">// how it works</p>
+          <h2 class="section-title" id="howTitle">How does PromptMaster Studio <em>improve</em> a prompt?</h2>
+          <p class="answer">It takes three steps and about ten seconds. Paste your prompt, read the lint report, then pick the model you're targeting and get a restructured version back.</p>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num" aria-hidden="true">01</span>
+            <div>
+              <h3>Paste or pick a template</h3>
+              <p>Drop in any rough prompt, or start from a built-in template. Variables like <code>{{ role }}</code> are detected so you can fill them in live.</p>
+              <span class="step-tag free">Free</span>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">02</span>
+            <div>
+              <h3>Lint &amp; score instantly</h3>
+              <p>The linter flags negative constraints, vague directives, injection risks and broken variables. It scores clarity, security and structure and estimates token cost per model.</p>
+              <span class="step-tag free">Free, unlimited</span>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">03</span>
+            <div>
+              <h3>Optimize for your model</h3>
+              <p>Choose Claude XML, OpenAI chat, Gemini or chain-of-thought and get a structured prompt with clear roles, rules and output format.</p>
+              <span class="step-tag pro">1st full result free · Pro for the rest</span>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- STUDIO (the actual tool) -->
+    <section class="studio-section" id="studio" aria-labelledby="studioTitle">
+     <div class="studio-inner">
+      <div class="studio-head">
+        <div class="section-head">
+          <p class="kicker">// the studio</p>
+          <h2 class="section-title" id="studioTitle">Try it now: optimize a prompt <em>free</em></h2>
+          <p class="answer">Paste a prompt or choose a template, then press <strong>Meta-Optimize</strong>. Linting, scores and token costs are free and unlimited.</p>
+        </div>
+        <div class="taste-meter" id="tasteMeter" role="status" aria-live="polite">
+          <span class="taste-icon" aria-hidden="true">✦</span>
+          <span id="tasteMeterText"><strong>Free taste:</strong> your first optimized prompt is shown in full.</span>
         </div>
       </div>
-    </div>
 
+      <div class="studio-toolbar">
     <!-- Mode Tabs -->
-    <div class="mode-tabs" style="grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; max-width: 100%;">
+    <div class="mode-tabs" role="tablist" aria-label="Studio mode" style="display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 100%;">
       <button class="tab-btn active" id="modeOptimizeBtn" onclick="setStudioMode('optimize')">✍️ Optimize Studio</button>
       <button class="tab-btn" id="modeDiffBtn" onclick="setStudioMode('diff')">⚖️ Prompt Diff</button>
       <button class="tab-btn" id="modeHistoryBtn" onclick="setStudioMode('history')">📜 Version History</button>
     </div>
+        <div class="studio-tools">
+          <button class="btn btn-tonal" id="curriculumBtn" onclick="openCurriculumDrawer()">📚 Curriculum</button>
+          <button class="btn btn-tonal btn-icon" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark theme" aria-label="Toggle light or dark theme">🌓</button>
+        </div>
+      </div>
 
     <!-- Optimize Mode Panels -->
     <div id="optimizeModePanels" class="panels-grid">
@@ -1289,25 +1617,15 @@
       <div class="preview-container">
         <div class="preview-box" id="outputPreview">Click 'Meta-Optimize Prompt' or type in the editor to see live transformed output...</div>
 
-        <!-- Lock / Blur Paywall Overlay -->
+        <!-- Free-taste gate: covers the locked part of the output -->
         <div id="outputPaywallOverlay" class="output-paywall-overlay" style="display: none;">
-          <div class="paywall-lock-icon">🔒</div>
-          <div class="paywall-lock-badge">PRO SOVEREIGN LICENSE REQUIRED</div>
-          <div class="paywall-lock-title">Unlock Full Structural AST Output</div>
-          <div class="paywall-lock-desc">
-            Full Claude XML scaffolds, negative constraint pruning, and multi-model AST rewrites are reserved for Pro license holders.
-          </div>
+          <div class="paywall-lock-badge">Preview: first lines shown</div>
+          <div class="paywall-lock-title">Unlock the full optimized prompt</div>
+          <div class="paywall-lock-desc">Pro shows the complete output for every target, with copy &amp; export. <span data-price>$19</span> once · 30-day refund.</div>
           <div class="paywall-lock-buttons">
-            <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" class="btn btn-primary" style="text-decoration: none; padding: 0.6rem 1.15rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
-              💳 Unlock Instant Access ($19 Lifetime)
-            </a>
-            <button class="btn btn-solana" onclick="openDePayCheckout()" style="padding: 0.6rem 1.15rem;">
-              ⚡ Pay with Crypto (SOL)
-            </button>
+            <button type="button" class="cta-primary cta-sm" data-open-checkout><span>Unlock full output for <span data-price>$19</span></span></button>
           </div>
-          <button class="paywall-enter-key" onclick="openLicenseActivationModal()">
-            Already purchased? Enter License Key / Email 🔑
-          </button>
+          <button type="button" class="paywall-enter-key" data-open-restore>Already paid? Restore access</button>
         </div>
       </div>
 
@@ -1477,21 +1795,133 @@
       </div>
     </div>
 
+     </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing" aria-labelledby="pricingTitle">
+      <div class="lp-wrap">
+        <div class="section-head">
+          <p class="kicker">// pricing</p>
+          <h2 class="section-title" id="pricingTitle">How much does PromptMaster Studio <em>cost?</em></h2>
+          <p class="answer">It's free to try. <strong>Pro is a one-time payment of <span data-price>$19</span></strong> for lifetime access to the web studio. There's no subscription, and every purchase is covered by a 30-day money-back guarantee.</p>
+        </div>
+
+        <div class="price-layout">
+          <div class="plan-free">
+            <h3>Free</h3>
+            <div class="plan-price-sm">$0</div>
+            <p class="muted">Everything you need to find out what's wrong with a prompt.</p>
+            <ul class="check-list muted">
+              <li>Linter: negative constraints, vague directives, injection risks, broken variables</li>
+              <li>Clarity, security &amp; structure scores</li>
+              <li>Token &amp; cost estimator</li>
+              <li>Prompt diff and local version history</li>
+              <li>Built-in templates &amp; curriculum</li>
+              <li>Your first optimized prompt in full; after that, a preview of each result</li>
+            </ul>
+            <a href="#studio" class="cta-link text-link" data-focus-editor>Start free in the studio →</a>
+          </div>
+
+          <article class="plan-card" aria-labelledby="proPlanTitle">
+            <div class="plan-top">
+              <h3 id="proPlanTitle">Pro · Lifetime</h3>
+              <span class="plan-badge">one-time payment</span>
+            </div>
+            <div class="plan-price"><span class="amount" data-price>$19</span><span class="term">once, yours to keep</span></div>
+            <p class="plan-sub">Everything in Free, plus the full optimizer.</p>
+            <ul class="check-list">
+              <li><div>Full optimized output for every target<span>Claude XML, OpenAI chat, Google Gemini and chain-of-thought</span></div></li>
+              <li><div>Copy &amp; export optimized prompts<span>One click to clipboard or a .txt file</span></div></li>
+              <li><div>Unlimited optimizations<span>No daily caps and no credits</span></div></li>
+              <li><div>Commercial use of your outputs<span>Use them in client and production work, as set out in the <a href="/terms.html">Terms</a></span></div></li>
+              <li><div>Future web-studio updates included<span>No upgrade fees</span></div></li>
+            </ul>
+            <div class="plan-actions">
+              <button type="button" class="cta-primary cta-block" data-open-checkout><span>Get Pro for <span data-price>$19</span></span> <span class="arrow" aria-hidden="true">→</span></button>
+              <button type="button" class="text-btn" data-open-restore>Already paid? Restore access</button>
+            </div>
+            <div class="plan-perf">
+              <span>Card, Apple Pay &amp; Google Pay via Stripe<span data-if-solana hidden> · USDC on Solana</span></span>
+              <a href="/terms.html#refunds">30-day refund policy</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq" aria-labelledby="faqTitle">
+      <div class="lp-wrap faq-layout">
+        <div class="section-head">
+          <p class="kicker">// questions</p>
+          <h2 class="section-title" id="faqTitle">Frequently asked <em>questions</em></h2>
+          <p class="answer">Short, straight answers. If yours isn't here, the <a href="/support.html" style="color:var(--emerald);text-underline-offset:3px">support desk</a> replies within 24–48 business hours.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary><h3>What is PromptMaster Studio?</h3></summary>
+            <div class="faq-answer"><p><strong>A browser-based prompt engineering tool by Neal Frazier Tech.</strong> It lints and scores your prompt, estimates token cost, and rewrites it into a structured format for Claude (XML), OpenAI chat, Google Gemini or chain-of-thought reasoning.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Are my prompts sent to a server?</h3></summary>
+            <div class="faq-answer"><p><strong>No.</strong> Linting, scoring and rewriting run in JavaScript inside your browser, and your prompt text is never uploaded. Payments are handled by Stripe or by your own Solana wallet. See the <a href="/privacy.html">Privacy Policy</a>.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary><h3>What can I do for free?</h3></summary>
+            <div class="faq-answer"><p><strong>Almost everything except the full optimizer output.</strong> The linter, quality scores, token and cost estimator, prompt diff, version history, templates and curriculum are free and unlimited. Your first optimized prompt is shown in full. After that, each optimized result shows a preview of its first lines.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary><h3>What does PromptMaster Studio Pro unlock?</h3></summary>
+            <div class="faq-answer"><p><strong>The complete optimizer.</strong> You get the full optimized output for all four targets (Claude XML, OpenAI, Gemini, chain-of-thought), copy and export, and unlimited optimizations in the browser you unlocked.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary><h3>How much does Pro cost? Is it a subscription?</h3></summary>
+            <div class="faq-answer"><p><strong><span data-price>$19</span>, once.</strong> It's a single payment for lifetime access to the web studio, with no subscription and no recurring charge.</p></div>
+          </details>
+          <details class="faq-item" id="refunds">
+            <summary><h3>What is the refund policy?</h3></summary>
+            <div class="faq-answer"><p><strong>Full refund within 30 days, no questions asked.</strong> Email <a href="mailto:support@nealfrazier.tech" data-support-email>support@nealfrazier.tech</a> with your Stripe receipt email or Solana transaction signature. The full policy is in the <a href="/terms.html#refunds">Terms of Service</a>, and you can also open a ticket at the <a href="/support.html">support desk</a>.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary><h3>Can I pay with crypto?</h3></summary>
+            <div class="faq-answer"><p data-if-solana hidden><strong>Yes: USDC on Solana.</strong> In checkout, choose "Pay with Solana" and scan the Solana Pay QR code with Phantom, Solflare or another compatible wallet, or open it directly in a wallet on your phone. Card, Apple Pay and Google Pay go through Stripe.</p><p data-if-no-solana><strong>Not at the moment.</strong> Checkout currently takes card, Apple Pay and Google Pay through Stripe.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary><h3>How do I use Pro on another browser or device?</h3></summary>
+            <div class="faq-answer"><p><strong>Use your restore link.</strong> Pro is remembered in the browser you paid in. After checkout you'll see a restore link you can open on any other browser. You can also choose <button type="button" class="text-btn" data-open-restore>Restore access</button> and paste your Stripe checkout session ID or Solana transaction signature. If you lose both, email support with your receipt.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" aria-labelledby="finalTitle">
+      <div class="lp-wrap">
+        <h2 class="section-title" id="finalTitle">Ship prompts that <em>hold up</em> in production.</h2>
+        <p class="answer">Try the free linter and your first full optimization now. Upgrade only if it earns its place in your workflow.</p>
+        <div class="hero-actions">
+          <a href="#studio" class="cta-primary" data-focus-editor>Optimize a prompt free <span class="arrow" aria-hidden="true">→</span></a>
+          <button type="button" class="cta-link" style="background:none;border-top:0;border-left:0;border-right:0;cursor:pointer" data-open-checkout>or get Pro for <span data-price>$19</span></button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Subtle Professional Attribution Footer -->
-  <footer style="margin-top: auto; border-top: 1px solid var(--outline-light); padding: 1.5rem 1rem; text-align: center; font-size: 0.8rem; color: var(--on-surface-variant); background: var(--surface); width: 100%; box-sizing: border-box;">
-    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem;">
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="lp-wrap footer-inner">
       <div>
-        <strong>PromptMaster Studio</strong> • Engineered by Neal Frazier Tech (<a href="https://github.com/1nc0gn30" target="_blank" style="color: var(--primary); text-decoration: none;">@1nc0gn30</a>) • <a href="https://nullai.tech" target="_blank" style="color: var(--primary); text-decoration: none;">NullAI Platform</a>
+        <strong>PromptMaster Studio</strong> · by Neal Frazier Tech (<a class="brand-link" href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) · <a class="brand-link" href="https://nullai.tech" target="_blank" rel="noopener">NullAI</a>
       </div>
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="/terms.html" style="color: var(--on-surface-variant); text-decoration: none;">Terms of Service</a>
-        <a href="/privacy.html" style="color: var(--on-surface-variant); text-decoration: none;">Privacy Policy</a>
-        <a href="/support.html" style="color: var(--on-surface-variant); text-decoration: none;">Support & FAQ</a>
-        <a href="https://github.com/1nc0gn30/promptmaster-studio" target="_blank" style="color: var(--on-surface-variant); text-decoration: none;">GitHub</a>
-        <a href="https://nealfrazier.tech" target="_blank" style="color: var(--on-surface-variant); text-decoration: none;">Neal Frazier Tech</a>
-      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/terms.html#refunds">Refund policy</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/support.html">Support</a>
+        <a href="https://github.com/1nc0gn30/promptmaster-studio" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://nealfrazier.tech" target="_blank" rel="noopener">Neal Frazier Tech</a>
+      </nav>
     </div>
   </footer>
 
@@ -1528,124 +1958,514 @@
     let historyCompareSelection = [];
 
     // ====================================================================
-    // SOVEREIGN LICENSE & PAYWALL CONTROLLER
+    // FUNNEL CONTROLLER
+    // Reads window.PROMPTMASTER_CONFIG (public/config.js): free-taste gating,
+    // Stripe Payment Link + Solana Pay checkout, unlock persistence.
+    //
+    // HONESTY NOTE: this is a static site, so all gating is client-side. It's
+    // a polite paywall, not DRM. Real enforcement needs a backend (see README,
+    // "Payments & unlock").
     // ====================================================================
+    const PM_CFG = window.PROMPTMASTER_CONFIG || {};
+    const CFG_STRIPE = PM_CFG.stripe || {};
+    const CFG_SOL = PM_CFG.solana || {};
+    const CFG_TASTE = Object.assign({ fullRuns: 1, previewLines: 6 }, PM_CFG.freeTaste || {});
+    const CFG_LICENSE = PM_CFG.license || {};
+    const PRICE_LABEL = (PM_CFG.product && PM_CFG.product.priceLabel) || "$19";
+    const SUPPORT_EMAIL = PM_CFG.supportEmail || "support@nealfrazier.tech";
+    const LS_KEYS = {
+      license: "pm_license_v2",
+      legacyFlag: "promptmaster_pro_licensed",
+      legacyKey: "promptmaster_license_key",
+      taste: "pm_free_taste_v1",
+      clientRef: "pm_client_ref",
+      solRef: "pm_sol_reference"
+    };
+    const STRIPE_SESSION_RE = /^cs_(live|test)_[A-Za-z0-9]{10,}$/;
+    const SOL_SIG_RE = /^[1-9A-HJ-NP-Za-km-z]{64,90}$/;
+    const SOL_ADDR_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
+
     let isProLicensed = false;
 
-    function checkProLicense() {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get("licensed") === "true" || urlParams.get("session_id") || urlParams.get("key")) {
-        const k = urlParams.get("key") || urlParams.get("session_id") || "STRIPE-VERIFIED";
-        activateProLicense(k, false);
-        return true;
+    function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    function randomBytes(n) { const a = new Uint8Array(n); crypto.getRandomValues(a); return a; }
+    function hex(bytes) { return Array.from(bytes, b => b.toString(16).padStart(2, "0")).join(""); }
+    function base58(bytes) {
+      const A = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+      let digits = [0];
+      for (const byte of bytes) {
+        let carry = byte;
+        for (let j = 0; j < digits.length; j++) { carry += digits[j] << 8; digits[j] = carry % 58; carry = (carry / 58) | 0; }
+        while (carry) { digits.push(carry % 58); carry = (carry / 58) | 0; }
       }
-
-      const saved = localStorage.getItem("promptmaster_pro_licensed");
-      const key = localStorage.getItem("promptmaster_license_key");
-      if (saved === "true" || key) {
-        isProLicensed = true;
-        updateProUI();
-        return true;
-      }
-      isProLicensed = false;
-      updateProUI();
-      return false;
+      let out = "";
+      for (const byte of bytes) { if (byte === 0) out += "1"; else break; }
+      for (let i = digits.length - 1; i >= 0; i--) out += A[digits[i]];
+      return out;
     }
 
+    function stripeConfigured() { return /^https:\/\/(buy|checkout)\.stripe\.com\/\S+$/.test(CFG_STRIPE.paymentLink || ""); }
+    function solanaConfigured() { return SOL_ADDR_RE.test(CFG_SOL.recipient || "") && Number(CFG_SOL.amount) > 0; }
+    function solAmountLabel() { return `${CFG_SOL.amount || "?"} ${CFG_SOL.splToken ? (CFG_SOL.tokenLabel || "tokens") : "SOL"}`; }
+    function clientRef() {
+      let r = lsGet(LS_KEYS.clientRef);
+      if (!r) { r = "pm_" + hex(randomBytes(12)); lsSet(LS_KEYS.clientRef, r); }
+      return r;
+    }
+
+    // ---------- License persistence ----------
+    function readLicense() {
+      try {
+        const raw = lsGet(LS_KEYS.license);
+        if (raw) { const lic = JSON.parse(raw); if (lic && lic.method) return lic; }
+      } catch (e) {}
+      // Honour unlocks made with the previous version of the site.
+      if (lsGet(LS_KEYS.legacyFlag) === "true") return { method: "legacy", ref: lsGet(LS_KEYS.legacyKey) || "" };
+      return null;
+    }
+    function saveLicense(method, ref) {
+      const lic = { method, ref, at: new Date().toISOString() };
+      lsSet(LS_KEYS.license, JSON.stringify(lic));
+      return lic;
+    }
+    function restoreLinkFor(lic) {
+      const base = location.origin + location.pathname;
+      if (lic.method === "stripe") return `${base}?restore=1&session_id=${encodeURIComponent(lic.ref)}`;
+      if (lic.method === "solana") return `${base}?restore=1&sol_sig=${encodeURIComponent(lic.ref)}`;
+      return base;
+    }
+
+    function checkProLicense() {
+      isProLicensed = !!readLicense();
+      updateProUI();
+      return isProLicensed;
+    }
+
+    function grantPro(method, ref, opts = {}) {
+      const lic = saveLicense(method, ref);
+      isProLicensed = true;
+      updateProUI();
+      if (optimizedData) optimizedData.fullVisible = true;
+      renderOutputView();
+      if (opts.celebrate) {
+        closeAllModals();
+        const inp = document.getElementById("restoreLinkInput");
+        if (inp) inp.value = restoreLinkFor(lic);
+        const note = document.getElementById("successNote");
+        if (note) note.textContent = CFG_LICENSE.verifyEndpoint || (method === "solana" && CFG_SOL.rpcUrl) ? "Payment verified." : "";
+        openModal("successModal");
+      } else {
+        showToast("Pro unlocked. Full output, copy and export are on.");
+      }
+    }
+
+    // ---------- Free taste ----------
+    function readTaste() {
+      try { const t = JSON.parse(lsGet(LS_KEYS.taste)); if (t && Array.isArray(t.prompts)) return t; } catch (e) {}
+      return { prompts: [] };
+    }
+    function hashText(t) {
+      let h = 2166136261;
+      for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 16777619); }
+      return (h >>> 0).toString(36) + "." + t.length;
+    }
+    function freeRunsLeft() { return Math.max(0, (CFG_TASTE.fullRuns | 0) - readTaste().prompts.length); }
+    // Called once per optimization. Returns true when the full output may be shown.
+    function claimFullView(inputText) {
+      if (isProLicensed) return true;
+      const taste = readTaste();
+      const h = hashText(inputText.trim());
+      if (taste.prompts.includes(h)) return true;           // the same prompt they already used their taste on
+      if (taste.prompts.length < (CFG_TASTE.fullRuns | 0)) {
+        taste.prompts.push(h);
+        lsSet(LS_KEYS.taste, JSON.stringify(taste));
+        return true;
+      }
+      return false;
+    }
+    function scramble(text) {
+      const pool = "abcdefghijklmnopqrstuvwxyz";
+      return text.replace(/[A-Za-z0-9]/g, ch => {
+        const c = pool[(Math.random() * 26) | 0];
+        return ch >= "A" && ch <= "Z" ? c.toUpperCase() : c;
+      });
+    }
+
+    // Render optimizer output, gated to a preview when the visitor has no Pro and no free taste left.
+    function renderGated(text) {
+      const preview = document.getElementById("outputPreview");
+      const overlay = document.getElementById("outputPaywallOverlay");
+      const full = isProLicensed || !optimizedData || optimizedData.fullVisible;
+      if (full) {
+        preview.classList.remove("is-gated");
+        preview.textContent = text;
+        if (overlay) overlay.style.display = "none";
+        return;
+      }
+      const lines = text.split("\n");
+      const n = Math.max(1, Math.min(CFG_TASTE.previewLines | 0 || 6, Math.floor(lines.length * 0.45)));
+      const clearPart = lines.slice(0, n).join("\n");
+      const rest = lines.slice(n).join("\n") || "…";
+      preview.classList.add("is-gated");
+      preview.scrollTop = 0;
+      preview.textContent = "";
+      const a = document.createElement("span");
+      a.className = "pv-clear";
+      a.textContent = clearPart + "\n";
+      const b = document.createElement("span");
+      b.className = "pv-locked";
+      b.setAttribute("aria-hidden", "true");
+      b.textContent = scramble(rest);
+      preview.append(a, b);
+      if (overlay) {
+        overlay.style.display = "flex";
+        requestAnimationFrame(() => {
+          const top = Math.max(48, Math.min(b.offsetTop, preview.clientHeight - 230));
+          overlay.style.top = top + "px";
+        });
+      }
+    }
+
+    function canExport() { return isProLicensed || !optimizedData || !!optimizedData.fullVisible; }
+
+    // ---------- UI state ----------
     function updateProUI() {
       const proContainer = document.getElementById("headerProContainer");
       if (proContainer) {
+        proContainer.innerHTML = isProLicensed
+          ? '<span class="pro-pill" title="Pro unlocked in this browser">★ Pro active</span>'
+          : `<button type="button" class="cta-primary cta-sm" data-open-checkout><span>Get Pro<span class="hide-xs"> for</span> <span data-price>${PRICE_LABEL}</span></span></button>`;
+      }
+      const meter = document.getElementById("tasteMeter");
+      const meterText = document.getElementById("tasteMeterText");
+      if (meter && meterText) {
+        meter.classList.remove("is-preview");
+        const left = freeRunsLeft();
         if (isProLicensed) {
-          proContainer.innerHTML = `
-            <span style="display: inline-flex; align-items: center; gap: 5px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10B981; color: #10B981; font-weight: 700; font-size: 0.78rem; padding: 4px 10px; border-radius: 9999px;">
-              ⭐ PRO ACTIVE
-            </span>
-          `;
+          meter.querySelector(".taste-icon").textContent = "★";
+          meterText.innerHTML = "<strong>Pro active.</strong> Full output, copy and export are unlocked in this browser.";
+        } else if (left > 0) {
+          meter.querySelector(".taste-icon").textContent = "✦";
+          meterText.innerHTML = left === 1
+            ? "<strong>Free taste:</strong> your first optimized prompt is shown in full, copy and export included."
+            : `<strong>Free taste:</strong> ${left} optimized prompts shown in full, copy and export included.`;
         } else {
-          proContainer.innerHTML = `
-            <button class="btn btn-tonal" onclick="openPaywallModal()" style="border: 1px solid #818CF8; color: #818CF8; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; font-size: 0.8rem;">
-              💳 Buy Pro ($19)
-            </button>
-          `;
+          meter.classList.add("is-preview");
+          meter.querySelector(".taste-icon").textContent = "◐";
+          meterText.innerHTML = `<strong>Preview mode:</strong> new results show the first lines. <button type="button" class="text-btn" data-open-checkout>Unlock everything for ${PRICE_LABEL}</button>`;
         }
       }
+      applyConfigToDom();
+    }
 
-      const banner = document.getElementById("funnelHeroBanner");
-      if (banner) {
-        if (isProLicensed) {
-          banner.style.display = "none";
+    function applyConfigToDom() {
+      document.querySelectorAll("[data-price]").forEach(el => { el.textContent = PRICE_LABEL; });
+      document.querySelectorAll("[data-sol-amount]").forEach(el => { el.textContent = solAmountLabel(); });
+      document.querySelectorAll("[data-support-email]").forEach(el => { el.textContent = SUPPORT_EMAIL; el.setAttribute("href", "mailto:" + SUPPORT_EMAIL); });
+      const sol = solanaConfigured();
+      document.querySelectorAll("[data-if-solana]").forEach(el => { el.hidden = !sol; });
+      document.querySelectorAll("[data-if-no-solana]").forEach(el => { el.hidden = sol; });
+
+      const stripeBtn = document.getElementById("stripeCheckoutBtn");
+      if (stripeBtn) {
+        if (stripeConfigured()) {
+          const link = CFG_STRIPE.paymentLink;
+          stripeBtn.href = link + (link.includes("?") ? "&" : "?") + "client_reference_id=" + encodeURIComponent(clientRef());
+          stripeBtn.removeAttribute("aria-disabled");
+          document.getElementById("stripeUnavailable").hidden = true;
+          document.getElementById("stripeHint").hidden = false;
         } else {
-          banner.style.display = "block";
+          stripeBtn.removeAttribute("href");
+          stripeBtn.setAttribute("aria-disabled", "true");
+          document.getElementById("stripeUnavailable").hidden = false;
+          document.getElementById("stripeHint").hidden = true;
         }
       }
+      // Crypto option only appears when a recipient wallet is configured.
+      const solBtn = document.getElementById("solanaCheckoutBtn");
+      if (solBtn) solBtn.hidden = !sol;
+    }
 
-      const overlay = document.getElementById("outputPaywallOverlay");
-      const preview = document.getElementById("outputPreview");
-      if (overlay && preview) {
-        if (isProLicensed) {
-          overlay.style.display = "none";
-          preview.classList.remove("preview-blurred");
-        } else if (optimizedData) {
-          overlay.style.display = "flex";
-          preview.classList.add("preview-blurred");
-        } else {
-          overlay.style.display = "none";
-          preview.classList.remove("preview-blurred");
-        }
+    // ---------- Modals ----------
+    let lastFocusBeforeModal = null;
+    function openModal(id) {
+      const m = document.getElementById(id);
+      if (!m) return;
+      if (!document.querySelector(".pm-modal.is-open")) lastFocusBeforeModal = document.activeElement;
+      m.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      const focusable = m.querySelector("input:not([readonly]), .cta-primary:not([aria-disabled]), button");
+      setTimeout(() => focusable && focusable.focus({ preventScroll: true }), 30);
+    }
+    function closeModal(id) {
+      const m = document.getElementById(id);
+      if (!m) return;
+      m.classList.remove("is-open");
+      if (id === "proPaywallModal") stopSolanaWatch();
+      if (!document.querySelector(".pm-modal.is-open")) {
+        document.body.style.overflow = "";
+        if (lastFocusBeforeModal && lastFocusBeforeModal.focus) lastFocusBeforeModal.focus({ preventScroll: true });
+      }
+    }
+    function closeAllModals() { document.querySelectorAll(".pm-modal.is-open").forEach(m => closeModal(m.id)); }
+
+    function openCheckout(opts = {}) {
+      closeAllModals();
+      applyConfigToDom();
+      openModal("proPaywallModal");
+      if (opts.solana && solanaConfigured()) toggleSolanaPanel(true);
+    }
+    function openRestore() {
+      closeAllModals();
+      const msg = document.getElementById("licenseMsg");
+      if (msg) { msg.textContent = ""; msg.className = "pm-msg"; }
+      openModal("licenseModal");
+    }
+    // Names used by older markup and inline handlers.
+    function openPaywallModal() { openCheckout(); }
+    function closePaywallModal() { closeModal("proPaywallModal"); }
+    function openLicenseActivationModal() { openRestore(); }
+    function closeLicenseModal() { closeModal("licenseModal"); }
+    function openDePayCheckout() { openCheckout({ solana: true }); }
+
+    // ---------- Stripe ----------
+    async function verifyStripeSession(sessionId) {
+      const ep = CFG_LICENSE.verifyEndpoint;
+      if (!ep) return true; // no backend configured: trust the redirect (documented limitation)
+      try {
+        const r = await fetch(ep + (ep.includes("?") ? "&" : "?") + "session_id=" + encodeURIComponent(sessionId), { headers: { accept: "application/json" } });
+        if (r.status === 501 || r.status >= 500) return true; // verifier not set up/unavailable: degrade gracefully
+        const j = await r.json();
+        return !!j.paid;
+      } catch (e) {
+        return true;
       }
     }
 
-    function activateProLicense(key, showFeedback = true) {
-      isProLicensed = true;
-      localStorage.setItem("promptmaster_pro_licensed", "true");
-      localStorage.setItem("promptmaster_license_key", key || "SOVEREIGN-PRO");
-      updateProUI();
-      renderOutputView();
-      if (showFeedback) {
-        showToast("🎉 Lifetime Pro License activated! All tools unlocked.");
+    // ---------- Solana Pay ----------
+    let solWatchTimer = null;
+    let solWatchStarted = 0;
+    let qrLibPromise = null;
+    function solReference() {
+      let ref = lsGet(LS_KEYS.solRef);
+      if (!ref || !SOL_ADDR_RE.test(ref)) { ref = base58(randomBytes(32)); lsSet(LS_KEYS.solRef, ref); }
+      return ref;
+    }
+    function solanaPayUrl() {
+      const q = new URLSearchParams();
+      q.set("amount", String(CFG_SOL.amount));
+      if (CFG_SOL.splToken) q.set("spl-token", CFG_SOL.splToken);
+      q.set("reference", solReference());
+      if (CFG_SOL.label) q.set("label", CFG_SOL.label);
+      if (CFG_SOL.message) q.set("message", CFG_SOL.message);
+      q.set("memo", clientRef());
+      return `solana:${CFG_SOL.recipient}?${q.toString().replace(/\+/g, "%20")}`;
+    }
+    function loadQrLib() {
+      if (window.qrcode) return Promise.resolve(window.qrcode);
+      if (!qrLibPromise) {
+        qrLibPromise = new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = "/vendor/qrcode.min.js";
+          s.async = true;
+          s.onload = () => resolve(window.qrcode);
+          s.onerror = () => { qrLibPromise = null; reject(new Error("qr")); };
+          document.head.appendChild(s);
+        });
+      }
+      return qrLibPromise;
+    }
+    async function toggleSolanaPanel(forceOpen) {
+      const btn = document.getElementById("solanaCheckoutBtn");
+      const panel = document.getElementById("solPanel");
+      if (!panel || !btn) return;
+      if (!solanaConfigured()) return;
+      const open = forceOpen === true ? true : !panel.classList.contains("is-open");
+      panel.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", String(open));
+      if (!open) { stopSolanaWatch(); return; }
+      const url = solanaPayUrl();
+      document.getElementById("solRecipient").textContent = CFG_SOL.recipient;
+      document.getElementById("solWalletLink").href = url;
+      const qrEl = document.getElementById("solQr");
+      try {
+        const lib = await loadQrLib();
+        const qr = lib(0, "M");
+        qr.addData(url);
+        qr.make();
+        qrEl.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true, alt: "Solana Pay QR code", title: "Scan with a Solana wallet" });
+      } catch (e) {
+        qrEl.textContent = "QR unavailable. Use “Open in wallet”.";
+      }
+      startSolanaWatch();
+    }
+    async function solRpc(method, params) {
+      const r = await fetch(CFG_SOL.rpcUrl, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }) });
+      if (!r.ok) throw new Error("rpc " + r.status);
+      const j = await r.json();
+      if (j.error) throw new Error(j.error.message || "rpc error");
+      return j.result;
+    }
+    function startSolanaWatch() {
+      if (!CFG_SOL.rpcUrl || solWatchTimer) return;
+      const status = document.getElementById("solStatus");
+      if (status) status.hidden = false;
+      solWatchStarted = Date.now();
+      const tick = async () => {
+        if (Date.now() - solWatchStarted > 15 * 60 * 1000) { stopSolanaWatch(); return; }
+        try {
+          const sigs = await solRpc("getSignaturesForAddress", [solReference(), { limit: 1, commitment: "confirmed" }]);
+          if (sigs && sigs.length && !sigs[0].err) {
+            stopSolanaWatch();
+            lsSet(LS_KEYS.solRef, ""); // next purchase gets a fresh reference
+            grantPro("solana", sigs[0].signature, { celebrate: true });
+            return;
+          }
+        } catch (e) { /* transient RPC failure: keep polling quietly */ }
+        solWatchTimer = setTimeout(tick, 4000);
+      };
+      solWatchTimer = setTimeout(tick, 2500);
+    }
+    function stopSolanaWatch() {
+      if (solWatchTimer) clearTimeout(solWatchTimer);
+      solWatchTimer = null;
+      const status = document.getElementById("solStatus");
+      if (status) status.hidden = true;
+    }
+    // Returns true (confirmed), false (definitely not valid) or null (cannot check).
+    async function verifySolanaSignature(sig) {
+      if (!CFG_SOL.rpcUrl) return null;
+      try {
+        const res = await solRpc("getSignatureStatuses", [[sig], { searchTransactionHistory: true }]);
+        const st = res && res.value && res.value[0];
+        if (!st) return false;
+        return !st.err && (st.confirmationStatus === "confirmed" || st.confirmationStatus === "finalized");
+      } catch (e) {
+        return null;
       }
     }
 
-    function openPaywallModal() {
-      const modal = document.getElementById("proPaywallModal");
-      if (modal) modal.style.display = "flex";
+    // ---------- Restore ----------
+    function setMsg(id, text, kind) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.textContent = text;
+      el.className = "pm-msg" + (kind ? " " + kind : "");
     }
-
-    function closePaywallModal() {
-      const modal = document.getElementById("proPaywallModal");
-      if (modal) modal.style.display = "none";
-    }
-
-    function openLicenseActivationModal() {
-      closePaywallModal();
-      const modal = document.getElementById("licenseModal");
-      if (modal) {
-        modal.style.display = "flex";
-        setTimeout(() => {
-          document.getElementById("licenseKeyInput")?.focus();
-        }, 100);
+    async function redeemReference(value, msgId) {
+      const v = (value || "").trim();
+      if (STRIPE_SESSION_RE.test(v)) {
+        setMsg(msgId, "Checking…");
+        const ok = await verifyStripeSession(v);
+        if (!ok) { setMsg(msgId, `We couldn't confirm that session. Email ${SUPPORT_EMAIL} with your receipt.`, "err"); return false; }
+        grantPro("stripe", v, { celebrate: true });
+        return true;
       }
+      if (SOL_SIG_RE.test(v)) {
+        setMsg(msgId, "Checking…");
+        const ok = await verifySolanaSignature(v);
+        if (ok === false) { setMsg(msgId, "That transaction isn't confirmed on Solana yet. Try again in a minute.", "err"); return false; }
+        grantPro("solana", v, { celebrate: true });
+        return true;
+      }
+      setMsg(msgId, "That doesn't look like a Stripe session ID (cs_…) or a Solana transaction signature.", "err");
+      return false;
     }
-
-    function closeLicenseModal() {
-      const modal = document.getElementById("licenseModal");
-      if (modal) modal.style.display = "none";
-    }
-
     function activateLicenseSubmit() {
-      const inp = document.getElementById("licenseKeyInput");
-      const val = inp?.value?.trim() || "";
-      if (val.length < 3) {
-        showToast("Please enter a valid key or receipt email.");
-        return;
-      }
-      activateProLicense(val, true);
-      closeLicenseModal();
+      redeemReference(document.getElementById("licenseKeyInput").value, "licenseMsg");
     }
+
+    // Handle the return from Stripe (?checkout=success&session_id=cs_...) and restore links.
+    async function handleUnlockParams() {
+      const params = new URLSearchParams(location.search);
+      const sessionId = params.get("session_id");
+      const solSig = params.get("sol_sig");
+      if (!sessionId && !solSig) return;
+      const url = new URL(location.href);
+      ["session_id", "sol_sig", "checkout", "restore"].forEach(k => url.searchParams.delete(k));
+      history.replaceState(null, "", url.pathname + url.search + url.hash);
+      if (sessionId) {
+        if (!STRIPE_SESSION_RE.test(sessionId)) { showToast("That checkout link looks incomplete. Use “Restore access” or email support."); return; }
+        const ok = await verifyStripeSession(sessionId);
+        if (!ok) { showToast(`We couldn't confirm that payment. Email ${SUPPORT_EMAIL} with your receipt.`); return; }
+        grantPro("stripe", sessionId, { celebrate: params.get("checkout") === "success" });
+      } else if (solSig && SOL_SIG_RE.test(solSig)) {
+        const ok = await verifySolanaSignature(solSig);
+        if (ok === false) { showToast("That Solana transaction couldn't be confirmed."); return; }
+        grantPro("solana", solSig);
+      }
+    }
+
+    // ---------- Hero reel ----------
+    function initHeroReel() {
+      const v = document.getElementById("heroReel");
+      const btn = document.getElementById("reelToggle");
+      if (!v || !btn) return;
+      const reduced = v.dataset.reducedMotion === "true";
+      const label = () => {
+        btn.textContent = v.paused ? "▶ Play reel" : "❚❚ Pause";
+        btn.setAttribute("aria-label", v.paused ? "Play product reel" : "Pause product reel");
+      };
+      const reveal = () => { btn.hidden = false; label(); };
+      v.addEventListener("loadeddata", reveal);
+      if (v.readyState >= 1) reveal();
+      v.addEventListener("play", label);
+      v.addEventListener("pause", label);
+      btn.addEventListener("click", () => {
+        if (v.paused) { v.dataset.userPaused = ""; v.play().catch(() => {}); }
+        else { v.dataset.userPaused = "1"; v.pause(); }
+      });
+      v.addEventListener("loadedmetadata", reveal);
+      if (reduced) return; // poster only; the toggle lets the visitor opt in to playback
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(entries => entries.forEach(e => {
+          if (!e.isIntersecting) { if (!v.paused) v.pause(); }
+          else if (v.dataset.userPaused !== "1" && v.readyState >= 2) v.play().catch(() => {});
+        }), { threshold: 0.2 }).observe(v);
+      }
+    }
+
+    // ---------- Global wiring ----------
+    function focusEditorSoon() {
+      setTimeout(() => {
+        const ed = document.getElementById("promptInput");
+        if (ed) ed.focus({ preventScroll: true });
+      }, 650);
+    }
+    document.addEventListener("click", (e) => {
+      const t = e.target.closest("[data-open-checkout],[data-open-restore],[data-close-modal],[data-focus-editor],.pm-modal,#solanaCheckoutBtn,#stripeCheckoutBtn,#solCopyAddr,#solSigSubmit,#licenseSubmitBtn,#copyRestoreLink");
+      if (!t) return;
+      if (t.classList.contains("pm-modal")) { if (e.target === t) closeModal(t.id); return; }
+      if (t.id === "stripeCheckoutBtn") { if (t.getAttribute("aria-disabled") === "true") e.preventDefault(); return; }
+      if (t.id === "solanaCheckoutBtn") { e.preventDefault(); toggleSolanaPanel(); return; }
+      if (t.id === "solCopyAddr") { safeClipboardCopy(CFG_SOL.recipient || "", "Wallet address copied"); return; }
+      if (t.id === "solSigSubmit") { redeemReference(document.getElementById("solSigInput").value, "solMsg"); return; }
+      if (t.id === "licenseSubmitBtn") { activateLicenseSubmit(); return; }
+      if (t.id === "copyRestoreLink") { safeClipboardCopy(document.getElementById("restoreLinkInput").value, "Restore link copied"); return; }
+      if (t.hasAttribute("data-open-checkout")) { e.preventDefault(); openCheckout(); return; }
+      if (t.hasAttribute("data-open-restore")) { e.preventDefault(); openRestore(); return; }
+      if (t.hasAttribute("data-close-modal")) {
+        const m = t.closest(".pm-modal");
+        if (m) closeModal(m.id);
+        if (!t.hasAttribute("data-focus-editor")) return;
+      }
+      if (t.hasAttribute("data-focus-editor")) focusEditorSoon();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        const open = document.querySelectorAll(".pm-modal.is-open");
+        if (open.length) closeModal(open[open.length - 1].id);
+      }
+      if (e.key === "Enter" && e.target && e.target.id === "licenseKeyInput") activateLicenseSubmit();
+      if (e.key === "Enter" && e.target && e.target.id === "solSigInput") redeemReference(e.target.value, "solMsg");
+    });
 
     // Initial load
     window.addEventListener("DOMContentLoaded", () => {
       checkProLicense();
+      handleUnlockParams();
+      initHeroReel();
       fetchTemplates();
       fetchCurriculum();
       debouncedAnalyze();
@@ -1686,40 +2506,31 @@
       const impBox = document.getElementById("improvementsBox");
       const overlay = document.getElementById("outputPaywallOverlay");
       impBox.style.display = "none";
+      const showPlain = (text) => {
+        preview.classList.remove("is-gated");
+        preview.textContent = text;
+        if (overlay) overlay.style.display = "none";
+      };
 
       if (!optimizedData) {
-        preview.innerText = document.getElementById("promptInput").value || "No content.";
-        if (overlay) overlay.style.display = "none";
-        preview.classList.remove("preview-blurred");
+        showPlain(document.getElementById("promptInput").value || "Paste a prompt on the left, then press Meta-Optimize to see the restructured version here.");
         return;
       }
 
-      let content = "";
       if (currentOutputView === "optimized") {
-        content = optimizedData.optimized_prompt || "";
+        renderGated(optimizedData.optimized_prompt || "");
       } else if (currentOutputView === "rendered") {
         renderVariablesLocally();
-        return;
       } else if (currentOutputView === "system") {
-        content = optimizedData.system_message || "No dedicated system prompt required for this target.";
+        showPlain(optimizedData.system_message || "No dedicated system prompt required for this target.");
       } else if (currentOutputView === "diffs") {
         impBox.style.display = "block";
-        content = [
+        showPlain([
           `Strategy: ${optimizedData.strategy_used || 'Standard'}`,
           `Tokens Before: ${optimizedData.estimated_tokens_before || 0}`,
           `Tokens After: ${optimizedData.estimated_tokens_after || 0}`,
           `Added Structural Tags: ${(optimizedData.added_tags || []).join(', ') || 'None'}`
-        ].join('\n');
-      }
-
-      preview.innerText = content;
-
-      if (!isProLicensed) {
-        preview.classList.add("preview-blurred");
-        if (overlay) overlay.style.display = "flex";
-      } else {
-        preview.classList.remove("preview-blurred");
-        if (overlay) overlay.style.display = "none";
+        ].join('\n'));
       }
     }
 
@@ -1834,7 +2645,8 @@
     function clearEditor() {
       document.getElementById("promptInput").value = "";
       optimizedData = null;
-      document.getElementById("outputPreview").innerText = "Editor cleared.";
+      document.getElementById("outputPreview").textContent = "Editor cleared.";
+      renderOutputView();
       debouncedAnalyze();
     }
 
@@ -1888,7 +2700,8 @@
         const reg = new RegExp(`\\{\\{\\s*${k}\\s*(?:\\|[^}]*|:-[^}]*|:[^}]*)?\\}\\}`, "g");
         text = text.replace(reg, v);
       });
-      document.getElementById("outputPreview").innerText = text;
+      if (optimizedData) renderGated(text);
+      else document.getElementById("outputPreview").textContent = text;
     }
 
     // 100% In-Browser Pure Client-Side Linter & Token Auditor
@@ -2103,10 +2916,12 @@
         added_tags: addedTags,
         improvements: improvements,
         estimated_tokens_before: tokensBefore,
-        estimated_tokens_after: tokensAfter
+        estimated_tokens_after: tokensAfter,
+        fullVisible: claimFullView(text)
       };
 
       renderOutputView();
+      updateProUI();
 
       const list = document.getElementById("improvementsList");
       list.innerHTML = "";
@@ -2116,7 +2931,7 @@
         list.appendChild(li);
       });
 
-      showToast("Prompt meta-optimized in browser!");
+      showToast(optimizedData.fullVisible ? "Prompt optimized in your browser." : "Preview ready. Unlock Pro for the full prompt.");
     }
 
     function autoFixPrompt() {
@@ -2164,9 +2979,9 @@
     }
 
     function copyOptimizedText() {
-      if (!isProLicensed) {
-        openPaywallModal();
-        showToast("🔒 Pro License required to copy transformed output.");
+      if (!canExport()) {
+        openCheckout();
+        showToast("Copy is part of Pro. Unlock it to copy the full prompt.");
         return;
       }
       const text = document.getElementById("outputPreview").innerText;
@@ -2174,9 +2989,9 @@
     }
 
     function downloadOptimizedPrompt() {
-      if (!isProLicensed) {
-        openPaywallModal();
-        showToast("🔒 Pro License required to export output files.");
+      if (!canExport()) {
+        openCheckout();
+        showToast("Export is part of Pro. Unlock it to download the full prompt.");
         return;
       }
       const text = document.getElementById("outputPreview").innerText;
@@ -2444,117 +3259,101 @@
       }
     }
 
-    function openDePayCheckout() {
-      if (typeof DePayWidgets !== 'undefined' && DePayWidgets.Payment) {
-        DePayWidgets.Payment({
-          integration: '428790dd-7ad1-407c-8ecf-c048c77a4cb8'
-        });
-      } else {
-        alert('DePay Web3 Widget is loading. Connecting to Solana...');
-      }
-    }
-
   </script>
 
-  <!-- High-Converting Pro Sovereign Sales Funnel Modal -->
-  <div class="modal-overlay" id="proPaywallModal" onclick="closePaywallModal()" style="display: none; position: fixed; inset: 0; background: rgba(5,7,12,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); z-index: 600; align-items: center; justify-content: center; padding: 1rem;">
-    <div class="modal-card has-border-beam" onclick="event.stopPropagation()" style="background: #090A0F; border: 1px solid rgba(99,102,241,0.4); border-radius: 18px; width: 100%; max-width: 620px; box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 40px rgba(99,102,241,0.25); overflow: hidden; display: flex; flex-direction: column;">
-      
-      <!-- Modal Header -->
-      <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--outline-light); display: flex; justify-content: space-between; align-items: center; background: rgba(18,22,34,0.7);">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 1.2rem;">⚡</span>
-          <span style="font-family: var(--font-brand); font-weight: 800; font-size: 1.15rem; color: #F8FAFC;">Unlock PromptMaster Pro</span>
-          <span style="font-size: 0.7rem; background: rgba(16,185,129,0.15); color: #10B981; border: 1px solid rgba(16,185,129,0.3); padding: 2px 8px; border-radius: 9999px; font-weight: 700;">LIFETIME ACCESS</span>
-        </div>
-        <button class="btn btn-tonal btn-icon" onclick="closePaywallModal()" style="width: 32px; height: 32px;">✕</button>
+  <!-- CHECKOUT MODAL -->
+  <div class="pm-modal" id="proPaywallModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" data-modal>
+    <div class="pm-dialog">
+      <div class="pm-dialog-head">
+        <h2 class="pm-dialog-title" id="checkoutTitle">Unlock <em>PromptMaster Pro</em></h2>
+        <button type="button" class="pm-close" data-close-modal aria-label="Close checkout">✕</button>
       </div>
+      <div class="pm-dialog-body">
+        <div class="pm-price-row">
+          <div><span class="amount" data-price>$19</span><span class="term">once</span></div>
+          <div class="note">Lifetime access · no subscription<br>30-day money-back guarantee</div>
+        </div>
+        <ul class="check-list">
+          <li>Full optimized output for Claude XML, OpenAI, Gemini &amp; CoT</li>
+          <li>Copy &amp; export, with unlimited optimizations</li>
+          <li>Unlocks right after payment, and your prompts stay on your device</li>
+        </ul>
 
-      <!-- Modal Body -->
-      <div style="padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
-        
-        <!-- Price Callout -->
-        <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(16, 20, 36, 0.6); padding: 1rem 1.25rem; border-radius: var(--radius-md); border: 1px solid rgba(99,102,241,0.25);">
-          <div>
-            <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #818CF8; font-weight: 700;">Founding Sovereign License</div>
-            <div style="font-size: 0.85rem; color: var(--on-surface-variant);">One-time payment. Zero monthly subscriptions. Free updates forever.</div>
-          </div>
-          <div style="text-align: right;">
-            <span style="font-size: 0.95rem; text-decoration: line-through; color: var(--on-surface-variant); margin-right: 6px;">$79</span>
-            <span style="font-family: var(--font-brand); font-size: 1.85rem; font-weight: 800; color: #10B981;">$19</span>
+        <div class="pm-pay">
+          <a class="cta-primary cta-block" id="stripeCheckoutBtn" href="#" rel="noopener"><span>Pay <span data-price>$19</span> with card</span> <span class="arrow" aria-hidden="true">→</span></a>
+          <p class="pm-pay-hint" id="stripeHint">Secure checkout by Stripe · Apple Pay &amp; Google Pay where available</p>
+          <p class="pm-unavailable" id="stripeUnavailable" hidden>Card checkout isn't configured yet. Email <a href="mailto:support@nealfrazier.tech" data-support-email>support@nealfrazier.tech</a> and we'll get you set up.</p>
+
+          <button type="button" class="btn-ghost" id="solanaCheckoutBtn" aria-expanded="false" aria-controls="solPanel" hidden><span>◎ Pay with Solana (<span data-sol-amount>19 USDC</span>)</span></button>
+
+          <div class="sol-panel" id="solPanel">
+            <div class="sol-grid">
+              <div class="sol-qr" id="solQr" aria-label="Solana Pay QR code" role="img"></div>
+              <div class="sol-meta">
+                <div><div class="row-label">Send exactly</div><strong data-sol-amount>19 USDC</strong> on Solana</div>
+                <div><div class="row-label">To</div><div class="mono" id="solRecipient"></div></div>
+                <div class="pm-field"><a class="pm-mini-btn" id="solWalletLink" href="#" style="text-decoration:none">Open in wallet</a><button type="button" class="pm-mini-btn" id="solCopyAddr">Copy address</button></div>
+              </div>
+            </div>
+            <div class="sol-status" id="solStatus" hidden><span class="spin" aria-hidden="true"></span><span>Waiting for your payment to confirm…</span></div>
+            <div>
+              <label class="row-label" for="solSigInput" style="font-family:var(--font-mono);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:#94A3B8">Paid? Paste your transaction signature</label>
+              <div class="pm-field" style="margin-top:0.4rem">
+                <input class="pm-input" id="solSigInput" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="e.g. 5h3k…(87–88 characters)">
+                <button type="button" class="pm-mini-btn" id="solSigSubmit">Unlock</button>
+              </div>
+              <p class="pm-msg" id="solMsg" aria-live="polite"></p>
+            </div>
           </div>
         </div>
 
-        <!-- Value Matrix Grid -->
-        <div class="pro-feature-grid" style="margin: 0.5rem 0;">
-          <div class="pro-feature-item">
-            <span class="pro-feature-check">✓</span>
-            <div><strong>Full Structural AST Scaffolds</strong><br><span style="color: var(--on-surface-variant); font-size: 0.75rem;">Claude 3.5 XML, OpenAI structured, Gemini CoT.</span></div>
-          </div>
-          <div class="pro-feature-item">
-            <span class="pro-feature-check">✓</span>
-            <div><strong>Unlimited AST Linting & Pruning</strong><br><span style="color: var(--on-surface-variant); font-size: 0.75rem;">Eliminate hallucination triggers and prune token bloat.</span></div>
-          </div>
-          <div class="pro-feature-item">
-            <span class="pro-feature-check">✓</span>
-            <div><strong>Multi-Model Diff Engine</strong><br><span style="color: var(--on-surface-variant); font-size: 0.75rem;">Compare prompt revisions and token deltas side-by-side.</span></div>
-          </div>
-          <div class="pro-feature-item">
-            <span class="pro-feature-check">✓</span>
-            <div><strong>100% Client-Side Privacy</strong><br><span style="color: var(--on-surface-variant); font-size: 0.75rem;">Confidential prompts never touch any cloud server.</span></div>
-          </div>
-          <div class="pro-feature-item">
-            <span class="pro-feature-check">✓</span>
-            <div><strong>Commercial Agentic License</strong><br><span style="color: var(--on-surface-variant); font-size: 0.75rem;">Unlimited exports for production applications.</span></div>
-          </div>
+        <div class="pm-foot">
+          <span><a href="/terms.html#refunds" target="_blank" rel="noopener">Refund policy</a> · <a href="/terms.html" target="_blank" rel="noopener">Terms</a> · <a href="/support.html" target="_blank" rel="noopener">Support</a></span>
+          <button type="button" class="text-btn" data-open-restore>Already paid? Restore access</button>
         </div>
-
-        <!-- Checkout Buttons -->
-        <div style="display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.25rem;">
-          <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" class="btn btn-primary" style="padding: 0.75rem; text-decoration: none; font-weight: 700; font-size: 0.95rem; text-align: center; display: flex; justify-content: center; align-items: center; gap: 8px;">
-            💳 Unlock Lifetime Access with Card / Apple Pay ($19)
-          </a>
-          <button class="btn-solana" onclick="openDePayCheckout()" style="padding: 0.75rem; font-weight: 700; font-size: 0.95rem; justify-content: center;">
-            ⚡ Unlock with Crypto (Solana SOL / USDC)
-          </button>
-        </div>
-
-        <!-- Key Activation Link -->
-        <div style="text-align: center; margin-top: 0.25rem;">
-          <button onclick="openLicenseActivationModal()" style="background: none; border: none; color: #94A3B8; font-size: 0.8rem; cursor: pointer; text-decoration: underline;">
-            Already have a license key or Stripe receipt? Activate here 🔑
-          </button>
-        </div>
-
       </div>
     </div>
   </div>
 
-  <!-- Dedicated License Key Activation Modal -->
-  <div class="modal-overlay" id="licenseModal" onclick="closeLicenseModal()" style="display: none; position: fixed; inset: 0; background: rgba(5,7,12,0.9); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); z-index: 700; align-items: center; justify-content: center; padding: 1rem;">
-    <div class="modal-card has-border-beam" onclick="event.stopPropagation()" style="background: #090A0F; border: 1px solid rgba(99,102,241,0.4); border-radius: 16px; width: 100%; max-width: 460px; box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 35px rgba(99,102,241,0.25); padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 1.2rem;">🔑</span>
-          <span style="font-family: var(--font-brand); font-weight: 800; font-size: 1.1rem; color: #F8FAFC;">Activate Pro License</span>
+  <!-- RESTORE ACCESS MODAL -->
+  <div class="pm-modal" id="licenseModal" role="dialog" aria-modal="true" aria-labelledby="restoreTitle" data-modal>
+    <div class="pm-dialog pm-dialog-sm">
+      <div class="pm-dialog-head">
+        <h2 class="pm-dialog-title" id="restoreTitle">Restore <em>Pro access</em></h2>
+        <button type="button" class="pm-close" data-close-modal aria-label="Close restore dialog">✕</button>
+      </div>
+      <div class="pm-dialog-body">
+        <p style="font-size:0.9rem;color:#CBD5E1;line-height:1.5">Paste the <strong>Stripe checkout session ID</strong> from your restore link (it starts with <code style="font-family:var(--font-mono);color:#34D399">cs_</code>) or your <strong>Solana transaction signature</strong>.</p>
+        <div class="pm-field">
+          <label class="sr-only" for="licenseKeyInput">Session ID or transaction signature</label>
+          <input class="pm-input" id="licenseKeyInput" type="text" autocomplete="off" spellcheck="false" placeholder="cs_live_… or Solana signature">
+          <button type="button" class="pm-mini-btn" id="licenseSubmitBtn">Restore</button>
         </div>
-        <button class="btn btn-tonal btn-icon" onclick="closeLicenseModal()" style="width: 32px; height: 32px;">✕</button>
+        <p class="pm-msg" id="licenseMsg" aria-live="polite"></p>
+        <div class="pm-foot">
+          <span>Lost it? Email <a href="mailto:support@nealfrazier.tech" data-support-email>support@nealfrazier.tech</a> with your receipt.</span>
+          <button type="button" class="text-btn" data-open-checkout>Get Pro for <span data-price>$19</span></button>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <p style="font-size: 0.85rem; color: var(--on-surface-variant); margin: 0; line-height: 1.45;">
-        Enter your Stripe receipt email, Solana transaction ID, or license key to instantly unlock PromptMaster Studio Pro:
-      </p>
-
-      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-        <input type="text" id="licenseKeyInput" placeholder="e.g. name@example.com or PRO-SOVEREIGN-KEY" style="width: 100%; padding: 0.65rem 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--outline-light); background: var(--surface-dim); color: var(--on-surface); font-size: 0.88rem; outline: none; box-sizing: border-box;">
-        <button class="btn btn-primary" onclick="activateLicenseSubmit()" style="padding: 0.7rem; font-weight: 700; font-size: 0.9rem;">
-          ⚡ Activate Pro Lifetime
-        </button>
+  <!-- PURCHASE SUCCESS MODAL -->
+  <div class="pm-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" data-modal>
+    <div class="pm-dialog pm-dialog-sm">
+      <div class="pm-dialog-head">
+        <h2 class="pm-dialog-title" id="successTitle">You're <em>Pro</em>. Thank you!</h2>
+        <button type="button" class="pm-close" data-close-modal aria-label="Close">✕</button>
       </div>
-
-      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--on-surface-variant); margin-top: 0.25rem;">
-        <span>Need a license?</span>
-        <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" style="color: #818CF8; font-weight: 600; text-decoration: none;">Get Lifetime Access ($19) →</a>
+      <div class="pm-dialog-body">
+        <p style="font-size:0.92rem;color:#CBD5E1;line-height:1.55">The full optimizer, copy and export are now unlocked in this browser. To unlock another browser or device, save this restore link:</p>
+        <div class="pm-field">
+          <label class="sr-only" for="restoreLinkInput">Your restore link</label>
+          <input class="pm-input" id="restoreLinkInput" type="text" readonly>
+          <button type="button" class="pm-mini-btn" id="copyRestoreLink">Copy</button>
+        </div>
+        <p class="pm-msg" id="successNote"></p>
+        <a href="#studio" class="cta-primary cta-block" data-close-modal data-focus-editor>Back to the studio <span class="arrow" aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
