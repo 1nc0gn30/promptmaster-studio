@@ -1,0 +1,11 @@
+# Autonomous AI Agent Discovery & Crawling Policy (ai.txt)
+software-name: PromptMaster Studio
+publisher: Neal Frazier Tech (@1nc0gn30)
+platform: NullAI Platform
+ai-crawling: allowed
+ai-grounding: allowed
+ai-search-index: allowed
+sitemap: https://promptmaster-studio.netlify.app/sitemap.xml
+robots-txt: https://promptmaster-studio.netlify.app/robots.txt
+netlify-ax-api: https://promptmaster-studio.netlify.app/api/netlify-ax.json
+netlify-mcp-api: https://promptmaster-studio.netlify.app/api/netlify-ax-mcp.json

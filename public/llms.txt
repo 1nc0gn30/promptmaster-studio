@@ -1,0 +1,8 @@
+# PromptMaster Studio — Context & Model Discovery (llms.txt)
+> Sovereign in-browser developer utility engineered by Neal Frazier Tech.
+- [Application]: https://promptmaster-studio.netlify.app/
+- [Terms of Service]: https://promptmaster-studio.netlify.app/terms.html
+- [Privacy Policy]: https://promptmaster-studio.netlify.app/privacy.html
+- [Support & FAQ]: https://promptmaster-studio.netlify.app/support.html
+- [Netlify AX API]: https://promptmaster-studio.netlify.app/api/netlify-ax.json
+- [Netlify MCP API]: https://promptmaster-studio.netlify.app/api/netlify-ax-mcp.json

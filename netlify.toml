@@ -1,6 +1,9 @@
 [build]
   publish = "public"
 
+[build.environment]
+  NODE_VERSION = "20.17.0"
+
 [functions]
   # Optional Stripe session verifier (see netlify/functions/verify-checkout.mjs).
   directory = "netlify/functions"
@@ -27,6 +30,32 @@
   for = "/vendor/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/api/netlify-ax.json"
+  [headers.values]
+    Content-Type = "application/json; charset=UTF-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=1800, must-revalidate"
+
+[[headers]]
+  for = "/api/netlify-ax-mcp.json"
+  [headers.values]
+    Content-Type = "application/json; charset=UTF-8"
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=1800, must-revalidate"
+
+[[headers]]
+  for = "/ai.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=UTF-8"
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=UTF-8"
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[redirects]]
   from = "/terms"
@@ -56,6 +85,16 @@
 [[redirects]]
   from = "/refunds"
   to = "/terms.html"
+  status = 200
+
+[[redirects]]
+  from = "/api/netlify-ax"
+  to = "/api/netlify-ax.json"
+  status = 200
+
+[[redirects]]
+  from = "/netlify-ax"
+  to = "/api/netlify-ax.json"
   status = 200
 
 [[redirects]]
