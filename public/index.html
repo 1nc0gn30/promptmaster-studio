@@ -1726,7 +1726,10 @@
             <button class="btn btn-primary" onclick="saveHistoryVersion()" style="margin-top: 0.75rem; width: 100%;">💾 Save Version</button>
           </div>
           <div>
-            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--on-surface-variant);">Saved Versions</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--on-surface-variant);">Saved Versions</span>
+              <button class="btn btn-tonal" id="clearAllVersionsBtn" style="padding: 2px 8px; font-size: 0.7rem;" onclick="clearAllVersions()" title="Clear All Versions">Clear All</button>
+            </div>
             <div id="historyVersionList" style="max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem;"></div>
           </div>
         </div>
@@ -3199,6 +3202,22 @@
       loadHistoryData();
     }
 
+    function clearAllVersions() {
+      const raw = lsGet("promptmaster_versions_v1");
+      let versions = [];
+      try {
+        if (raw) versions = JSON.parse(raw);
+      } catch(e) {}
+      if (!versions.length) {
+        showToast("No versions to clear.");
+        return;
+      }
+      if (!confirm("Are you sure you want to clear all saved prompt versions?")) return;
+      lsSet("promptmaster_versions_v1", JSON.stringify([]));
+      showToast("All versions cleared.");
+      loadHistoryData();
+    }
+
     function rollbackToVersion(vid) {
       const raw = lsGet("promptmaster_versions_v1");
       let versions = [];
@@ -3207,10 +3226,13 @@
       } catch(e) {}
       const found = versions.find(v => v.version_id === vid);
       if (found) {
-        document.getElementById("promptInput").value = found.prompt_text;
+        const inputEl = document.getElementById("promptInput");
+        if (inputEl) {
+          inputEl.value = found.prompt_text || "";
+        }
         setStudioMode("optimize");
         debouncedAnalyze();
-        showToast(`Rolled back editor to: ${found.label}`);
+        showToast(`Rolled back editor to: ${found.label || 'Version'}`);
       }
     }
 
