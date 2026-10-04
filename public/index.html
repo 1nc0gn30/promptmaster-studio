@@ -1128,9 +1128,6 @@
     </div>
 
     <div class="header-actions">
-      <button class="btn btn-tonal" id="showreelBtn" onclick="openShowreelModal()" style="border: 1px solid rgba(99, 102, 241, 0.6); color: #818CF8; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
-        🎬 15s Showreel
-      </button>
       <div id="headerProContainer" style="display: inline-flex;">
         <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" class="btn btn-tonal" id="headerProBtn" style="border: 1px solid #818CF8; color: #818CF8; text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;">
           💳 Buy Pro ($19)
@@ -1164,7 +1161,7 @@
           </div>
           <h2 class="funnel-title">Supercharge Your Prompts with the Pro Sovereign License</h2>
           <p class="funnel-desc">
-            Unlock 100% full AST code generation, Claude 3.5 XML scaffolds, multi-model diffing, and the viral Claude Opus 5.5 motion graphics generator for a single $19 payment.
+            Unlock 100% full AST code generation, Claude 3.5 XML scaffolds, multi-model diffing for a single $19 payment.
           </p>
           <div class="funnel-proof">
             <span>⚡ 14 founding spots remaining</span>
@@ -1199,7 +1196,6 @@
       <button class="tab-btn active" id="modeOptimizeBtn" onclick="setStudioMode('optimize')">✍️ Optimize Studio</button>
       <button class="tab-btn" id="modeDiffBtn" onclick="setStudioMode('diff')">⚖️ Prompt Diff</button>
       <button class="tab-btn" id="modeHistoryBtn" onclick="setStudioMode('history')">📜 Version History</button>
-      <button class="tab-btn" id="modeReelBtn" onclick="setStudioMode('reel')">🎬 Motion Reel Studio</button>
     </div>
 
     <!-- Optimize Mode Panels -->
@@ -1481,66 +1477,6 @@
       </div>
     </div>
 
-    <!-- Motion Reel Studio Mode Panel -->
-    <div id="reelModePanel" style="display: none; grid-column: 1 / -1;">
-      <div class="card has-border-beam">
-        <div class="card-header">
-          <div class="card-title">
-            <span>🎬 Claude & Revid.ai Motion Reel Generator</span>
-          </div>
-          <div style="font-size: 0.75rem; background: rgba(99,102,241,0.15); color: #818CF8; border: 1px solid rgba(99,102,241,0.3); padding: 3px 10px; border-radius: 9999px; font-weight: 600;">
-            15s Showreel & 30s Launch Film Engine
-          </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;">
-          <!-- Left: Input Brief -->
-          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-            <div style="font-size: 0.85rem; font-weight: 600; color: var(--on-surface-variant);">1. Configure Your Product Motion Brief:</div>
-            
-            <div>
-              <label style="font-size: 0.75rem; font-weight: 600; color: var(--on-surface-variant);">Product Name</label>
-              <input type="text" id="reelProductName" value="PromptMaster Studio" style="width: 100%; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--outline-light); background: var(--surface-dim); color: var(--on-surface); font-size: 0.85rem; outline: none;">
-            </div>
-
-            <div>
-              <label style="font-size: 0.75rem; font-weight: 600; color: var(--on-surface-variant);">One-Sentence Tagline / Hook</label>
-              <input type="text" id="reelTagline" value="Local-First AI Prompt Engineering & Meta-Optimization Workstation" style="width: 100%; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--outline-light); background: var(--surface-dim); color: var(--on-surface); font-size: 0.85rem; outline: none;">
-            </div>
-
-            <div>
-              <label style="font-size: 0.75rem; font-weight: 600; color: var(--on-surface-variant);">Hero Anchor Shape & Brand Color</label>
-              <input type="text" id="reelAnchor" value="Glowing electric bolt ⚡ in neon emerald (#10B981)" style="width: 100%; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--outline-light); background: var(--surface-dim); color: var(--on-surface); font-size: 0.85rem; outline: none;">
-            </div>
-
-            <div>
-              <label style="font-size: 0.75rem; font-weight: 600; color: var(--on-surface-variant);">Core Value Proposition / Metric</label>
-              <input type="text" id="reelMetric" value="Zero servers. 100% Client-Side Sovereign. 100/100 Quality Scores." style="width: 100%; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--outline-light); background: var(--surface-dim); color: var(--on-surface); font-size: 0.85rem; outline: none;">
-            </div>
-
-            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;">
-              <button class="btn btn-primary" onclick="generateMotionReelPrompt()" style="flex: 1;">
-                ⚡ Generate 15s Showreel Prompt
-              </button>
-              <button class="btn btn-tonal" onclick="openShowreelModal()">
-                ▶ Preview In-App Reel
-              </button>
-            </div>
-          </div>
-
-          <!-- Right: Generated Output Prompt -->
-          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.85rem; font-weight: 600; color: var(--on-surface-variant);">2. Ready-to-Run Claude / Revid Prompt:</span>
-              <button class="btn btn-tonal" onclick="copyReelOutputPrompt()" style="padding: 4px 10px; font-size: 0.75rem;">
-                📋 Copy Prompt
-              </button>
-            </div>
-            <textarea id="reelOutputText" class="preview-box" style="flex: 1; min-height: 280px; font-family: var(--font-mono); font-size: 0.8rem;" readonly>Click 'Generate 15s Showreel Prompt' to synthesize the Claude Opus 5.5 / Revid.ai prompt brief...</textarea>
-          </div>
-        </div>
-      </div>
-    </div>
   </main>
 
   <!-- Subtle Professional Attribution Footer -->
@@ -2305,20 +2241,15 @@
       document.getElementById("modeOptimizeBtn").classList.toggle("active", mode === "optimize");
       document.getElementById("modeDiffBtn").classList.toggle("active", mode === "diff");
       document.getElementById("modeHistoryBtn").classList.toggle("active", mode === "history");
-      const reelBtn = document.getElementById("modeReelBtn");
-      if (reelBtn) reelBtn.classList.toggle("active", mode === "reel");
 
       document.getElementById("optimizeModePanels").style.display = mode === "optimize" ? "grid" : "none";
 
       const diffPanel = document.getElementById("diffModePanel");
       const historyPanel = document.getElementById("historyModePanel");
-      const reelPanel = document.getElementById("reelModePanel");
       if (diffPanel) diffPanel.style.display = mode === "diff" ? "block" : "none";
       if (historyPanel) historyPanel.style.display = mode === "history" ? "block" : "none";
-      if (reelPanel) reelPanel.style.display = mode === "reel" ? "block" : "none";
 
       if (mode === "history") loadHistoryData();
-      if (mode === "reel") generateMotionReelPrompt();
     }
 
     // ====================================================================
@@ -2523,306 +2454,7 @@
       }
     }
 
-    // ====================================================================
-    // CLAUDE OPUS 5.5 / REVID MOTION GRAPHICS SHOWREEL CONTROLLER
-    // ====================================================================
-    let reelTimerInterval = null;
-    let reelStartTime = 0;
-    const REEL_DURATION_SEC = 15;
-    let isReelPlaying = false;
-    let currentReelSeconds = 0;
-
-    const REEL_SCENES = [
-      {
-        start: 0,
-        end: 2.5,
-        glyph: "⚡",
-        headline: "AI PROMPTS DESERVE PRECISION.",
-        subtext: "SCENE 1/6 • THE MANIFESTO HOOK",
-        color: "#10B981"
-      },
-      {
-        start: 2.5,
-        end: 5.5,
-        glyph: "🪄",
-        headline: "REAL-TIME AST LINTING & REWRITING",
-        subtext: "SCENE 2/6 • DETERMINISTIC LINTER ENGINE",
-        color: "#6366F1"
-      },
-      {
-        start: 5.5,
-        end: 8.5,
-        glyph: "🛡️",
-        headline: "ZERO SERVERS. 100% CLIENT-SIDE PRIVACY.",
-        subtext: "SCENE 3/6 • LOCAL-FIRST SOVEREIGNTY",
-        color: "#10B981"
-      },
-      {
-        start: 8.5,
-        end: 11.5,
-        glyph: "✨",
-        headline: "INSTANT MULTI-MODEL TRANSLATION",
-        subtext: "SCENE 4/6 • CLAUDE XML • OPENAI • GEMINI • DEEPSEEK",
-        color: "#818CF8"
-      },
-      {
-        start: 11.5,
-        end: 13.5,
-        glyph: "💳",
-        headline: "DUAL STRIPE & SOLANA RAILS",
-        subtext: "SCENE 5/6 • $19 PRO OR ONE-CLICK SOL CHECKOUT",
-        color: "#14F195"
-      },
-      {
-        start: 13.5,
-        end: 15.0,
-        glyph: "⚡",
-        headline: "PROMPTMASTER STUDIO",
-        subtext: "SCENE 6/6 • promptmaster-studio.netlify.app • Neal Frazier Tech",
-        color: "#10B981"
-      }
-    ];
-
-    function openShowreelModal() {
-      const modal = document.getElementById("showreelModal");
-      if (!modal) return;
-      modal.style.display = "flex";
-      startReelPlayback();
-      initReelFxCanvas();
-    }
-
-    function closeShowreelModal() {
-      const modal = document.getElementById("showreelModal");
-      if (!modal) return;
-      modal.style.display = "none";
-      pauseReelPlayback();
-    }
-
-    function toggleReelPlayback() {
-      if (isReelPlaying) {
-        pauseReelPlayback();
-      } else {
-        startReelPlayback();
-      }
-    }
-
-    function startReelPlayback() {
-      isReelPlaying = true;
-      const btn = document.getElementById("reelPlayBtn");
-      if (btn) btn.innerText = "⏸ Pause";
-      reelStartTime = performance.now() - (currentReelSeconds * 1000);
-      if (reelTimerInterval) clearInterval(reelTimerInterval);
-
-      reelTimerInterval = setInterval(() => {
-        const elapsed = (performance.now() - reelStartTime) / 1000;
-        if (elapsed >= REEL_DURATION_SEC) {
-          updateReelScene(REEL_DURATION_SEC);
-          pauseReelPlayback();
-          currentReelSeconds = 0;
-          return;
-        }
-        currentReelSeconds = elapsed;
-        updateReelScene(elapsed);
-      }, 50);
-    }
-
-    function pauseReelPlayback() {
-      isReelPlaying = false;
-      const btn = document.getElementById("reelPlayBtn");
-      if (btn) btn.innerText = "▶ Play Reel";
-      if (reelTimerInterval) clearInterval(reelTimerInterval);
-    }
-
-    function restartReel() {
-      currentReelSeconds = 0;
-      startReelPlayback();
-    }
-
-    function updateReelScene(sec) {
-      const progressPercent = Math.min((sec / REEL_DURATION_SEC) * 100, 100);
-      const bar = document.getElementById("reelProgressBar");
-      if (bar) bar.style.width = `${progressPercent}%`;
-
-      const timer = document.getElementById("reelTimer");
-      if (timer) {
-        const s = Math.floor(sec);
-        const ms = Math.floor((sec % 1) * 10);
-        timer.innerText = `00:${s.toString().padStart(2, '0')}.${ms} / 00:15`;
-      }
-
-      const activeScene = REEL_SCENES.find(sc => sec >= sc.start && sec < sc.end) || REEL_SCENES[REEL_SCENES.length - 1];
-
-      const glyphEl = document.getElementById("reelHeroGlyph");
-      const headEl = document.getElementById("reelHeadline");
-      const subEl = document.getElementById("reelSubtext");
-
-      if (glyphEl && glyphEl.innerText !== activeScene.glyph) {
-        glyphEl.innerText = activeScene.glyph;
-        glyphEl.style.filter = `drop-shadow(0 0 25px ${activeScene.color})`;
-        glyphEl.style.transform = "scale(1.2)";
-        setTimeout(() => { if (glyphEl) glyphEl.style.transform = "scale(1)"; }, 150);
-      }
-
-      if (headEl && headEl.innerText !== activeScene.headline) {
-        headEl.innerText = activeScene.headline;
-        headEl.style.opacity = "0";
-        headEl.style.transform = "translateY(8px)";
-        setTimeout(() => {
-          if (headEl) {
-            headEl.style.opacity = "1";
-            headEl.style.transform = "translateY(0)";
-          }
-        }, 80);
-      }
-
-      if (subEl) subEl.innerText = activeScene.subtext;
-    }
-
-    function initReelFxCanvas() {
-      const cvs = document.getElementById("reelFxCanvas");
-      if (!cvs) return;
-      const ctx = cvs.getContext("2d");
-      let w = cvs.parentElement.clientWidth;
-      let h = cvs.parentElement.clientHeight;
-      cvs.width = w;
-      cvs.height = h;
-
-      const particles = [];
-      for (let i = 0; i < 35; i++) {
-        particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 1.2,
-          vy: (Math.random() - 0.5) * 1.2,
-          size: Math.random() * 2 + 1,
-          color: Math.random() > 0.5 ? "rgba(16, 185, 129, 0.45)" : "rgba(99, 102, 241, 0.45)"
-        });
-      }
-
-      function draw() {
-        const modal = document.getElementById("showreelModal");
-        if (!modal || modal.style.display === "none") return;
-        ctx.clearRect(0, 0, w, h);
-        particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < 0 || p.x > w) p.vx *= -1;
-          if (p.y < 0 || p.y > h) p.vy *= -1;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fillStyle = p.color;
-          ctx.fill();
-        });
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
-
-    function generateMotionReelPrompt() {
-      const pName = document.getElementById("reelProductName")?.value || "PromptMaster Studio";
-      const tagline = document.getElementById("reelTagline")?.value || "Local-First AI Prompt Engineering Workstation";
-      const anchor = document.getElementById("reelAnchor")?.value || "Glowing electric bolt ⚡ in neon emerald (#10B981)";
-      const metric = document.getElementById("reelMetric")?.value || "Zero servers. 100% Client-Side. 100/100 Quality Scores.";
-
-      const promptText = `Act as an award-winning motion graphics director and lead visual designer. Make a dynamic 15-second motion graphics video that shows what an incredible motion designer you are, like it's your showreel for a creative director résumé. Go all out.
-
-Product: ${pName} (${tagline})
-Hero Anchor: ${anchor}. It leads every shot, and the viewer's eye follows it from scene to scene with zero visual dead space.
-
-Scene Breakdown & Exact On-Screen Copy:
-- Scene 1 (0:00 - 0:02): Explosive kinetic typography drop on a dark slate grid (#090A0F). The anchor charges up and shatters the frame.
-  Text: "AI PROMPTS DESERVE PRECISION."
-- Scene 2 (0:02 - 0:05): Speed transition. Anchor morphs into an interactive editor card with live AST syntax highlighting.
-  Text: "REAL-TIME AST LINTING & REWRITING"
-- Scene 3 (0:05 - 0:08): High-contrast feature blitz. Camera snap zoom into the quality score gauge.
-  Text: "${metric}"
-- Scene 4 (0:08 - 0:11): 3D isometric perspective shift. Cards fan out for Claude XML, OpenAI Chat, and Gemini CoT.
-  Text: "INSTANT MULTI-MODEL TRANSLATION"
-- Scene 5 (0:11 - 0:13): Climax. Neon checkout rails light up for dual Stripe ($19) + Solana Web3 checkout.
-  Text: "PAY WITH CARD OR SOL • LIFETIME ACCESS"
-- Scene 6 (0:13 - 0:15): Branded resolve. Anchor docks into the clean logo lockup with subtle particle burst.
-  Text: "${pName} — promptmaster-studio.netlify.app"
-
-Style & Animation Constraints:
-- Background: Pitch black (#08090B) with subtle ambient mesh glow (#10B981 and #6366F1).
-- Typography: Bold structural grotesque font (Syne 800), tracking tight, uppercase punchlines.
-- Motion curves: Aggressive snap easing (cubic-bezier(0.16, 1, 0.3, 1)), micro-rotations (±4deg), kinetic letter spacing.
-- Audio sync: Every cut and text punch snaps exactly on the 120 BPM audio beat.`;
-
-      const out = document.getElementById("reelOutputText");
-      if (out) out.value = promptText;
-      showToast("Motion showreel prompt generated!");
-    }
-
-    function copyReelOutputPrompt() {
-      if (!isProLicensed) {
-        openPaywallModal();
-        showToast("🔒 Pro License required to copy motion reel prompts.");
-        return;
-      }
-      const out = document.getElementById("reelOutputText");
-      if (out) {
-        safeClipboardCopy(out.value, "Reel prompt copied to clipboard!");
-      }
-    }
-
-    function copyShowreelPrompt() {
-      copyReelOutputPrompt();
-    }
-
   </script>
-
-  <!-- 15-Second Motion Graphics Showreel Modal -->
-  <div class="modal-overlay" id="showreelModal" onclick="closeShowreelModal()" style="display: none; position: fixed; inset: 0; background: rgba(5,7,12,0.88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 500; align-items: center; justify-content: center; padding: 1rem;">
-    <div class="modal-card" onclick="event.stopPropagation()" style="background: #090A0F; border: 1px solid rgba(99,102,241,0.35); border-radius: 16px; width: 100%; max-width: 680px; box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(99,102,241,0.25); overflow: hidden; display: flex; flex-direction: column;">
-      
-      <!-- Modal Header -->
-      <div style="padding: 1rem 1.25rem; border-bottom: 1px solid var(--outline-light); display: flex; justify-content: space-between; align-items: center; background: rgba(18,22,34,0.6);">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 1.2rem;">🎬</span>
-          <span style="font-family: var(--font-tech); font-weight: 700; font-size: 0.95rem; color: #F3F4F6;">15-Second Launch Showreel</span>
-          <span style="font-size: 0.7rem; background: rgba(16,185,129,0.15); color: #10B981; border: 1px solid rgba(16,185,129,0.3); padding: 2px 8px; border-radius: 9999px; font-weight: 600;">Claude Opus 5.5 Spec</span>
-        </div>
-        <button class="btn btn-tonal btn-icon" onclick="closeShowreelModal()" style="width: 32px; height: 32px;">✕</button>
-      </div>
-
-      <!-- Reel Visualizer Stage -->
-      <div id="reelStage" style="position: relative; height: 300px; background: #06070A; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; overflow: hidden;">
-        <canvas id="reelFxCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
-        <div id="reelSceneContent" style="position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; transition: all 0.3s ease;">
-          <div id="reelHeroGlyph" style="font-size: 3.5rem; filter: drop-shadow(0 0 20px #10B981);">⚡</div>
-          <div id="reelHeadline" style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #F3F4F6; max-width: 500px; line-height: 1.25; letter-spacing: -0.5px;">AI PROMPTS DESERVE PRECISION</div>
-          <div id="reelSubtext" style="font-family: var(--font-tech); font-size: 0.85rem; color: #9CA3AF; letter-spacing: 0.5px;">SCENE 1/6 • THE MANIFESTO HOOK</div>
-        </div>
-        <div style="position: absolute; bottom: 12px; right: 16px; font-family: var(--font-mono); font-size: 0.75rem; color: #6B7280; z-index: 3;" id="reelTimer">00:00.0 / 00:15</div>
-      </div>
-
-      <!-- Timeline Progress Bar -->
-      <div style="height: 4px; background: #161A29; width: 100%; position: relative;">
-        <div id="reelProgressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #10B981, #6366F1); transition: width 0.1s linear;"></div>
-      </div>
-
-      <!-- Controls & Actions -->
-      <div style="padding: 1rem 1.25rem; display: flex; justify-content: space-between; align-items: center; background: rgba(18,22,34,0.6); flex-wrap: wrap; gap: 0.75rem;">
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="btn btn-primary" id="reelPlayBtn" onclick="toggleReelPlayback()" style="font-size: 0.8rem; padding: 6px 14px;">
-            ▶ Play Reel
-          </button>
-          <button class="btn btn-tonal" onclick="restartReel()" style="font-size: 0.8rem; padding: 6px 12px;">
-            ↺ Replay
-          </button>
-        </div>
-        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button class="btn btn-tonal" onclick="copyShowreelPrompt()" style="border: 1px solid rgba(99,102,241,0.4); color: #818CF8; font-size: 0.8rem; padding: 6px 14px;">
-            📋 Copy Claude Prompt Brief
-          </button>
-          <a href="https://www.revid.ai/claude-motion-graphics" target="_blank" class="btn btn-tonal" style="text-decoration: none; font-size: 0.8rem; padding: 6px 14px;">
-            🔗 Open in Revid
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- High-Converting Pro Sovereign Sales Funnel Modal -->
   <div class="modal-overlay" id="proPaywallModal" onclick="closePaywallModal()" style="display: none; position: fixed; inset: 0; background: rgba(5,7,12,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); z-index: 600; align-items: center; justify-content: center; padding: 1rem;">
@@ -2862,10 +2494,6 @@ Style & Animation Constraints:
           <div class="pro-feature-item">
             <span class="pro-feature-check">✓</span>
             <div><strong>Unlimited AST Linting & Pruning</strong><br><span style="color: var(--on-surface-variant); font-size: 0.75rem;">Eliminate hallucination triggers and prune token bloat.</span></div>
-          </div>
-          <div class="pro-feature-item">
-            <span class="pro-feature-check">✓</span>
-            <div><strong>Claude Opus 5.5 Motion Studio</strong><br><span style="color: var(--on-surface-variant); font-size: 0.75rem;">Generate viral 15s showreels & launch film prompts.</span></div>
           </div>
           <div class="pro-feature-item">
             <span class="pro-feature-check">✓</span>
