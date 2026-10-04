@@ -3101,7 +3101,7 @@
     // VERSION HISTORY (localStorage)
     // ====================================================================
     function loadHistoryData() {
-      const raw = localStorage.getItem("promptmaster_versions_v1");
+      const raw = lsGet("promptmaster_versions_v1");
       let versions = [];
       try {
         if (raw) versions = JSON.parse(raw);
@@ -3128,8 +3128,9 @@
               <span style="font-size: 0.7rem; color: var(--on-surface-variant); margin-left: 0.5rem;">${v.branch || 'main'}</span>
             </div>
             <div style="display: flex; gap: 0.5rem;">
-              <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem;" onclick="viewVersion('${v.version_id}')">View</button>
-              <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem;" onclick="rollbackToVersion('${v.version_id}')">↩️</button>
+              <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem;" onclick="viewVersion('${v.version_id}')" title="View Version">View</button>
+              <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem;" onclick="rollbackToVersion('${v.version_id}')" title="Rollback Editor to this Version">↩️</button>
+              <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem; color: var(--error);" onclick="deleteVersion('${v.version_id}')" title="Delete Version">🗑️</button>
             </div>
           </div>
           <div style="font-size: 0.75rem; color: var(--on-surface-variant); margin-top: 0.25rem;">${v.message || ''} | ${v.tokens} tok &middot; ${new Date(v.created_at).toLocaleTimeString()}</div>
@@ -3148,7 +3149,7 @@
         return;
       }
 
-      const raw = localStorage.getItem("promptmaster_versions_v1");
+      const raw = lsGet("promptmaster_versions_v1");
       let versions = [];
       try {
         if (raw) versions = JSON.parse(raw);
@@ -3164,7 +3165,7 @@
       };
 
       versions.unshift(newVersion);
-      localStorage.setItem("promptmaster_versions_v1", JSON.stringify(versions));
+      lsSet("promptmaster_versions_v1", JSON.stringify(versions));
 
       document.getElementById("historyPromptInput").value = "";
       document.getElementById("historyLabel").value = "";
@@ -3174,7 +3175,7 @@
     }
 
     function viewVersion(vid) {
-      const raw = localStorage.getItem("promptmaster_versions_v1");
+      const raw = lsGet("promptmaster_versions_v1");
       let versions = [];
       try {
         if (raw) versions = JSON.parse(raw);
@@ -3186,8 +3187,20 @@
       }
     }
 
+    function deleteVersion(vid) {
+      const raw = lsGet("promptmaster_versions_v1");
+      let versions = [];
+      try {
+        if (raw) versions = JSON.parse(raw);
+      } catch(e) {}
+      const filtered = versions.filter(v => v.version_id !== vid);
+      lsSet("promptmaster_versions_v1", JSON.stringify(filtered));
+      showToast("Version removed.");
+      loadHistoryData();
+    }
+
     function rollbackToVersion(vid) {
-      const raw = localStorage.getItem("promptmaster_versions_v1");
+      const raw = lsGet("promptmaster_versions_v1");
       let versions = [];
       try {
         if (raw) versions = JSON.parse(raw);

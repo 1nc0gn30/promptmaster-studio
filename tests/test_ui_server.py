@@ -63,6 +63,8 @@ class TestUIServerRoutes:
         assert status == 200
         assert "text/html" in headers.get("Content-Type", "")
         assert "PromptMaster Studio" in str(body)
+        assert "deleteVersion" in str(body)
+
 
     def test_api_health(self, live_ui_server: str):
         status, data, _ = self._http_get(f"{live_ui_server}/api/health")
