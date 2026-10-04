@@ -1023,6 +1023,7 @@
       </div>
 
     </div>
+    </div> <!-- /optimizeModePanels -->
 
     <!-- Diff Mode Panel -->
     <div id="diffModePanel" style="display: none; grid-column: 1 / -1;">
@@ -1765,9 +1766,9 @@
       const diffPanel = document.getElementById("diffModePanel");
       const historyPanel = document.getElementById("historyModePanel");
       const reelPanel = document.getElementById("reelModePanel");
-      if (diffPanel) diffPanel.style.display = mode === "diff" ? "grid" : "none";
-      if (historyPanel) historyPanel.style.display = mode === "history" ? "grid" : "none";
-      if (reelPanel) reelPanel.style.display = mode === "reel" ? "grid" : "none";
+      if (diffPanel) diffPanel.style.display = mode === "diff" ? "block" : "none";
+      if (historyPanel) historyPanel.style.display = mode === "history" ? "block" : "none";
+      if (reelPanel) reelPanel.style.display = mode === "reel" ? "block" : "none";
 
       if (mode === "history") loadHistoryData();
       if (mode === "reel") generateMotionReelPrompt();
