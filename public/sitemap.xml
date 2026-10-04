@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://promptmaster-studio.netlify.app/</loc>
     <lastmod>2026-10-03</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://promptmaster-studio.netlify.app/og-image.png</image:loc>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://promptmaster-studio.netlify.app/media/promptmaster-reel-poster.jpg</video:thumbnail_loc>
+      <video:title>PromptMaster Studio product reel</video:title>
+      <video:description>A short silent product reel showing a rough prompt being linted, scored and rewritten in PromptMaster Studio.</video:description>
+      <video:content_loc>https://promptmaster-studio.netlify.app/media/promptmaster-reel.mp4</video:content_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://promptmaster-studio.netlify.app/terms.html</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://promptmaster-studio.netlify.app/privacy.html</loc>
     <lastmod>2026-10-03</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://promptmaster-studio.netlify.app/support.html</loc>
     <lastmod>2026-10-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
