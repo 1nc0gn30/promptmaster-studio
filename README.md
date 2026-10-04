@@ -55,6 +55,7 @@
 - [MCP Server](#-mcp-server)
 - [Studio UI](#-studio-ui)
 - [Prompt Engineering Guide](#-prompt-engineering-architecture-guide)
+- [Website, Funnel & Payments](#-website-funnel--payments)
 - [Testing](#-testing)
 - [License](#-license)
 
@@ -275,6 +276,52 @@ Gemini excels with grounded structural priming and boundary rules:
 ## Operational Boundaries
 * State "Insufficient information" if data is absent.
 ```
+
+---
+
+## 🌐 Website, Funnel & Payments
+
+The public site (`public/`, deployed by Netlify, see `netlify.toml`) is a single landing page:
+hero with the product reel → how it works → the live studio → pricing → FAQ.
+
+### Free taste & gating rule
+
+- **Always free & unlimited:** linter, quality scores, token/cost estimator, prompt diff, version history, templates, curriculum.
+- **Free taste:** the first `freeTaste.fullRuns` (default **1**) distinct prompts you optimize show the **full** output, including copy/export.
+  Switching the target format for the same prompt doesn't use up another run.
+- **After that:** optimized output shows the first `freeTaste.previewLines` (default 6) lines; the rest is blurred (and scrambled in the DOM) behind an unlock card. Copy/Export open checkout.
+- **Pro:** full output, copy/export, unlimited, remembered in `localStorage` (`pm_license_v2`). Unlocks made with the previous site version (`promptmaster_pro_licensed`) are still honoured.
+
+### Payment configuration: `public/config.js` (the only place)
+
+| Key | What to put there |
+| --- | --- |
+| `stripe.paymentLink` | Your Stripe Payment Link URL. In Stripe, set **After payment → Don't show confirmation page → redirect to** `https://promptmaster-studio.netlify.app/?checkout=success&session_id={CHECKOUT_SESSION_ID}` |
+| `solana.recipient` | Public address of the wallet that receives crypto payments. Empty = crypto option hidden. |
+| `solana.amount` / `solana.splToken` / `solana.tokenLabel` | Defaults to 19 USDC (official USDC mint). Set `splToken: ""` to take native SOL, and set `amount` in SOL. |
+| `solana.rpcUrl` *(optional)* | A CORS-enabled Solana RPC (e.g. a domain-restricted Helius/QuickNode URL). Enables automatic payment detection through the Solana Pay `reference`. |
+| `license.verifyEndpoint` *(optional)* | `"/.netlify/functions/verify-checkout"` once `STRIPE_SECRET_KEY` is set in Netlify env vars. |
+| `freeTaste.fullRuns`, `freeTaste.previewLines` | Tune the free taste. |
+| `product.priceLabel` | Shown in buttons. If you change the price, also update the static `$19` copy and the JSON-LD `price` in `index.html`. |
+
+Only public values belong in `config.js`. Never commit `sk_live_…` keys, webhook secrets or wallet private keys.
+
+### What is (and isn't) verified
+
+This is a static site, so **gating is client-side**. It's a polite paywall, not DRM: the optimizer's code ships to the browser.
+
+- **Stripe:** on return, the `session_id` (`cs_…`) unlocks the browser. Without a backend, that's trusted as-is.
+  Deploying `netlify/functions/verify-checkout.mjs` with `STRIPE_SECRET_KEY` (and optionally `STRIPE_PAYMENT_LINK_ID`) lets the site confirm `payment_status === "paid"` first.
+- **Solana:** checkout builds a [Solana Pay](https://docs.solanapay.com/spec) transfer request (`solana:` URL + QR) with a unique `reference` key.
+  With `rpcUrl` set, the page detects the confirmed transaction automatically. Otherwise the buyer pastes the transaction signature.
+  Either way, check incoming payments in your wallet; amount checks need a backend.
+- **Stronger enforcement** (signed license tokens, server-side Pro transforms, Stripe webhooks) needs a backend or more Netlify Functions.
+
+### Hero product reel
+
+`public/media/promptmaster-reel.mp4` (+ optional `.webm`) and `promptmaster-reel-poster.jpg` play in a 16:9 frame:
+`autoplay muted loop playsinline preload="metadata"`. Visitors with `prefers-reduced-motion` get the poster plus a play button.
+The reel brief is in `prompts/product_reel_brief.md`.
 
 ---
 
