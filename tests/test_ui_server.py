@@ -64,6 +64,7 @@ class TestUIServerRoutes:
         assert "text/html" in headers.get("Content-Type", "")
         assert "PromptMaster Studio" in str(body)
         assert "deleteVersion" in str(body)
+        assert "clearAllVersions" in str(body)
 
 
     def test_api_health(self, live_ui_server: str):
