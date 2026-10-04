@@ -32,3 +32,4 @@ def test_robots_txt_crawler_coverage():
     assert "ClaudeBot" in content
     assert "GPTBot" in content
     assert "PerplexityBot" in content
+    assert "Applebot" in content
