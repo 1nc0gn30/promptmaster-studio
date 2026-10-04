@@ -1,12 +1,32 @@
 [build]
   publish = "public"
 
+[functions]
+  # Optional Stripe session verifier (see netlify/functions/verify-checkout.mjs).
+  directory = "netlify/functions"
+
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Payment config must update as soon as it's deployed.
+[[headers]]
+  for = "/config.js"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
 
 [[redirects]]
   from = "/terms"
@@ -31,6 +51,11 @@
 [[redirects]]
   from = "/faq"
   to = "/support.html"
+  status = 200
+
+[[redirects]]
+  from = "/refunds"
+  to = "/terms.html"
   status = 200
 
 [[redirects]]
