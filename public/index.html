@@ -303,11 +303,6 @@
       letter-spacing: 0.5px;
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
 
     /* Buttons & Chips */
     button, .btn {
@@ -855,25 +850,6 @@
       transform: translateY(0);
     }
 
-    .btn-solana {
-      background: rgba(20, 241, 149, 0.15);
-      border: 1px solid rgba(20, 241, 149, 0.4);
-      color: #14F195;
-      font-weight: 700;
-      font-size: 0.82rem;
-      padding: 0.5rem 0.9rem;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: var(--transition);
-    }
-    .btn-solana:hover {
-      background: rgba(20, 241, 149, 0.25);
-      box-shadow: 0 0 15px rgba(20, 241, 149, 0.3);
-      transform: translateY(-1px);
-    }
     /* Output Locked Overlay & Blur */
     .preview-container {
       position: relative;
@@ -905,17 +881,6 @@
       text-align: center;
       z-index: 10;
       box-sizing: border-box;
-      animation: fadeIn 0.3s ease;
-    }
-    .paywall-lock-icon {
-      font-size: 2.2rem;
-      margin-bottom: 0.3rem;
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-8px); }
-      60% { transform: translateY(-4px); }
     }
     .paywall-lock-badge {
       display: inline-block;
@@ -964,30 +929,8 @@
     }
 
     /* Modal Paywall & License */
-    .pro-feature-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      margin: 1.25rem 0;
-    }
-    .pro-feature-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      font-size: 0.8rem;
-      color: #E2E8F0;
-      line-height: 1.35;
-    }
-    .pro-feature-check {
-      color: #10B981;
-      font-weight: 800;
-      font-size: 0.9rem;
-    }
 
     @media (max-width: 860px) {
-      .pro-feature-grid {
-        grid-template-columns: 1fr;
-      }
     }
     /* ====================================================================
        LANDING / FUNNEL LAYER
@@ -1204,7 +1147,6 @@
     [data-theme="light"] .output-paywall-overlay { background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 22%, #fff 100%); }
     .paywall-lock-title { font-family: var(--font-brand); }
     [data-theme="light"] .paywall-lock-title { color: #0B0F19; }
-    .paywall-lock-icon { animation: none; font-size: 1.4rem; }
     .paywall-lock-desc { margin-bottom: 0.85rem; }
 
     /* Pricing */
