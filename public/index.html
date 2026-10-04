@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -117,30 +117,30 @@
     }
 
     [data-theme="dark"] {
-      --primary: #8ab4f8;
-      --primary-hover: #aecbfa;
-      --primary-container: #174ea6;
-      --on-primary-container: #d2e3fc;
-      --surface: #1e1f20;
-      --surface-dim: #131314;
-      --surface-container-lowest: #0e0e0f;
-      --surface-container-low: #282a2c;
-      --surface-container: #303134;
-      --surface-container-high: #3c4043;
-      --on-surface: #e3e3e3;
-      --on-surface-variant: #c4c7c5;
-      --outline: #8e918f;
-      --outline-variant: #444746;
-      --outline-light: #3c4043;
-      --success: #81c995;
-      --success-container: #0d652d;
-      --warning: #fdd663;
-      --warning-container: #7c4a03;
-      --error: #f28b82;
-      --error-container: #8c1d18;
-      --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.5);
-      --shadow-md: 0 4px 8px 3px rgba(0,0,0,0.4);
-      --shadow-lg: 0 8px 16px 4px rgba(0,0,0,0.5);
+      --primary: #6366F1;
+      --primary-hover: #818CF8;
+      --primary-container: rgba(99, 102, 241, 0.2);
+      --on-primary-container: #EEF2FF;
+      --surface: rgba(18, 22, 34, 0.75);
+      --surface-dim: #090A0F;
+      --surface-container-lowest: #06070A;
+      --surface-container-low: #111420;
+      --surface-container: #161A29;
+      --surface-container-high: #1E2337;
+      --on-surface: #F3F4F6;
+      --on-surface-variant: #9CA3AF;
+      --outline: #374151;
+      --outline-variant: #1F2937;
+      --outline-light: rgba(255, 255, 255, 0.08);
+      --success: #10B981;
+      --success-container: rgba(16, 185, 129, 0.15);
+      --warning: #F59E0B;
+      --warning-container: rgba(245, 158, 11, 0.15);
+      --error: #EF4444;
+      --error-container: rgba(239, 68, 68, 0.15);
+      --shadow-sm: 0 1px 3px 0 rgba(0,0,0,0.6);
+      --shadow-md: 0 4px 14px 2px rgba(0,0,0,0.5);
+      --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.6), 0 0 15px rgba(99, 102, 241, 0.15);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -317,17 +317,20 @@
     /* Cards */
     .card {
       background: var(--surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--outline-light);
       border-radius: var(--radius-lg);
       padding: 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
       transition: var(--transition);
     }
     .card:hover {
-      box-shadow: var(--shadow-sm);
+      border-color: rgba(99, 102, 241, 0.35);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(99, 102, 241, 0.12);
     }
 
     .card-header {
@@ -630,6 +633,7 @@
       opacity: 1;
       transform: translateY(0);
     }
+  </style>
   <script defer src="https://integrate.depay.com/widgets/v13.js"></script>
 </head>
 <body>
