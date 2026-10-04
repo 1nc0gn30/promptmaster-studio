@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — PromptMaster Studio</title>
+  <meta name="description" content="Privacy Policy for PromptMaster Studio. 100% client-side zero-logging guarantee by Neal Frazier Tech.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://promptmaster-studio.netlify.app/privacy.html">
+
+  <!-- OpenGraph & Twitter -->
+  <meta property="og:title" content="Privacy Policy — PromptMaster Studio">
+  <meta property="og:description" content="100% Client-Side Local Execution Guarantee. Zero prompt logging, zero server-side telemetry, zero selling of user data.">
+  <meta property="og:url" content="https://promptmaster-studio.netlify.app/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://promptmaster-studio.netlify.app/screenshots/cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@1nc0gn30">
+  <meta name="twitter:creator" content="@1nc0gn30">
+  <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/screenshots/cover.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07090E;
+      --surface: #0E121B;
+      --surface-dim: #090C14;
+      --outline: #222938;
+      --outline-light: rgba(99, 102, 241, 0.2);
+      --primary: #10B981;
+      --accent: #6366F1;
+      --on-surface: #F8FAFC;
+      --on-surface-variant: #94A3B8;
+      --font-brand: 'Syne', sans-serif;
+      --font-tech: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .aurora-container {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .aurora-blob-1 {
+      position: absolute; top: -10%; left: 20%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+    .aurora-blob-2 {
+      position: absolute; bottom: 10%; right: 15%; width: 45vw; height: 45vw;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14, 18, 27, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--outline);
+      padding: 0.85rem 1.5rem;
+    }
+    .header-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--on-surface);
+    }
+    .brand-logo {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, #10B981, #6366F1);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .brand-title {
+      font-family: var(--font-brand); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    }
+    .nav-link {
+      font-size: 0.82rem; font-weight: 600; color: var(--on-surface-variant); text-decoration: none;
+      padding: 6px 12px; border-radius: var(--radius-sm); transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--on-surface); background: rgba(255,255,255,0.06);
+    }
+    .btn-cta {
+      background: #6366F1; color: #fff; font-size: 0.82rem; font-weight: 700;
+      padding: 6px 14px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition);
+    }
+    .btn-cta:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    main {
+      position: relative; z-index: 1;
+      max-width: 860px; margin: 2rem auto; padding: 0 1.25rem 4rem 1.25rem;
+    }
+
+    .doc-hero {
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--outline);
+      padding-bottom: 1.5rem;
+    }
+    .doc-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #10B981; font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-family: var(--font-brand); font-size: 2.4rem; font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #FFFFFF, #CBD5E1);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .doc-meta {
+      font-size: 0.82rem; color: var(--on-surface-variant);
+    }
+
+    .legal-card {
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.75rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h2 {
+      font-family: var(--font-tech); font-size: 1.25rem; font-weight: 700;
+      color: #F1F5F9; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px;
+    }
+    p, li {
+      font-size: 0.9rem; color: #CBD5E1; margin-bottom: 0.75rem; line-height: 1.65;
+    }
+    ul {
+      padding-left: 1.4rem; margin-bottom: 0.75rem;
+    }
+    .shield-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(16, 185, 129, 0.12); color: #10B981;
+      padding: 4px 12px; border-radius: 9999px; font-weight: 700; font-size: 0.8rem;
+      border: 1px solid rgba(16, 185, 129, 0.3); margin-bottom: 0.75rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--outline);
+      padding: 2rem 1.5rem; background: var(--surface-dim);
+      font-size: 0.82rem; color: var(--on-surface-variant); text-align: center;
+    }
+    .footer-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-links a {
+      color: var(--on-surface-variant); text-decoration: none; margin-left: 1rem; transition: var(--transition);
+    }
+    .footer-links a:hover { color: #fff; }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.9rem; }
+      .legal-card { padding: 1.25rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links a { margin: 0 0.5rem; }
+    }
+  </style>
+
+  <!-- Schema.org WebPage & FAQPage JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Privacy Policy — PromptMaster Studio",
+        "url": "https://promptmaster-studio.netlify.app/privacy.html",
+        "description": "Zero-logging and local-first data privacy policy for PromptMaster Studio.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Neal Frazier Tech",
+          "url": "https://nealfrazier.tech"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are prompts or inputs uploaded to remote servers in PromptMaster Studio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. PromptMaster Studio operates entirely client-side inside the user's browser. Prompt analysis, compilation, and security checks are executed locally with zero remote transmission."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is user data or payment information stored?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Payments are processed directly by Stripe Inc. or DePay on Solana. No credit cards or private keys are stored by PromptMaster Studio. Local storage is strictly used for client-side license state."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Ambient Glow -->
+  <div class="aurora-container">
+    <div class="aurora-blob-1"></div>
+    <div class="aurora-blob-2"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="brand">
+        <div class="brand-logo">⚡</div>
+        <div class="brand-title">PromptMaster Studio</div>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="nav-link">← Workspace</a>
+        <a href="/terms.html" class="nav-link">Terms</a>
+        <a href="/privacy.html" class="nav-link active">Privacy</a>
+        <a href="/support.html" class="nav-link">Support & FAQ</a>
+        <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" class="btn-cta">Buy Pro ($19)</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="doc-hero">
+      <div class="doc-tag">DATA PRIVACY & SOVEREIGN SECURITY</div>
+      <h1>Privacy Policy</h1>
+      <div class="doc-meta">Effective Date: October 3, 2026 &bull; Strict Zero-Logging Mandate</div>
+    </div>
+
+    <!-- Section 1: The Core Guarantee -->
+    <div class="legal-card">
+      <div class="shield-badge">🛡️ 100% Client-Side Local Execution Guarantee</div>
+      <h2>1. Our Foundational Privacy Promise</h2>
+      <p>
+        At <strong>Neal Frazier Tech</strong> and the <strong>NullAI Platform</strong>, we believe developer tools should operate with absolute cryptographic respect for your intellectual property and confidential instructions.
+      </p>
+      <p>
+        <strong>PromptMaster Studio does not send your prompts to our servers.</strong> Every AST transform, token count estimation, heuristic lint rule, and Claude motion graphics prompt synthesis runs <strong>100% inside your local browser memory</strong> using pure client-side JavaScript.
+      </p>
+    </div>
+
+    <!-- Section 2: What We Do NOT Collect -->
+    <div class="legal-card">
+      <h2>2. What We Never Collect, Store, or Inspect</h2>
+      <ul>
+        <li><strong>Prompt Content</strong>: We never log, view, record, or transmit the text, instructions, or templates you type or paste into the editor.</li>
+        <li><strong>Target System Code</strong>: Any source code snippets, database schemas, or payloads pasted into variable slots remain strictly local.</li>
+        <li><strong>AI Model Keys</strong>: The application is designed to operate locally without requiring you to submit private OpenAI or Anthropic API keys to our servers.</li>
+        <li><strong>Advertising Tracking</strong>: We do not deploy third-party advertising pixels, session recording tools, or data broker cookies.</li>
+      </ul>
+    </div>
+
+    <!-- Section 3: Information Collected During Purchases -->
+    <div class="legal-card">
+      <h2>3. Transactional & Payment Data</h2>
+      <p>
+        When you choose to upgrade to a Pro Sovereign License ($19 one-time), the transaction is handled exclusively by verified third-party payment rails:
+      </p>
+      <ul>
+        <li>
+          <strong>Stripe Payments</strong>:
+          When paying via Credit Card, Apple Pay, or Google Pay, your financial information is processed directly by <strong>Stripe, Inc.</strong> Neal Frazier Tech never sees, handles, or stores your credit card number or CVV. We receive only standard transaction metadata (receipt email, billing country, and transaction status) to facilitate license key verification and refund fulfillment.
+        </li>
+        <li>
+          <strong>DePay Web3 (Solana)</strong>:
+          When paying with Solana (SOL) or stablecoins (USDC), the transaction executes directly on the decentralized Solana blockchain. Blockchain transaction signatures and wallet addresses are public on-chain data by nature.
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section 4: Local Storage -->
+    <div class="legal-card">
+      <h2>4. Browser Local Storage (`localStorage`)</h2>
+      <p>
+        PromptMaster Studio uses your browser's local storage solely to deliver seamless utility between sessions:
+      </p>
+      <ul>
+        <li><code>promptmaster_pro_licensed</code>: Boolean flag recording whether your Pro license is active on this browser.</li>
+        <li><code>promptmaster_license_key</code>: Your receipt email or activation key.</li>
+        <li><code>promptmaster_versions_v1</code>: Local prompt branch snapshots saved via the Version History tab.</li>
+      </ul>
+      <p>
+        This data resides entirely within your local browser sandbox and is never synchronized to external servers. You can clear this data at any time via your browser settings.
+      </p>
+    </div>
+
+    <!-- Section 5: GDPR & CCPA Compliance -->
+    <div class="legal-card">
+      <h2>5. Your Rights Under GDPR & CCPA</h2>
+      <p>
+        Because we do not maintain centralized user databases of your prompt activity, your privacy is protected by physical architecture. To the extent we process customer billing records under GDPR / CCPA, you have the right to:
+      </p>
+      <ul>
+        <li>Request confirmation of any billing records associated with your Stripe receipt email.</li>
+        <li>Request deletion of customer billing contacts from our Stripe dashboard.</li>
+        <li>Receive direct, transparent human responses to data privacy questions within 48 hours.</li>
+      </ul>
+    </div>
+
+    <!-- Section 6: Contact Data Protection -->
+    <div class="legal-card">
+      <h2>6. Contact Our Privacy Team</h2>
+      <p>
+        If you have questions, concerns, or requests regarding this Privacy Policy:
+        <br><strong>Privacy Officer</strong>: Neal Frazier / Neal Frazier Tech
+        <br><strong>Direct Privacy Desk</strong>: <a href="mailto:privacy@nealfrazier.tech" style="color: var(--primary);">privacy@nealfrazier.tech</a>
+        <br><strong>Support Desk</strong>: <a href="/support.html" style="color: #818CF8;">PromptMaster Support Hub</a>
+        <br><strong>HQ Location</strong>: Hampton Roads, Virginia, United States
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>PromptMaster Studio</strong> &bull; Engineered by Neal Frazier Tech (<a href="https://github.com/1nc0gn30" target="_blank" style="color: var(--primary); text-decoration: none;">@1nc0gn30</a>) &bull; <a href="https://nullai.tech" target="_blank" style="color: var(--primary); text-decoration: none;">NullAI Platform</a>
+      </div>
+      <div class="footer-links">
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/support.html">Support & FAQ</a>
+        <a href="https://github.com/1nc0gn30/promptmaster-studio" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

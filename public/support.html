@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support & FAQ — PromptMaster Studio</title>
+  <meta name="description" content="Direct customer support desk, 30-day refund assistance, and comprehensive FAQ for PromptMaster Studio by Neal Frazier Tech.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://promptmaster-studio.netlify.app/support.html">
+
+  <!-- OpenGraph & Twitter -->
+  <meta property="og:title" content="Support & FAQ — PromptMaster Studio">
+  <meta property="og:description" content="Get direct support, instant license recovery, 30-day refunds, and answers to common questions about PromptMaster Studio.">
+  <meta property="og:url" content="https://promptmaster-studio.netlify.app/support.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://promptmaster-studio.netlify.app/screenshots/cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@1nc0gn30">
+  <meta name="twitter:creator" content="@1nc0gn30">
+  <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/screenshots/cover.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07090E;
+      --surface: #0E121B;
+      --surface-dim: #090C14;
+      --surface-bright: #151B28;
+      --outline: #222938;
+      --outline-light: rgba(99, 102, 241, 0.2);
+      --primary: #10B981;
+      --primary-rgb: 16, 185, 129;
+      --accent: #6366F1;
+      --accent-rgb: 99, 102, 241;
+      --on-surface: #F8FAFC;
+      --on-surface-variant: #94A3B8;
+      --font-brand: 'Syne', sans-serif;
+      --font-tech: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* Ambient Aurora Glow */
+    .aurora-container {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .aurora-blob-1 {
+      position: absolute; top: -10%; left: 20%; width: 50vw; height: 50vw;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+    .aurora-blob-2 {
+      position: absolute; bottom: 10%; right: 15%; width: 45vw; height: 45vw;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(14, 18, 27, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--outline);
+      padding: 0.85rem 1.5rem;
+    }
+    .header-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--on-surface);
+    }
+    .brand-logo {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: linear-gradient(135deg, #10B981, #6366F1);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem;
+    }
+    .brand-title {
+      font-family: var(--font-brand); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+    }
+    .nav-link {
+      font-size: 0.82rem; font-weight: 600; color: var(--on-surface-variant); text-decoration: none;
+      padding: 6px 12px; border-radius: var(--radius-sm); transition: var(--transition);
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--on-surface); background: rgba(255,255,255,0.06);
+    }
+    .btn-cta {
+      background: #6366F1; color: #fff; font-size: 0.82rem; font-weight: 700;
+      padding: 6px 14px; border-radius: var(--radius-sm); text-decoration: none; transition: var(--transition);
+    }
+    .btn-cta:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    main {
+      position: relative; z-index: 1;
+      max-width: 1080px; margin: 2rem auto; padding: 0 1.25rem 4rem 1.25rem;
+    }
+
+    .doc-hero {
+      text-align: center; margin-bottom: 2.5rem;
+    }
+    .doc-tag {
+      display: inline-block; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary);
+      background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 4px 12px; border-radius: 999px; margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-family: var(--font-brand); font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 0.5rem; background: linear-gradient(180deg, #FFFFFF, #94A3B8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .doc-meta {
+      font-size: 0.92rem; color: var(--on-surface-variant); max-width: 600px; margin: 0 auto;
+    }
+
+    /* Support Channels Bento Grid */
+    .bento-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2.5rem;
+    }
+    .bento-card {
+      background: var(--surface); border: 1px solid var(--outline);
+      border-radius: var(--radius-lg); padding: 1.5rem;
+      transition: var(--transition); display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .bento-card:hover {
+      border-color: rgba(99, 102, 241, 0.4); transform: translateY(-2px);
+    }
+    .bento-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.25rem; margin-bottom: 1rem;
+    }
+    .bento-title {
+      font-family: var(--font-tech); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; color: #fff;
+    }
+    .bento-desc {
+      font-size: 0.85rem; color: var(--on-surface-variant); line-height: 1.5; margin-bottom: 1rem;
+    }
+    .bento-link {
+      font-size: 0.85rem; font-weight: 600; color: var(--primary); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .bento-link:hover { text-decoration: underline; }
+
+    /* Support Form & FAQ Layout */
+    .layout-grid {
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 2rem; align-items: start;
+    }
+
+    /* Interactive Desk Card */
+    .desk-card {
+      background: var(--surface); border: 1px solid var(--outline);
+      border-radius: var(--radius-lg); padding: 1.75rem;
+    }
+    .desk-header {
+      margin-bottom: 1.25rem;
+    }
+    .desk-title {
+      font-family: var(--font-tech); font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem;
+    }
+    .desk-subtitle {
+      font-size: 0.85rem; color: var(--on-surface-variant);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-label {
+      display: block; font-size: 0.8rem; font-weight: 600; color: #CBD5E1; margin-bottom: 0.35rem;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; background: var(--surface-dim); border: 1px solid var(--outline);
+      color: var(--on-surface); font-family: var(--font-body); font-size: 0.85rem;
+      border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; transition: var(--transition);
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    }
+    .form-textarea { resize: vertical; min-height: 100px; }
+
+    .form-actions {
+      display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.25rem;
+    }
+    .btn-submit {
+      flex: 1; min-width: 150px; background: linear-gradient(135deg, #10B981, #059669);
+      color: #fff; font-family: var(--font-tech); font-weight: 700; font-size: 0.88rem;
+      padding: 0.75rem 1rem; border: none; border-radius: var(--radius-sm); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px; transition: var(--transition);
+    }
+    .btn-submit:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: var(--surface-bright); border: 1px solid var(--outline); color: #CBD5E1;
+      font-family: var(--font-tech); font-weight: 600; font-size: 0.88rem;
+      padding: 0.75rem 1rem; border-radius: var(--radius-sm); cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 6px; transition: var(--transition);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.08); color: #fff; }
+
+    /* FAQ Section */
+    .faq-container {
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .faq-item {
+      background: var(--surface); border: 1px solid var(--outline);
+      border-radius: var(--radius-md); overflow: hidden; transition: var(--transition);
+    }
+    .faq-item.open {
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+    .faq-question {
+      padding: 1.1rem 1.25rem; width: 100%; text-align: left; background: none; border: none;
+      color: #fff; font-family: var(--font-tech); font-size: 0.98rem; font-weight: 600;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .faq-icon {
+      font-size: 1.1rem; color: var(--on-surface-variant); transition: transform 0.25s ease;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg); color: var(--primary);
+    }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+      padding: 0 1.25rem; font-size: 0.88rem; color: #CBD5E1; line-height: 1.6;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px; padding-bottom: 1.25rem;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 1000;
+      background: #10B981; color: #fff; padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm); font-family: var(--font-tech); font-size: 0.88rem;
+      font-weight: 600; display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+      opacity: 0; transform: translateY(10px); pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      opacity: 1; transform: translateY(0); pointer-events: auto;
+    }
+
+    footer {
+      border-top: 1px solid var(--outline);
+      padding: 2rem 1.5rem; background: var(--surface-dim);
+      font-size: 0.82rem; color: var(--on-surface-variant); text-align: center;
+    }
+    .footer-inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    .footer-links a {
+      color: var(--on-surface-variant); text-decoration: none; margin-left: 1rem; transition: var(--transition);
+    }
+    .footer-links a:hover { color: #fff; }
+
+    @media (max-width: 860px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .layout-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links a { margin: 0 0.5rem; }
+    }
+  </style>
+
+  <!-- Schema.org JSON-LD ContactPage & FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "name": "PromptMaster Studio Customer Support Desk",
+        "url": "https://promptmaster-studio.netlify.app/support.html",
+        "description": "Direct customer support desk, 30-day money-back guarantee processing, and technical inquiry assistance for PromptMaster Studio.",
+        "mainEntity": {
+          "@type": "Organization",
+          "name": "Neal Frazier Tech",
+          "url": "https://nealfrazier.tech",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Support",
+            "email": "support@nealfrazier.tech",
+            "availableLanguage": "English"
+          }
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How does the $19 Lifetime Pro license work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You pay once ($19 founding pricing vs $79 regular) and receive permanent, unrestricted access to advanced prompt compiler architectures (Chain-of-Thought, ReAct, Tree-of-Thoughts, Few-Shot), code export, and prompt engineering utilities. There are zero recurring monthly subscriptions."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I activate my Pro license after purchase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On the main workspace page, click 'Enter License Key' in the top banner or paywall modal. Paste your Stripe checkout session ID or customer email and click Activate. Alternatively, Stripe redirects directly back to /?licensed=true which automatically activates your license in browser localStorage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my prompt data private? Does PromptMaster store my prompts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely not. PromptMaster Studio runs 100% client-side in your web browser. All AST parsing, prompt compilation, token calculations, and linting happen locally using JavaScript. No prompts, API keys, or inputs are ever transmitted to or stored on remote servers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is your refund policy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We offer an unconditional 30-day money-back guarantee. If you are not satisfied for any reason, email us at support@nealfrazier.tech with your Stripe receipt email or Solana transaction signature, and we will issue a full refund within 24-48 business hours."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you accept cryptocurrency payments?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Alongside Stripe (Credit Cards, Apple Pay, Google Pay), we accept decentralized payments via DePay on the Solana blockchain (SOL, USDC, USDT). Click the 'Pay with Solana' button in the pricing banner or modal to pay instantly."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Ambient Glow -->
+  <div class="aurora-container">
+    <div class="aurora-blob-1"></div>
+    <div class="aurora-blob-2"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="brand">
+        <div class="brand-logo">⚡</div>
+        <div class="brand-title">PromptMaster Studio</div>
+      </a>
+      <nav class="nav-links">
+        <a href="/" class="nav-link">← Workspace</a>
+        <a href="/terms.html" class="nav-link">Terms</a>
+        <a href="/privacy.html" class="nav-link">Privacy</a>
+        <a href="/support.html" class="nav-link active">Support & FAQ</a>
+        <a href="https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D" target="_blank" class="btn-cta">Buy Pro ($19)</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div class="doc-hero">
+      <div class="doc-tag">CLIENT CARE & KNOWLEDGE BASE</div>
+      <h1>Support & FAQ Hub</h1>
+      <div class="doc-meta">
+        Direct engineer assistance, license activation help, and transparent 30-day refund processing.
+      </div>
+    </div>
+
+    <!-- Bento Channels -->
+    <div class="bento-grid">
+      <!-- Card 1 -->
+      <div class="bento-card">
+        <div>
+          <div class="bento-icon" style="background: rgba(16, 185, 129, 0.12); color: #10B981;">✉️</div>
+          <div class="bento-title">Direct Support Desk</div>
+          <div class="bento-desc">
+            Direct email line to our development engineering team. Priority response queue for Pro license holders within 12 business hours.
+          </div>
+        </div>
+        <a href="mailto:support@nealfrazier.tech" class="bento-link">support@nealfrazier.tech &rarr;</a>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bento-card">
+        <div>
+          <div class="bento-icon" style="background: rgba(99, 102, 241, 0.12); color: #818CF8;">🛡️</div>
+          <div class="bento-title">30-Day Money-Back Guarantee</div>
+          <div class="bento-desc">
+            100% full refund policy on all Stripe and Solana purchases. Send your receipt email for instant processing within 24 to 48 hours.
+          </div>
+        </div>
+        <a href="#faq" class="bento-link">Read refund terms &rarr;</a>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bento-card">
+        <div>
+          <div class="bento-icon" style="background: rgba(245, 158, 11, 0.12); color: #F59E0B;">🐙</div>
+          <div class="bento-title">GitHub Issue Tracker</div>
+          <div class="bento-desc">
+            Open-source community discussion, feature suggestions, syntax enhancement requests, and client-side bug reports.
+          </div>
+        </div>
+        <a href="https://github.com/1nc0gn30/promptmaster-studio/issues" target="_blank" class="bento-link">Open GitHub Issue &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Layout Grid: Form + FAQ -->
+    <div class="layout-grid">
+      <!-- Interactive Support Form -->
+      <div class="desk-card">
+        <div class="desk-header">
+          <div class="desk-title">Submit a Support Request</div>
+          <div class="desk-subtitle">Fill in the details below to generate a pre-formatted ticket or dispatch directly to our inbox.</div>
+        </div>
+
+        <form id="support-form" onsubmit="handleSupportSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="ticket-name">Your Name</label>
+            <input type="text" id="ticket-name" class="form-input" placeholder="e.g. Jane Doe" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ticket-email">Email Address</label>
+            <input type="email" id="ticket-email" class="form-input" placeholder="jane@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ticket-category">Inquiry Category</label>
+            <select id="ticket-category" class="form-select">
+              <option value="License Activation / Unlock">License Activation / Unlock</option>
+              <option value="Refund Request (30-Day Guarantee)">Refund Request (30-Day Guarantee)</option>
+              <option value="Technical Question / Bug Report">Technical Question / Bug Report</option>
+              <option value="Feature Request">Feature Request</option>
+              <option value="General Inquiry">General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ticket-key">License Key or Stripe Receipt (Optional)</label>
+            <input type="text" id="ticket-key" class="form-input" placeholder="e.g. ch_3M..., or your Stripe checkout email">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="ticket-msg">Description / Message</label>
+            <textarea id="ticket-msg" class="form-textarea" placeholder="Please describe how we can assist you..." required></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-submit">
+              <span>🚀 Dispatch via Email</span>
+            </button>
+            <button type="button" class="btn-secondary" onclick="copySupportTicket()">
+              <span>📋 Copy Ticket</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div id="faq" class="faq-container">
+        <h2 style="font-family: var(--font-tech); font-size: 1.35rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;">
+          Frequently Asked Questions
+        </h2>
+
+        <!-- FAQ Item 1 -->
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>How does the $19 Lifetime Pro license work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            You pay once ($19 founding pricing vs $79 regular) and receive permanent, unrestricted access to advanced prompt compiler architectures (Chain-of-Thought, ReAct, Tree-of-Thoughts, Few-Shot), code export, and prompt engineering utilities. There are zero recurring monthly subscriptions or hidden fees.
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>How do I activate my Pro license after purchase?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            On the main workspace page, click "Enter License Key" or "Already purchased? Activate license" in the top banner or paywall modal. Paste your Stripe checkout session ID or customer email and click Activate. Alternatively, Stripe redirects directly back to <code>/?licensed=true</code> which automatically activates your license in browser <code>localStorage</code> permanently.
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is my prompt data private? Does PromptMaster store my prompts?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Absolutely not. PromptMaster Studio runs 100% client-side in your web browser. All AST parsing, prompt compilation, token calculations, and linting happen locally using JavaScript. No prompts, API keys, or inputs are ever transmitted to or stored on remote servers.
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What is your refund policy?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            We offer an unconditional 30-day money-back guarantee. If you are not satisfied for any reason, email us at <a href="mailto:support@nealfrazier.tech" style="color: var(--primary);">support@nealfrazier.tech</a> or use the ticket form on this page with your Stripe receipt email or Solana transaction signature, and we will issue a full refund within 24-48 business hours.
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Do you accept cryptocurrency payments?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes. Alongside Stripe (Credit Cards, Apple Pay, Google Pay), we accept decentralized payments via DePay on the Solana blockchain (SOL, USDC, USDT). Click the "Pay with Solana" button in the pricing banner or modal on the workspace to pay instantly.
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I use generated prompts in commercial client work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes, 100%. All prompts, system instructions, and schemas compiled with PromptMaster Studio are your exclusive intellectual property. You hold perpetual commercial rights to use, sell, or deploy them in any application without royalties.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span>✓ Ticket copied to clipboard!</span>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>PromptMaster Studio</strong> &bull; Engineered by Neal Frazier Tech (<a href="https://github.com/1nc0gn30" target="_blank" style="color: var(--primary); text-decoration: none;">@1nc0gn30</a>) &bull; <a href="https://nullai.tech" target="_blank" style="color: var(--primary); text-decoration: none;">NullAI Platform</a>
+      </div>
+      <div class="footer-links">
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/support.html">Support & FAQ</a>
+        <a href="https://github.com/1nc0gn30/promptmaster-studio" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      item.classList.toggle('open');
+    }
+
+    function buildTicketText() {
+      const name = document.getElementById('ticket-name').value || 'Anonymous User';
+      const email = document.getElementById('ticket-email').value || 'Not provided';
+      const category = document.getElementById('ticket-category').value;
+      const key = document.getElementById('ticket-key').value || 'N/A';
+      const msg = document.getElementById('ticket-msg').value || 'No details provided';
+      const timestamp = new Date().toISOString();
+
+      return `[PromptMaster Studio Support Request]
+Category: ${category}
+Date: ${timestamp}
+User Name: ${name}
+User Email: ${email}
+License Key / Receipt: ${key}
+
+Message:
+${msg}
+----------------------------------------
+Sent from PromptMaster Studio Support Hub (promptmaster-studio.netlify.app)`;
+    }
+
+    function handleSupportSubmit(e) {
+      e.preventDefault();
+      const category = document.getElementById('ticket-category').value;
+      const body = encodeURIComponent(buildTicketText());
+      const subject = encodeURIComponent(`[PromptMaster Support] ${category}`);
+      window.location.href = `mailto:support@nealfrazier.tech?subject=${subject}&body=${body}`;
+      showToast('Opening your email client...');
+    }
+
+    function copySupportTicket() {
+      const text = buildTicketText();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('✓ Ticket copied to clipboard!');
+      }).catch(() => {
+        showToast('✓ Please copy text manually');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.querySelector('span').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
