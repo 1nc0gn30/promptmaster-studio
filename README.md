@@ -325,6 +325,15 @@ The reel brief is in `prompts/product_reel_brief.md`.
 
 ---
 
+## 🔒 Supply Chain & Verifiable Releases
+
+Releases are hardened directly through [.github/workflows/release.yml](file:///.github/workflows/release.yml):
+- **Reproducible Builds**: Dual independent clean builds compared with `diffoscope` for deterministic package artifacts.
+- **SPDX Software Bill of Materials**: Source tree and artifact SBOMs generated via Syft in SPDX-JSON format.
+- **Sigstore Cosign & Rekor Provenance**: Artifacts cryptographically signed keyless with OpenID Connect (OIDC) producing complete provenance bundles verified against the Rekor public transparency log.
+
+---
+
 ## 🧪 Testing
 
 ```bash
