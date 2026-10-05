@@ -9,7 +9,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP Compliant](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20external-brightgreen.svg)](https://pypi.org/project/promptmaster-studio/)
-[![Tests](https://img.shields.io/badge/tests-233%20passed-success.svg)](https://github.com/NullAITech/promptmaster-studio)
+[![Tests](https://img.shields.io/badge/tests-235%20passed-success.svg)](https://github.com/NullAITech/promptmaster-studio)
+[![Reproducible Release](https://img.shields.io/badge/provenance-Sigstore%20Rekor-blue.svg)](.github/workflows/release.yml)
 
 *From ad-hoc prompts to production-grade prompt engineering — built with 100% Python Standard Library.*
 
