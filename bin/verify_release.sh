@@ -15,10 +15,18 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$BUILD_DIR/b1" "$BUILD_DIR/b2"
 
 echo "-> Running build #1..."
-python3 -m build --outdir "$BUILD_DIR/b1"
+if python3 -c "import build" &>/dev/null; then
+    python3 -m build --outdir "$BUILD_DIR/b1"
+else
+    python3 -m pip wheel --no-deps -w "$BUILD_DIR/b1" .
+fi
 
 echo "-> Running build #2..."
-python3 -m build --outdir "$BUILD_DIR/b2"
+if python3 -c "import build" &>/dev/null; then
+    python3 -m build --outdir "$BUILD_DIR/b2"
+else
+    python3 -m pip wheel --no-deps -w "$BUILD_DIR/b2" .
+fi
 
 echo "-> Comparing artifact digests..."
 b1_wheel_hash=$(sha256sum "$BUILD_DIR"/b1/*.whl | awk '{print $1}')
