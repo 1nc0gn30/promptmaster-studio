@@ -69,7 +69,7 @@ jobs:
       - name: Sign packages and generate Rekor provenance bundle
         shell: bash
         run: |
-          for artifact in dist/release/*.whl dist/release/*.tar.gz dist/release/SHA256SUMS; do
+          for artifact in dist/release/*.whl dist/release/*.tar.gz dist/release/SHA256SUMS dist/release/*.spdx.json; do
             if [ -f "$artifact" ]; then
               cosign sign-blob \
                 --bundle "${artifact}.bundle" \
