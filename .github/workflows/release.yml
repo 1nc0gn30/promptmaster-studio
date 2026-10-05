@@ -46,13 +46,17 @@ jobs:
 
       - name: Diffoscope reproducibility check
         run: |
+          export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git log -1 --pretty=%ct)}"
+          export PYTHONHASHSEED=0
           diffoscope dist/build-1 dist/build-2 --text dist/reproducibility-report.txt || true
           cat dist/reproducibility-report.txt
+          cmp dist/build-1/*.whl dist/build-2/*.whl && echo "[✓] Wheel builds are bit-for-bit identical."
 
       - name: Copy final artifacts
         run: |
           mkdir -p dist/release
           cp dist/build-1/* dist/release/
+          (cd dist/release && sha256sum * > SHA256SUMS)
 
       - name: Generate Syft SPDX SBOM
         run: |
@@ -62,11 +66,16 @@ jobs:
       - name: Sign packages and generate Rekor provenance bundle
         shell: bash
         run: |
-          for artifact in dist/release/*.whl dist/release/*.tar.gz; do
+          for artifact in dist/release/*.whl dist/release/*.tar.gz dist/release/SHA256SUMS; do
             if [ -f "$artifact" ]; then
               cosign sign-blob \
                 --bundle "${artifact}.bundle" \
                 --yes \
+                "$artifact"
+              cosign verify-blob \
+                --bundle "${artifact}.bundle" \
+                --certificate-identity-regexp ".*" \
+                --certificate-oidc-issuer-regexp ".*" \
                 "$artifact"
             fi
           done
