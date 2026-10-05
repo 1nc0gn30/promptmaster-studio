@@ -36,21 +36,24 @@ jobs:
 
       - name: First deterministic build
         run: |
+          export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git log -1 --pretty=%ct)}"
+          export PYTHONHASHSEED=0
           mkdir -p dist/build-1
           python -m build --outdir dist/build-1
 
       - name: Second deterministic build
         run: |
+          export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git log -1 --pretty=%ct)}"
+          export PYTHONHASHSEED=0
           mkdir -p dist/build-2
           python -m build --outdir dist/build-2
 
       - name: Diffoscope reproducibility check
         run: |
-          export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(git log -1 --pretty=%ct)}"
-          export PYTHONHASHSEED=0
           diffoscope dist/build-1 dist/build-2 --text dist/reproducibility-report.txt || true
           cat dist/reproducibility-report.txt
           cmp dist/build-1/*.whl dist/build-2/*.whl && echo "[✓] Wheel builds are bit-for-bit identical."
+          cmp dist/build-1/*.tar.gz dist/build-2/*.tar.gz && echo "[✓] Source distributions are bit-for-bit identical."
 
       - name: Copy final artifacts
         run: |
