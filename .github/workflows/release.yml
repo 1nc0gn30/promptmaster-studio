@@ -54,11 +54,16 @@ jobs:
           cat dist/reproducibility-report.txt
           cmp dist/build-1/*.whl dist/build-2/*.whl && echo "[✓] Wheel builds are bit-for-bit identical."
           cmp dist/build-1/*.tar.gz dist/build-2/*.tar.gz && echo "[✓] Source distributions are bit-for-bit identical."
+          if ! cmp -s dist/build-1/*.whl dist/build-2/*.whl || ! cmp -s dist/build-1/*.tar.gz dist/build-2/*.tar.gz; then
+            echo "[x] Reproducible build assertion failed: build outputs differ across independent runs." >&2
+            exit 1
+          fi
 
       - name: Copy final artifacts
         run: |
           mkdir -p dist/release
           cp dist/build-1/* dist/release/
+          cp dist/reproducibility-report.txt dist/release/reproducibility-report.txt
           (cd dist/release && sha256sum * > SHA256SUMS)
 
       - name: Generate Syft SPDX SBOM
