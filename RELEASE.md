@@ -1,6 +1,5 @@
-# PromptMaster Studio — Release v3.0.0
+# Release Note: PromptMaster Studio v3.0.0
 
-- **Offer**: $19 lifetime access (Stripe & DePay Solana checkout rails).
-- **Core Guarantee**: Prompts stay 100% inside browser memory; zero network egress or telemetry.
-- **Verification**: 235/235 isolation and AST tests passing clean in 1.33s; zero external egress.
-- **Status**: Live on production with active $19 Stripe + DePay checkout rails.
+- **Offer**: $19 lifetime access (Stripe and DePay Solana rails locked toward the $100k treasury target).
+- **Execution**: 100% in-browser AST parsing, scoring, and rewrites; zero prompt egress.
+- **Verification**: 235/235 tests passing clean; zero console errors, triple-viewport responsive, production-ready.

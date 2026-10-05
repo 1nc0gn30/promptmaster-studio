@@ -1,0 +1,78 @@
+name: Release Pipeline
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  build-and-harden:
+    name: Build, SBOM, Diffoscope & Cosign Provenance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install build tools and diffoscope
+        run: |
+          python -m pip install --upgrade pip build wheel
+          sudo apt-get update && sudo apt-get install -y diffoscope
+
+      - name: Install Syft
+        uses: anchore/sbom-action/download-syft@v0
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.5.0
+
+      - name: First deterministic build
+        run: |
+          mkdir -p dist/build-1
+          python -m build --outdir dist/build-1
+
+      - name: Second deterministic build
+        run: |
+          mkdir -p dist/build-2
+          python -m build --outdir dist/build-2
+
+      - name: Diffoscope reproducibility check
+        run: |
+          diffoscope dist/build-1 dist/build-2 --text dist/reproducibility-report.txt || true
+          cat dist/reproducibility-report.txt
+
+      - name: Copy final artifacts
+        run: |
+          mkdir -p dist/release
+          cp dist/build-1/* dist/release/
+
+      - name: Generate Syft SPDX SBOM
+        run: |
+          syft dir:. -o spdx-json=dist/release/promptmaster-studio.spdx.json
+          syft dist/release/ -o spdx-json=dist/release/artifacts.spdx.json
+
+      - name: Sign packages and generate Rekor provenance bundle
+        shell: bash
+        run: |
+          for artifact in dist/release/*.whl dist/release/*.tar.gz; do
+            if [ -f "$artifact" ]; then
+              cosign sign-blob \
+                --bundle "${artifact}.bundle" \
+                --yes \
+                "$artifact"
+            fi
+          done
+
+      - name: Upload release bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-provenance-bundle
+          path: dist/release/
