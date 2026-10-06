@@ -1336,6 +1336,28 @@
     </div>
   </header>
 
+  <!-- High-Converting Sales Funnel Banner -->
+  <div id="funnelHeroBanner" style="background: linear-gradient(90deg, rgba(99,91,255,0.18) 0%, rgba(20,241,149,0.18) 100%); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; z-index: 95; position: relative;">
+    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <span style="background: #ef4444; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Founding Sale</span>
+      <span style="font-weight: 600; color: #fff;">Sovereign Lifetime Pass:</span>
+      <span style="color: #94a3b8; text-decoration: line-through;">$79</span>
+      <span style="color: #14F195; font-weight: 800; font-size: 14px;">$19 Lifetime</span>
+      <span style="color: #cbd5e1; font-size: 12px;">• Unlimited Prompt Exports • Multi-Model Profiler • Zero Telemetry</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+      <button type="button" data-open-checkout style="padding: 5px 12px; background: #635BFF; color: #fff; border-radius: 6px; border: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
+        💳 Card / Apple Pay ($19)
+      </button>
+      <button type="button" data-open-checkout style="padding: 5px 12px; background: #14F195; color: #000; border-radius: 6px; border: none; font-size: 11px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+        ⚡ Pay with SOL
+      </button>
+      <button type="button" data-open-restore style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">
+        🔑 Activate Key
+      </button>
+    </div>
+  </div>
+
   <!-- Main -->
   <main id="top">
 
@@ -2076,6 +2098,8 @@
 
     // ---------- UI state ----------
     function updateProUI() {
+      const banner = document.getElementById("funnelHeroBanner");
+      if (banner) banner.style.display = isProLicensed ? "none" : "flex";
       const proContainer = document.getElementById("headerProContainer");
       if (proContainer) {
         proContainer.innerHTML = isProLicensed

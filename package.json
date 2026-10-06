@@ -11,7 +11,8 @@
     "start": "python3 -m promptmaster_studio.ui_server --port 8765",
     "electron": "electron .",
     "app": "electron .",
-    "test": "pytest tests/"
+    "test": "pytest tests/",
+    "verify:provenance": "bash scripts/verify_provenance.sh"
   },
   "keywords": [
     "prompt-engineering",

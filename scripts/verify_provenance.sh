@@ -44,4 +44,18 @@ for sbom in "$DIST_DIR"/*.spdx.json; do
   echo "Found SBOM: $sbom"
 done
 
+echo "==> Verifying reproducible build report..."
+if [ -f "$DIST_DIR/reproducibility-report.txt" ]; then
+  echo "Found reproducibility report: $DIST_DIR/reproducibility-report.txt"
+  if [ -s "$DIST_DIR/reproducibility-report.txt" ]; then
+    echo "[-] Warning/Failure: Non-empty diffoscope report detected in $DIST_DIR/reproducibility-report.txt" >&2
+    cat "$DIST_DIR/reproducibility-report.txt" >&2
+    exit 1
+  else
+    echo "[✓] Reproducibility report confirms bit-for-bit identical build outputs (diffoscope diff is clean)."
+  fi
+else
+  echo "[!] Notice: $DIST_DIR/reproducibility-report.txt not found. Skipping diffoscope check."
+fi
+
 echo "==> Verification completed successfully."
