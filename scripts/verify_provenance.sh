@@ -7,6 +7,12 @@ REPO="${GITHUB_REPOSITORY:-1nc0gn30/promptmaster-studio}"
 ISSUER="https://token.actions.githubusercontent.com"
 CERT_REGEXP="https://github.com/${REPO}/.github/workflows/release.yml@refs/.*"
 
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
+  echo "Usage: $0 [dist_directory]"
+  echo "Verifies SHA256SUMS, Cosign Rekor provenance bundles, and Syft SPDX SBOMs."
+  exit 0
+fi
+
 if [ ! -d "$DIST_DIR" ]; then
   echo "Error: Directory '$DIST_DIR' not found." >&2
   exit 1
