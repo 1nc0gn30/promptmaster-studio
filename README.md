@@ -333,6 +333,11 @@ Releases are hardened directly through [.github/workflows/release.yml](file:///.
 - **SPDX Software Bill of Materials**: Source tree and artifact SBOMs generated via Syft in SPDX-JSON format.
 - **Sigstore Cosign & Rekor Provenance**: Artifacts cryptographically signed keyless with OpenID Connect (OIDC) producing complete provenance bundles verified against the Rekor public transparency log.
 
+To verify a downloaded release bundle locally:
+```bash
+./scripts/verify_provenance.sh dist/release
+```
+
 ---
 
 ## 🧪 Testing
