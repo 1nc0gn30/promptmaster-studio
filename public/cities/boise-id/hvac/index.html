@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HVAC Shops in Boise: One Page, One Next Step | City Desk</title>
+  <meta name="description" content="One-page website for an HVAC owner in Boise, ID. Tune-up and repair paths, verified service windows, Ada County service area, and clean handoff. Set price: $1,100.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://promptmaster-studio.netlify.app/cities/boise-id/hvac/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <!-- OpenGraph & Twitter -->
+  <meta property="og:title" content="HVAC Shops in Boise: One Page, One Next Step">
+  <meta property="og:description" content="Owners lose jobs to whoever answers clearly. One page with a tune-up offer and a repair path, written for Boise, ID. Set price: $1,100.">
+  <meta property="og:url" content="https://promptmaster-studio.netlify.app/cities/boise-id/hvac/">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://promptmaster-studio.netlify.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="HVAC Shops in Boise, ID — One page, one next step. Built by City Desk.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@1nc0gn30">
+  <meta name="twitter:creator" content="@1nc0gn30">
+  <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/og-image.png">
+  <meta name="twitter:image:alt" content="HVAC Shops in Boise, ID — One page, one next step. Built by City Desk.">
+
+  <!-- Schema.org Graph -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://promptmaster-studio.netlify.app/cities/boise-id/hvac/#service",
+        "name": "One-Page Website for Boise HVAC Shop",
+        "serviceType": "HVAC Web Storefront Development",
+        "provider": {
+          "@type": "Organization",
+          "name": "City Desk · Neal Frazier Tech",
+          "url": "https://nealfrazier.tech",
+          "founder": {
+            "@type": "Person",
+            "name": "Neal Frazier"
+          }
+        },
+        "areaServed": {
+          "@type": "City",
+          "name": "Boise",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Idaho"
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "1100.00",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "description": "Finished one-page website for an HVAC owner in Boise, ID. Set price $1,100. Transferable code, no recurring retainers."
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://promptmaster-studio.netlify.app/cities/boise-id/hvac/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is included with this Boise HVAC storefront?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A finished, responsive one-page website structured specifically for heating and cooling operations in Boise, ID. Includes tune-up and emergency repair dispatch sections, arrival windows across Ada County, direct click-to-call links, and a complete handoff package."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are there ongoing agency retainers or recurring fees?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The price is $1,100 set once. The shop owner receives the source files, domain configuration instructions, and keeps 100% ownership with zero monthly lock-in."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the shop owner put their details on the page?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The owner provides their business name, contact phone number, license number, and photos. City Desk sets those exact values into the build before final handoff."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #090C14;
+      --surface: #101524;
+      --surface-card: #151C30;
+      --outline: #222C46;
+      --outline-light: rgba(99, 102, 241, 0.2);
+      --primary: #10B981;
+      --accent: #6366F1;
+      --amber: #F59E0B;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --font-display: 'Syne', sans-serif;
+      --font-tech: 'Space Grotesk', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(16, 21, 36, 0.9);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--outline);
+      padding: 0.9rem 1.25rem;
+    }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .brand-city {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--primary);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+    .cta-btn:hover {
+      opacity: 0.92;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      border-bottom: 1px solid var(--outline);
+      padding-bottom: 2.5rem;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .tag-desk {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #A5B4FC;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .hero-price {
+      font-family: var(--font-tech);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .hero-lede {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 780px;
+      line-height: 1.6;
+    }
+
+    /* Owner Notice Box */
+    .owner-notice {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .owner-notice-title {
+      font-family: var(--font-tech);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .owner-notice-body {
+      font-size: 0.9rem;
+      color: #E2E8F0;
+    }
+
+    /* Bento Grid: Tune-Up vs Repair Split */
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .split-card {
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .split-card.featured {
+      border-color: rgba(16, 185, 129, 0.4);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05) 0%, var(--surface) 100%);
+    }
+    .card-kicker {
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .split-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .split-card p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+    .checklist li {
+      font-size: 0.88rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .check-icon {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    /* Coverage & Dispatch Windows */
+    .section-block {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .section-block h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    @media (max-width: 860px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-card {
+      background: var(--surface-card);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+    .info-card h4 {
+      font-family: var(--font-tech);
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .info-card p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .faq-card {
+      background: var(--surface);
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+    }
+    .faq-q {
+      font-family: var(--font-tech);
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      color: #fff;
+    }
+    .faq-a {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* Handoff Specs Section */
+    .handoff-box {
+      border: 1px solid var(--outline);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .handoff-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .handoff-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 640px) {
+      .handoff-specs {
+        grid-template-columns: 1fr;
+      }
+    }
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .spec-label {
+      color: var(--muted);
+      font-family: var(--font-tech);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .spec-val {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--outline);
+      padding: 2rem 1.25rem;
+      background: var(--surface);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <div class="brand-mark" aria-hidden="true">⚡</div>
+        <div class="brand-title">City Desk</div>
+        <span class="brand-city">Boise, ID</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-family: var(--font-tech); font-size: 0.85rem; color: var(--muted);">Catalog ID: <code style="color: var(--primary);">offer_cities_boise_id_hvac</code></span>
+        <a class="cta-btn" href="mailto:support@nealfrazier.tech?subject=Claim%20Boise%20HVAC%20Storefront%20($1,100)">Claim Storefront · $1,100</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-meta">
+        <span class="tag-desk">City Desk · Single-Trade Storefront</span>
+        <span class="hero-price">Set Price: $1,100 (No Retainers)</span>
+      </div>
+      <h1>HVAC shops in Boise: one page, one next step</h1>
+      <p class="hero-lede">
+        Owners lose jobs to whoever answers clearly. One page with a seasonal tune-up offer and a rapid repair path, built for Boise, ID. The first screen names Boise and Ada County.
+      </p>
+
+      <div class="owner-notice">
+        <div class="owner-notice-title">
+          <span>ℹ</span> Owner Handoff Invariant
+        </div>
+        <div class="owner-notice-body">
+          This storefront is not a fake local business and carries no fictitious reviews or fabricated competitor ranks. The shop owner adds their real business name, dispatch phone, and team photos. The owner keeps the page and the code outright.
+        </div>
+      </div>
+    </section>
+
+    <!-- Split Grid: Tune-Up vs Repair -->
+    <section class="split-grid">
+      <div class="split-card featured">
+        <span class="card-kicker">Scheduled Service</span>
+        <h2>Seasonal HVAC Tune-Up</h2>
+        <p>A plain note on what a visit includes before extreme Boise weather hits the valley.</p>
+        <ul class="checklist">
+          <li><span class="check-icon">✓</span> Multi-point burner, heat exchanger, and compressor check</li>
+          <li><span class="check-icon">✓</span> Standard 1" pleated air filter replacement</li>
+          <li><span class="check-icon">✓</span> Airflow static pressure and refrigerant level audit</li>
+          <li><span class="check-icon">✓</span> Written diagnostic summary with clear upfront recommendations</li>
+        </ul>
+      </div>
+
+      <div class="split-card">
+        <span class="card-kicker">Urgent Dispatch</span>
+        <h2>Emergency Repair Path</h2>
+        <p>When the furnace or condenser halts, customers need an immediate window, not a multi-page brochure.</p>
+        <ul class="checklist">
+          <li><span class="check-icon">✓</span> Direct click-to-call mobile dispatch action</li>
+          <li><span class="check-icon">✓</span> Clear diagnostic service fee stated upfront</li>
+          <li><span class="check-icon">✓</span> Ada County service territory clearly delineated</li>
+          <li><span class="check-icon">✓</span> Evening and weekend emergency availability callout</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Operating Windows & Coverage -->
+    <section class="section-block">
+      <h3>Ada County Service Windows &amp; Filter Specs</h3>
+      <div class="info-grid">
+        <div class="info-card">
+          <h4>Service Territory</h4>
+          <p>Primary coverage across Boise, Meridian, Eagle, Garden City, and Kuna. Service trucks dispatched directly from local yards.</p>
+        </div>
+        <div class="info-card">
+          <h4>Arrival Windows</h4>
+          <p>Two-hour arrival windows scheduled morning or afternoon. Direct SMS notification when the technician is en route.</p>
+        </div>
+        <div class="info-card">
+          <h4>Filters &amp; Parts</h4>
+          <p>Common 16x20x1, 16x25x1, and 20x25x1 filters stocked on every truck. OEM capacitor and igniter replacements carried on site.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common Questions Answer Block -->
+    <section class="section-block">
+      <h3>Storefront Specifications &amp; FAQ</h3>
+      <div class="faq-list">
+        <div class="faq-card">
+          <div class="faq-q">What is required to put this live for my shop?</div>
+          <div class="faq-a">
+            Provide your business legal name, contact phone number, license registration number, and photos of your work or service trucks. City Desk inserts these into this template and transfers the complete repository or static bundle to you.
+          </div>
+        </div>
+        <div class="faq-card">
+          <div class="faq-q">Are there monthly hosting or licensing fees?</div>
+          <div class="faq-a">
+            Zero monthly retainers. The $1,100 set price includes complete setup and delivery. You can host it for free on platforms like Netlify or GitHub Pages, or point it to your existing domain host.
+          </div>
+        </div>
+        <div class="faq-card">
+          <div class="faq-q">Does this promise Google #1 rankings or fake reviews?</div>
+          <div class="faq-a">
+            No. City Desk produces honest, fast, crawlable technical storefronts with clean Schema.org markup. We never fabricate reviews or promise arbitrary rankings. The owner's real reputation and direct clarity win the work.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Handoff Sheet Spec Block -->
+    <section class="handoff-box">
+      <h3>Storefront Handoff Specifications</h3>
+      <div class="handoff-specs">
+        <div class="spec-item">
+          <span class="spec-label">Target Market</span>
+          <span class="spec-val">Boise, ID (Ada County &amp; Treasure Valley)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Trade Focus</span>
+          <span class="spec-val">Heating, Ventilation &amp; Air Conditioning (HVAC)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Deliverable Structure</span>
+          <span class="spec-val">Production Single-Page Web Application</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Set Price</span>
+          <span class="spec-val">$1,100 USD (One-time transfer)</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Schema Entities</span>
+          <span class="spec-val">Service, LocalBusiness, FAQPage</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Handoff Document</span>
+          <span class="spec-val"><a href="/HANDOFF-BOISE.md" style="color: var(--primary);">View HANDOFF-BOISE.md</a></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>City Desk · Boise Trade Storefronts</strong> &bull; Engineered by Neal Frazier Tech (<a href="https://github.com/1nc0gn30" target="_blank" style="color: var(--primary); text-decoration: none;">@1nc0gn30</a>) &bull; <a href="https://nullai.tech" target="_blank" style="color: var(--primary); text-decoration: none;">NullAI Platform</a>
+      </div>
+      <div class="footer-links">
+        <a href="/">PromptMaster Studio</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/support.html">Support</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

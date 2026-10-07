@@ -41,6 +41,7 @@ if [ "$b1_wheel_hash" != "$b2_wheel_hash" ]; then
         diffoscope "$BUILD_DIR/b1" "$BUILD_DIR/b2" --text "$BUILD_DIR/diffoscope-report.txt" || true
         cat "$BUILD_DIR/diffoscope-report.txt"
     fi
+    exit 1
 else
     echo "[✓] Bit-for-bit reproducible wheel verified."
 fi

@@ -66,3 +66,7 @@ node_modules/
 
 # Local Netlify folder
 .netlify
+
+# Verification screenshots
+shots/
+test_shots/

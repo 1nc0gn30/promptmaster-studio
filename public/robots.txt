@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /.netlify/
+Crawl-delay: 0
 
 # Answer Engine & AI Crawlers (AEO Full Access)
 User-agent: Googlebot

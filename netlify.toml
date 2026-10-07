@@ -97,6 +97,13 @@
   to = "/api/netlify-ax.json"
   status = 200
 
+# Duplicate copy of the City Desk pages; canonical lives at /cities/.
+[[redirects]]
+  from = "/desk/cities/*"
+  to = "/cities/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
