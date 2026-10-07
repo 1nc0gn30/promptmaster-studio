@@ -20,6 +20,9 @@ def test_sitemap_structure_and_urls():
     assert "https://promptmaster-studio.netlify.app/terms.html" in locs
     assert "https://promptmaster-studio.netlify.app/privacy.html" in locs
     assert "https://promptmaster-studio.netlify.app/support.html" in locs
+    assert "https://promptmaster-studio.netlify.app/cities/boise-id/hvac/" in locs
+    assert "https://promptmaster-studio.netlify.app/cities/boise-id/plumbers/" in locs
+    assert "https://promptmaster-studio.netlify.app/cities/boise-id/painters/" in locs
 
 
 def test_robots_txt_crawler_coverage():
