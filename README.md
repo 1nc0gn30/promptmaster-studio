@@ -4,15 +4,18 @@
 
 **Zero-dependency Prompt Engineering & Meta-Optimization Suite**
 
+[![Live App](https://img.shields.io/badge/Live%20Studio-promptmaster--studio.netlify.app-00E5FF.svg)](https://promptmaster-studio.netlify.app)
 [![CI](https://github.com/NullAITech/promptmaster-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/promptmaster-studio/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP Compliant](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20external-brightgreen.svg)](https://pypi.org/project/promptmaster-studio/)
 [![Tests](https://img.shields.io/badge/tests-235%20passed-success.svg)](https://github.com/NullAITech/promptmaster-studio)
-[![Reproducible Release](https://img.shields.io/badge/provenance-Sigstore%20Rekor-blue.svg)](.github/workflows/release.yml)
+[![Monetization: Stripe + Solana](https://img.shields.io/badge/Checkout-$19%20Founding%20Lifetime-14F195.svg)](https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D)
 
-*From ad-hoc prompts to production-grade prompt engineering — built with 100% Python Standard Library.*
+*From ad-hoc prompts to production-grade prompt engineering — 100% in-browser client execution with zero cloud telemetry.*
+
+**Engineered by Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30)) • [NullAI Platform](https://nullai.tech)**
 
 ---
 

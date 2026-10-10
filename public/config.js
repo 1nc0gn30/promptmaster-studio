@@ -34,7 +34,7 @@ window.PROMPTMASTER_CONFIG = {
   solana: {
     // REQUIRED for crypto payments: the PUBLIC address of the wallet that should
     // receive payments (base58, 32-44 chars). Empty = the crypto option shows as unavailable.
-    recipient: "",
+    recipient: "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK",
     // Amount in units of the token below. 19 USDC matches the $19 price.
     amount: "19",
     // SPL token mint. This default is the official USDC mint on Solana mainnet.

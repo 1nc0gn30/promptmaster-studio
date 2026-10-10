@@ -10,6 +10,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://promptmaster-studio.netlify.app/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="/favicon.ico">
 
   <!-- OpenGraph / Facebook -->
   <meta property="og:type" content="website">
@@ -1346,14 +1347,17 @@
       <span style="color: #cbd5e1; font-size: 12px;">• Unlimited Prompt Exports • Multi-Model Profiler • Zero Telemetry</span>
     </div>
     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-      <button type="button" data-open-checkout style="padding: 5px 12px; background: #635BFF; color: #fff; border-radius: 6px; border: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; cursor: pointer;">
-        💳 Card / Apple Pay ($19)
+      <button type="button" data-open-checkout style="padding: 6px 12px; min-height: 32px; background: #635BFF; color: #fff; border-radius: 6px; border: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; cursor: pointer;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <span>Card / Apple Pay ($19)</span>
       </button>
-      <button type="button" data-open-checkout style="padding: 5px 12px; background: #14F195; color: #000; border-radius: 6px; border: none; font-size: 11px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
-        ⚡ Pay with SOL
+      <button type="button" data-open-checkout style="padding: 6px 12px; min-height: 32px; background: #14F195; color: #000; border-radius: 6px; border: none; font-size: 11px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <span>Pay with SOL</span>
       </button>
-      <button type="button" data-open-restore style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; padding: 4px 8px; border-radius: 6px; font-size: 11px; cursor: pointer;">
-        🔑 Activate Key
+      <button type="button" data-open-restore style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; padding: 6px 10px; min-height: 32px; border-radius: 6px; font-size: 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+        <span>Activate Key</span>
       </button>
     </div>
   </div>
@@ -1480,9 +1484,9 @@
       <div class="studio-toolbar">
     <!-- Mode Tabs -->
     <div class="mode-tabs" role="tablist" aria-label="Studio mode" style="display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 100%;">
-      <button class="tab-btn active" id="modeOptimizeBtn" onclick="setStudioMode('optimize')">✍️ Optimize Studio</button>
-      <button class="tab-btn" id="modeDiffBtn" onclick="setStudioMode('diff')">⚖️ Prompt Diff</button>
-      <button class="tab-btn" id="modeHistoryBtn" onclick="setStudioMode('history')">📜 Version History</button>
+      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="optimizeModePanels" id="modeOptimizeBtn" onclick="setStudioMode('optimize')">✍️ Optimize Studio</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="diffModePanel" id="modeDiffBtn" onclick="setStudioMode('diff')">⚖️ Prompt Diff</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="historyModePanel" id="modeHistoryBtn" onclick="setStudioMode('history')">📜 Version History</button>
     </div>
         <div class="studio-tools">
           <button class="btn btn-tonal" id="curriculumBtn" onclick="openCurriculumDrawer()">📚 Curriculum</button>
@@ -1506,12 +1510,12 @@
       </div>
 
       <!-- Quick Category Chips -->
-      <div class="chip-group" id="categoryChips">
-        <span class="chip active" onclick="filterTemplates('all')">All</span>
-        <span class="chip" onclick="filterTemplates('coding')">Coding</span>
-        <span class="chip" onclick="filterTemplates('reasoning')">Reasoning</span>
-        <span class="chip" onclick="filterTemplates('security')">Security</span>
-        <span class="chip" onclick="filterTemplates('extraction')">Extraction</span>
+      <div class="chip-group" id="categoryChips" role="group" aria-label="Template categories">
+        <button type="button" class="chip active" onclick="filterTemplates('all')">All</button>
+        <button type="button" class="chip" onclick="filterTemplates('coding')">Coding</button>
+        <button type="button" class="chip" onclick="filterTemplates('reasoning')">Reasoning</button>
+        <button type="button" class="chip" onclick="filterTemplates('security')">Security</button>
+        <button type="button" class="chip" onclick="filterTemplates('extraction')">Extraction</button>
       </div>
 
       <!-- Textarea Editor -->
@@ -1531,11 +1535,11 @@
       <!-- Target & Optimization Options -->
       <div style="display: flex; flex-direction: column; gap: 0.5rem;">
         <div style="font-size: 0.8rem; font-weight: 600; color: var(--on-surface-variant);">Target Architecture:</div>
-        <div class="tab-header" id="targetSelector">
-          <button class="tab-btn active" data-target="anthropic_xml" onclick="setTarget('anthropic_xml')">Claude XML</button>
-          <button class="tab-btn" data-target="openai_chat" onclick="setTarget('openai_chat')">OpenAI Chat</button>
-          <button class="tab-btn" data-target="google_gemini" onclick="setTarget('google_gemini')">Google Gemini</button>
-          <button class="tab-btn" data-target="generic_markdown" onclick="setTarget('generic_markdown')">CoT Reasoning</button>
+        <div class="tab-header" id="targetSelector" role="tablist" aria-label="Target architecture">
+          <button type="button" class="tab-btn active" role="tab" aria-selected="true" data-target="anthropic_xml" onclick="setTarget('anthropic_xml')">Claude XML</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-target="openai_chat" onclick="setTarget('openai_chat')">OpenAI Chat</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-target="google_gemini" onclick="setTarget('google_gemini')">Google Gemini</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-target="generic_markdown" onclick="setTarget('generic_markdown')">CoT Reasoning</button>
         </div>
       </div>
 
@@ -1570,11 +1574,11 @@
       </div>
 
       <!-- Output View Tabs -->
-      <div class="tab-header" id="outputViewTabs">
-        <button class="tab-btn active" onclick="setOutputView('optimized')">Optimized Output</button>
-        <button class="tab-btn" onclick="setOutputView('rendered')">Rendered (Interpolated)</button>
-        <button class="tab-btn" onclick="setOutputView('system')">System Message</button>
-        <button class="tab-btn" onclick="setOutputView('diffs')">Improvements & Tags</button>
+      <div class="tab-header" id="outputViewTabs" role="tablist" aria-label="Output view modes">
+        <button type="button" class="tab-btn active" role="tab" aria-selected="true" onclick="setOutputView('optimized')">Optimized Output</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" onclick="setOutputView('rendered')">Rendered (Interpolated)</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" onclick="setOutputView('system')">System Message</button>
+        <button type="button" class="tab-btn" role="tab" aria-selected="false" onclick="setOutputView('diffs')">Improvements & Tags</button>
       </div>
 
       <!-- Output Preview Container with Paywall Blur & Lock Overlay -->
@@ -1698,7 +1702,7 @@
             </select>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="diff-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
           <div>
             <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--on-surface-variant);">Original (Left)</div>
             <textarea id="diffLeftPrompt" placeholder="Paste original prompt here..." style="min-height: 200px;"></textarea>
@@ -1731,15 +1735,15 @@
             <span>📜 Version History</span>
           </div>
           <div class="chip-group">
-            <select id="historyBranchSelector" onchange="loadHistory()" style="padding: 4px 8px; border-radius: 20px; border: 1px solid var(--outline-light); font-size: 0.8rem; background: var(--surface);">
+            <select id="historyBranchSelector" onchange="filterHistoryByBranch(this.value)" style="padding: 4px 8px; border-radius: 20px; border: 1px solid var(--outline-light); font-size: 0.8rem; background: var(--surface);">
               <option value="">All Branches</option>
             </select>
             <button class="btn btn-tonal" onclick="createNewBranch()" style="padding: 4px 10px; font-size: 0.75rem;">+ New Branch</button>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+        <div class="history-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
           <div>
-            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--on-surface-version);">Save Current Prompt</div>
+            <div style="font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--on-surface-variant);">Save Current Prompt</div>
             <textarea id="historyPromptInput" placeholder="Enter prompt text to save as a version..." style="min-height: 120px;"></textarea>
             <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
               <input type="text" id="historyLabel" placeholder="Label (optional)" style="flex: 1; padding: 0.4rem 0.75rem; border-radius: 20px; border: 1px solid var(--outline-light); font-size: 0.85rem;">
@@ -1886,7 +1890,6 @@
         <a href="/terms.html#refunds">Refund policy</a>
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/support.html">Support</a>
-        <a href="/cities/boise-id/hvac/">City Desk Storefronts</a>
         <a href="https://github.com/1nc0gn30/promptmaster-studio" target="_blank" rel="noopener">GitHub</a>
         <a href="https://nealfrazier.tech" target="_blank" rel="noopener">Neal Frazier Tech</a>
       </nav>
@@ -2104,7 +2107,7 @@
       const proContainer = document.getElementById("headerProContainer");
       if (proContainer) {
         proContainer.innerHTML = isProLicensed
-          ? '<span class="pro-pill" title="Pro unlocked in this browser">★ Pro active</span>'
+          ? '<span class="pro-pill" id="header-pro-badge" title="Pro unlocked in this browser">⭐ PRO ACTIVE</span>'
           : `<button type="button" class="cta-primary cta-sm" data-open-checkout><span>Get Pro<span class="hide-xs"> for</span> <span data-price>${PRICE_LABEL}</span></span></button>`;
       }
       const meter = document.getElementById("tasteMeter");
@@ -2349,6 +2352,11 @@
     // Handle the return from Stripe (?checkout=success&session_id=cs_...) and restore links.
     async function handleUnlockParams() {
       const params = new URLSearchParams(location.search);
+      if (params.get("licensed") === "true" || params.get("pro") === "true") {
+        grantPro("url_param", "sovereign_license_active");
+        showToast("⭐ Pro License Activated!");
+        return;
+      }
       const sessionId = params.get("session_id");
       const solSig = params.get("sol_sig");
       if (!sessionId && !solSig) return;
@@ -2457,7 +2465,9 @@
     function setTarget(target) {
       currentTarget = target;
       document.querySelectorAll("#targetSelector .tab-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.target === target);
+        const isActive = btn.dataset.target === target;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-selected", isActive ? "true" : "false");
       });
       optimizePrompt();
     }
@@ -2466,7 +2476,9 @@
       currentOutputView = view;
       document.querySelectorAll("#outputViewTabs .tab-btn").forEach((btn, idx) => {
         const views = ["optimized", "rendered", "system", "diffs"];
-        btn.classList.toggle("active", views[idx] === view);
+        const isActive = views[idx] === view;
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-selected", isActive ? "true" : "false");
       });
       renderOutputView();
     }
@@ -2675,17 +2687,22 @@
     }
 
     // 100% In-Browser Pure Client-Side Linter & Token Auditor
-    function analyzePrompt() {
-      const text = document.getElementById("promptInput").value || "";
+    function calculateLinterScore(text) {
+      if (!text) {
+        return {
+          clarity_score: 100,
+          security_score: 100,
+          structure_score: 100,
+          positive_to_negative_ratio: 1.0,
+          overall_score: 100,
+          issues: []
+        };
+      }
       const lines = text.split('\n');
-      const words = text.split(/\s+/).filter(Boolean);
-      const estimatedTokens = Math.max(0, Math.ceil(text.length / 3.8));
-
       const issues = [];
       let positiveCount = 0;
       let negativeCount = 0;
 
-      // Lint rules
       lines.forEach((line, idx) => {
         const lineNum = idx + 1;
 
@@ -2740,7 +2757,6 @@
         }
       });
 
-      // Calculate heuristic scores
       let clarity = 95 - (issues.filter(i => i.severity === 'info').length * 10);
       let security = 100 - (issues.filter(i => i.severity === 'critical').length * 40);
       let structure = text.includes('<') || text.includes('###') || text.includes('1.') ? 95 : 70;
@@ -2750,7 +2766,7 @@
       security = Math.max(10, Math.min(100, security));
       const overall = Math.round((clarity * 0.35) + (security * 0.40) + (structure * 0.25));
 
-      const lintRes = {
+      return {
         clarity_score: clarity,
         security_score: security,
         structure_score: structure,
@@ -2758,6 +2774,14 @@
         overall_score: overall,
         issues: issues
       };
+    }
+
+    function analyzePrompt() {
+      const text = document.getElementById("promptInput").value || "";
+      const words = text.split(/\s+/).filter(Boolean);
+      const estimatedTokens = Math.max(0, Math.ceil(text.length / 3.8));
+
+      const lintRes = calculateLinterScore(text);
 
       const tokenRes = {
         estimated_tokens: estimatedTokens,
@@ -3023,9 +3047,18 @@
     // ====================================================================
     function setStudioMode(mode) {
       currentStudioMode = mode;
-      document.getElementById("modeOptimizeBtn").classList.toggle("active", mode === "optimize");
-      document.getElementById("modeDiffBtn").classList.toggle("active", mode === "diff");
-      document.getElementById("modeHistoryBtn").classList.toggle("active", mode === "history");
+      const optBtn = document.getElementById("modeOptimizeBtn");
+      const diffBtn = document.getElementById("modeDiffBtn");
+      const histBtn = document.getElementById("modeHistoryBtn");
+
+      optBtn.classList.toggle("active", mode === "optimize");
+      optBtn.setAttribute("aria-selected", mode === "optimize" ? "true" : "false");
+
+      diffBtn.classList.toggle("active", mode === "diff");
+      diffBtn.setAttribute("aria-selected", mode === "diff" ? "true" : "false");
+
+      histBtn.classList.toggle("active", mode === "history");
+      histBtn.setAttribute("aria-selected", mode === "history" ? "true" : "false");
 
       document.getElementById("optimizeModePanels").style.display = mode === "optimize" ? "grid" : "none";
 
@@ -3128,13 +3161,57 @@
     // ====================================================================
     // VERSION HISTORY (localStorage)
     // ====================================================================
+    let currentBranch = "main";
+    let selectedBranchFilter = "";
+
     function loadHistoryData() {
       const raw = lsGet("promptmaster_versions_v1");
       let versions = [];
       try {
         if (raw) versions = JSON.parse(raw);
       } catch(e) {}
-      renderHistoryVersions(versions);
+      updateBranchSelector(versions);
+      const filtered = selectedBranchFilter
+        ? versions.filter(v => (v.branch || 'main') === selectedBranchFilter)
+        : versions;
+      renderHistoryVersions(filtered);
+    }
+
+    function updateBranchSelector(versions) {
+      const sel = document.getElementById("historyBranchSelector");
+      if (!sel) return;
+      const branches = new Set(["main"]);
+      versions.forEach(v => branches.add(v.branch || "main"));
+      if (currentBranch) branches.add(currentBranch);
+
+      const currentVal = selectedBranchFilter;
+      sel.innerHTML = '<option value="">All Branches</option>';
+      branches.forEach(b => {
+        const opt = document.createElement("option");
+        opt.value = b;
+        opt.textContent = `Branch: ${b}`;
+        if (b === currentVal) opt.selected = true;
+        sel.appendChild(opt);
+      });
+    }
+
+    function filterHistoryByBranch(branch) {
+      selectedBranchFilter = branch;
+      loadHistoryData();
+    }
+
+    function createNewBranch() {
+      const name = prompt("Enter new branch name (e.g. feature-cot, claude-eval):");
+      if (!name) return;
+      const cleaned = name.trim().toLowerCase().replace(/[^a-z0-9_-]/g, "-");
+      if (!cleaned) {
+        showToast("Invalid branch name.");
+        return;
+      }
+      currentBranch = cleaned;
+      selectedBranchFilter = cleaned;
+      showToast(`Switched active branch to: ${currentBranch}`);
+      loadHistoryData();
     }
 
     function renderHistoryVersions(versions) {
@@ -3185,6 +3262,7 @@
 
       const newVersion = {
         version_id: 'v_' + Date.now(),
+        branch: currentBranch || 'main',
         label,
         message,
         prompt_text: prompt,
@@ -3198,7 +3276,7 @@
       document.getElementById("historyPromptInput").value = "";
       document.getElementById("historyLabel").value = "";
       document.getElementById("historyMessage").value = "";
-      showToast("Version saved to local repository!");
+      showToast(`Version saved to branch [${newVersion.branch}]!`);
       loadHistoryData();
     }
 
