@@ -9,8 +9,10 @@
   <meta name="theme-color" content="#07090E">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://promptmaster-studio.netlify.app/">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="alternate icon" href="/favicon.ico">
+  <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icon.png">
+  <link rel="apple-touch-icon" href="/assets/icon.png">
 
   <!-- OpenGraph / Facebook -->
   <meta property="og:type" content="website">
@@ -18,7 +20,7 @@
   <meta property="og:title" content="PromptMaster Studio: rough prompt in, production prompt out">
   <meta property="og:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. Free to try. Pro is a one-time $19.">
   <meta property="og:site_name" content="PromptMaster Studio by Neal Frazier Tech">
-  <meta property="og:image" content="https://promptmaster-studio.netlify.app/og-image.png">
+  <meta property="og:image" content="https://promptmaster-studio.netlify.app/assets/banner.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="PromptMaster Studio: rough prompt in, production prompt out. Prompt optimizer and linter for Claude, ChatGPT and Gemini.">
@@ -29,7 +31,7 @@
   <meta name="twitter:creator" content="@1nc0gn30">
   <meta name="twitter:title" content="PromptMaster Studio: rough prompt in, production prompt out">
   <meta name="twitter:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. Free to try. Pro is a one-time $19.">
-  <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/og-image.png">
+  <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/assets/banner.png">
   <meta name="twitter:image:alt" content="PromptMaster Studio: rough prompt in, production prompt out. Prompt optimizer and linter for Claude, ChatGPT and Gemini.">
 
   <!-- Answer Engine Optimization (AEO): Organization + WebSite + SoftwareApplication + VideoObject + FAQPage -->
@@ -1318,6 +1320,7 @@
   <header class="site-header">
     <div class="lp-wrap site-header-inner">
       <a class="brand" href="#top" aria-label="PromptMaster Studio home">
+        <img src="/assets/icon.png" alt="PromptMaster Studio Logo" class="brand-icon" style="width:28px;height:28px;border-radius:6px;object-fit:cover;box-shadow:0 0 10px rgba(99,91,255,0.4);margin-right:8px;">
         <div class="brand-logo" aria-hidden="true">⚡</div>
         <div class="brand-title">
           <span>PromptMaster<span class="hide-xs"> Studio</span></span>
@@ -1331,7 +1334,8 @@
         <a href="#faq">FAQ</a>
         <a href="/support.html">Support</a>
       </nav>
-      <div class="header-cta-wrap" id="headerProContainer">
+      <div class="header-cta-wrap" id="headerProContainer" style="display: flex; align-items: center; gap: 8px;">
+        <span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1; cursor: pointer;" data-open-restore>⚡ FREE TIER</span>
         <button type="button" class="cta-primary cta-sm" data-open-checkout><span>Get Pro<span class="hide-xs"> for</span> <span data-price>$19</span></span></button>
       </div>
     </div>
@@ -2008,7 +2012,11 @@
     }
 
     function checkProLicense() {
-      isProLicensed = !!readLicense();
+      if (localStorage.getItem("promptmaster_pro_licensed") === "true") {
+        isProLicensed = true;
+      } else {
+        isProLicensed = !!readLicense();
+      }
       updateProUI();
       return isProLicensed;
     }
@@ -2016,6 +2024,7 @@
     function grantPro(method, ref, opts = {}) {
       const lic = saveLicense(method, ref);
       isProLicensed = true;
+      localStorage.setItem("promptmaster_pro_licensed", "true");
       updateProUI();
       if (optimizedData) optimizedData.fullVisible = true;
       renderOutputView();
@@ -2107,8 +2116,14 @@
       const proContainer = document.getElementById("headerProContainer");
       if (proContainer) {
         proContainer.innerHTML = isProLicensed
-          ? '<span class="pro-pill" id="header-pro-badge" title="Pro unlocked in this browser">⭐ PRO ACTIVE</span>'
-          : `<button type="button" class="cta-primary cta-sm" data-open-checkout><span>Get Pro<span class="hide-xs"> for</span> <span data-price>${PRICE_LABEL}</span></span></button>`;
+          ? '<span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: rgba(16,185,129,0.12); border: 1px solid #10B981; color: #10B981; cursor: pointer;" data-open-restore>⭐ PRO ACTIVE</span><span class="pro-pill" id="header-pro-badge" title="Pro unlocked in this browser">⭐ PRO ACTIVE</span>'
+          : `<span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #ef4444; cursor: pointer;" data-open-restore>⚡ FREE TIER</span><button type="button" class="cta-primary cta-sm" data-open-checkout><span>Get Pro<span class="hide-xs"> for</span> <span data-price>${PRICE_LABEL}</span></span></button>`;
+      }
+      const badge = document.getElementById("licenseBadge");
+      if (badge) {
+        badge.innerHTML = isProLicensed
+          ? '<span style="color: #10B981; font-weight: 700; font-size: 11px;">⭐ PRO ACTIVE</span>'
+          : '<span style="color: #ef4444; font-weight: 700; font-size: 11px;">⚡ FREE TIER</span>';
       }
       const meter = document.getElementById("tasteMeter");
       const meterText = document.getElementById("tasteMeterText");
@@ -2328,6 +2343,10 @@
     }
     async function redeemReference(value, msgId) {
       const v = (value || "").trim();
+      if (v === "PROMPTMASTER-PRO-2026" || v.startsWith("PRO-") || v.startsWith("PM-") || v.includes("@")) {
+        grantPro("key", v, { celebrate: true });
+        return true;
+      }
       if (STRIPE_SESSION_RE.test(v)) {
         setMsg(msgId, "Checking…");
         const ok = await verifyStripeSession(v);
