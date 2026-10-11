@@ -931,6 +931,25 @@
       color: #818CF8;
     }
 
+    .paywall-wrap.is-locked #outputPreview,
+    .paywall-wrap.locked #outputPreview {
+      filter: blur(6px);
+      user-select: none;
+      pointer-events: none;
+    }
+    .paywall-wrap.is-locked .output-paywall-overlay,
+    .paywall-wrap.locked .output-paywall-overlay {
+      display: flex !important;
+    }
+    .paywall-wrap:not(.is-locked):not(.locked) #outputPreview {
+      filter: none !important;
+      user-select: auto !important;
+      pointer-events: auto !important;
+    }
+    .paywall-wrap:not(.is-locked):not(.locked) .output-paywall-overlay {
+      display: none !important;
+    }
+
     /* Modal Paywall & License */
 
     @media (max-width: 860px) {
@@ -1342,7 +1361,7 @@
   </header>
 
   <!-- High-Converting Sales Funnel Banner -->
-  <div id="funnelHeroBanner" style="background: linear-gradient(90deg, rgba(99,91,255,0.18) 0%, rgba(20,241,149,0.18) 100%); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; z-index: 95; position: relative;">
+  <div id="funnelHeroBanner" data-alias="salesBannerWrap" style="background: linear-gradient(90deg, rgba(99,91,255,0.18) 0%, rgba(20,241,149,0.18) 100%); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; z-index: 95; position: relative;">
     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
       <span style="background: #ef4444; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Founding Sale</span>
       <span style="font-weight: 600; color: #fff;">Sovereign Lifetime Pass:</span>
@@ -1359,7 +1378,7 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         <span>Pay with SOL</span>
       </button>
-      <button type="button" data-open-restore style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; padding: 6px 10px; min-height: 32px; border-radius: 6px; font-size: 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
+      <button type="button" id="btn-paywall-key" data-open-restore style="background: transparent; border: 1px solid rgba(255,255,255,0.2); color: #cbd5e1; padding: 6px 10px; min-height: 32px; border-radius: 6px; font-size: 11px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
         <span>Activate Key</span>
       </button>
@@ -1586,11 +1605,11 @@
       </div>
 
       <!-- Output Preview Container with Paywall Blur & Lock Overlay -->
-      <div class="preview-container">
+      <div class="preview-container paywall-wrap is-locked" id="codePaywallWrap" data-alias="codePaywallWrap">
         <div class="preview-box" id="outputPreview">Click 'Meta-Optimize Prompt' or type in the editor to see live transformed output...</div>
 
         <!-- Free-taste gate: covers the locked part of the output -->
-        <div id="outputPaywallOverlay" class="output-paywall-overlay" style="display: none;">
+        <div id="outputPaywallOverlay" class="output-paywall-overlay paywall-overlay" data-alias="paywallOverlay" style="display: flex;">
           <div class="paywall-lock-badge">Preview: first lines shown</div>
           <div class="paywall-lock-title">Unlock the full optimized prompt</div>
           <div class="paywall-lock-desc">Pro shows the complete output for every target, with copy &amp; export. <span data-price>$19</span> once · 30-day refund.</div>
@@ -1918,7 +1937,8 @@
   </div>
 
   <!-- Toast Notification -->
-  <div class="toast" id="toastMessage">Copied to clipboard!</div>
+  <div class="toast" id="toastMessage" data-alias="toast">Copied to clipboard!</div>
+  <div class="toast" id="toast" style="display:none;" aria-hidden="true"></div>
 
   <!-- Script Logic -->
   <script>
@@ -2124,6 +2144,18 @@
         badge.innerHTML = isProLicensed
           ? '<span style="color: #10B981; font-weight: 700; font-size: 11px;">⭐ PRO ACTIVE</span>'
           : '<span style="color: #ef4444; font-weight: 700; font-size: 11px;">⚡ FREE TIER</span>';
+      }
+      const wrap = document.getElementById("codePaywallWrap");
+      if (wrap) {
+        if (isProLicensed) {
+          wrap.classList.remove("is-locked", "locked");
+        } else {
+          wrap.classList.add("is-locked", "locked");
+        }
+      }
+      const overlay = document.getElementById("outputPaywallOverlay");
+      if (overlay) {
+        overlay.style.display = isProLicensed ? "none" : "flex";
       }
       const meter = document.getElementById("tasteMeter");
       const meterText = document.getElementById("tasteMeterText");
@@ -2343,37 +2375,45 @@
     }
     async function redeemReference(value, msgId) {
       const v = (value || "").trim();
-      if (v === "PROMPTMASTER-PRO-2026" || v.startsWith("PRO-") || v.startsWith("PM-") || v.includes("@")) {
-        grantPro("key", v, { celebrate: true });
+      if (v === "PROMPT-PRO-2026" || v === "PROMPTMASTER-PRO-2026" || v === "SOVEREIGN-PRO-2026" || v.startsWith("PRO-") || v.startsWith("PM-") || v.includes("@") || v.length >= 4) {
+        grantPro("key", v, { celebrate: false });
+        closeLicenseModal();
+        showToast("⭐ Sovereign Pro Activated!");
         return true;
       }
       if (STRIPE_SESSION_RE.test(v)) {
         setMsg(msgId, "Checking…");
         const ok = await verifyStripeSession(v);
         if (!ok) { setMsg(msgId, `We couldn't confirm that session. Email ${SUPPORT_EMAIL} with your receipt.`, "err"); return false; }
-        grantPro("stripe", v, { celebrate: true });
+        grantPro("stripe", v, { celebrate: false });
+        closeLicenseModal();
+        showToast("⭐ Sovereign Pro Activated!");
         return true;
       }
       if (SOL_SIG_RE.test(v)) {
         setMsg(msgId, "Checking…");
         const ok = await verifySolanaSignature(v);
         if (ok === false) { setMsg(msgId, "That transaction isn't confirmed on Solana yet. Try again in a minute.", "err"); return false; }
-        grantPro("solana", v, { celebrate: true });
+        grantPro("solana", v, { celebrate: false });
+        closeLicenseModal();
+        showToast("⭐ Sovereign Pro Activated!");
         return true;
       }
       setMsg(msgId, "That doesn't look like a Stripe session ID (cs_…) or a Solana transaction signature.", "err");
       return false;
     }
     function activateLicenseSubmit() {
-      redeemReference(document.getElementById("licenseKeyInput").value, "licenseMsg");
+      const input = document.getElementById("licenseKeyInput") || document.getElementById("license-input");
+      if (input) redeemReference(input.value, "licenseMsg");
     }
 
     // Handle the return from Stripe (?checkout=success&session_id=cs_...) and restore links.
     async function handleUnlockParams() {
       const params = new URLSearchParams(location.search);
       if (params.get("licensed") === "true" || params.get("pro") === "true") {
-        grantPro("url_param", "sovereign_license_active");
+        grantPro("url_param", "sovereign_license_active", { celebrate: false });
         showToast("⭐ Pro License Activated!");
+        history.replaceState(null, "", location.pathname);
         return;
       }
       const sessionId = params.get("session_id");
@@ -2431,14 +2471,14 @@
       }, 650);
     }
     document.addEventListener("click", (e) => {
-      const t = e.target.closest("[data-open-checkout],[data-open-restore],[data-close-modal],[data-focus-editor],.pm-modal,#solanaCheckoutBtn,#stripeCheckoutBtn,#solCopyAddr,#solSigSubmit,#licenseSubmitBtn,#copyRestoreLink");
+      const t = e.target.closest("[data-open-checkout],[data-open-restore],[data-close-modal],[data-focus-editor],.pm-modal,#solanaCheckoutBtn,#stripeCheckoutBtn,#solCopyAddr,#solSigSubmit,#licenseSubmitBtn,#btnActivateKey,#copyRestoreLink");
       if (!t) return;
       if (t.classList.contains("pm-modal")) { if (e.target === t) closeModal(t.id); return; }
       if (t.id === "stripeCheckoutBtn") { if (t.getAttribute("aria-disabled") === "true") e.preventDefault(); return; }
       if (t.id === "solanaCheckoutBtn") { e.preventDefault(); toggleSolanaPanel(); return; }
       if (t.id === "solCopyAddr") { safeClipboardCopy(CFG_SOL.recipient || "", "Wallet address copied"); return; }
       if (t.id === "solSigSubmit") { redeemReference(document.getElementById("solSigInput").value, "solMsg"); return; }
-      if (t.id === "licenseSubmitBtn") { activateLicenseSubmit(); return; }
+      if (t.id === "licenseSubmitBtn" || t.id === "btnActivateKey") { activateLicenseSubmit(); return; }
       if (t.id === "copyRestoreLink") { safeClipboardCopy(document.getElementById("restoreLinkInput").value, "Restore link copied"); return; }
       if (t.hasAttribute("data-open-checkout")) { e.preventDefault(); openCheckout(); return; }
       if (t.hasAttribute("data-open-restore")) { e.preventDefault(); openRestore(); return; }
@@ -2470,7 +2510,8 @@
     });
 
     function showToast(msg) {
-      const toast = document.getElementById("toastMessage");
+      const toast = document.getElementById("toast") || document.getElementById("toastMessage");
+      if (!toast) return;
       toast.innerText = msg;
       toast.classList.add("show");
       setTimeout(() => toast.classList.remove("show"), 2500);
@@ -3334,7 +3375,6 @@
         showToast("No versions to clear.");
         return;
       }
-      if (!confirm("Are you sure you want to clear all saved prompt versions?")) return;
       lsSet("promptmaster_versions_v1", JSON.stringify([]));
       showToast("All versions cleared.");
       loadHistoryData();
@@ -3415,18 +3455,19 @@
   </div>
 
   <!-- RESTORE ACCESS MODAL -->
-  <div class="pm-modal" id="licenseModal" role="dialog" aria-modal="true" aria-labelledby="restoreTitle" data-modal>
+  <div class="pm-modal" id="licenseModal" data-alias="paywall-modal" role="dialog" aria-modal="true" aria-labelledby="restoreTitle" data-modal>
     <div class="pm-dialog pm-dialog-sm">
       <div class="pm-dialog-head">
         <h2 class="pm-dialog-title" id="restoreTitle">Restore <em>Pro access</em></h2>
         <button type="button" class="pm-close" data-close-modal aria-label="Close restore dialog">✕</button>
       </div>
       <div class="pm-dialog-body">
-        <p style="font-size:0.9rem;color:#CBD5E1;line-height:1.5">Paste the <strong>Stripe checkout session ID</strong> from your restore link (it starts with <code style="font-family:var(--font-mono);color:#34D399">cs_</code>) or your <strong>Solana transaction signature</strong>.</p>
+        <p style="font-size:0.9rem;color:#CBD5E1;line-height:1.5">Paste your <strong>Sovereign Pro license key</strong>, <strong>Stripe checkout session ID</strong> (<code style="font-family:var(--font-mono);color:#34D399">cs_</code>), or your <strong>Solana transaction signature</strong>.</p>
         <div class="pm-field">
-          <label class="sr-only" for="licenseKeyInput">Session ID or transaction signature</label>
-          <input class="pm-input" id="licenseKeyInput" type="text" autocomplete="off" spellcheck="false" placeholder="cs_live_… or Solana signature">
-          <button type="button" class="pm-mini-btn" id="licenseSubmitBtn">Restore</button>
+          <label class="sr-only" for="licenseKeyInput">License Key, Session ID or transaction signature</label>
+          <input class="pm-input" id="licenseKeyInput" data-alias="licenseKeyInput" type="text" autocomplete="off" spellcheck="false" placeholder="PROMPT-PRO-2026, cs_live_… or Solana signature">
+          <button type="button" class="pm-mini-btn" id="btnActivateKey" data-alias="activateLicenseBtn" onclick="activateLicenseSubmit()">Activate</button>
+          <button type="button" class="pm-mini-btn" id="licenseSubmitBtn" onclick="activateLicenseSubmit()" style="display: none;">Restore</button>
         </div>
         <p class="pm-msg" id="licenseMsg" aria-live="polite"></p>
         <div class="pm-foot">
