@@ -76,6 +76,17 @@ EMBEDDED_HTML_FALLBACK = """<!DOCTYPE html>
 </html>"""
 
 
+def _safe_rel(raw: str) -> str:
+    """Request path -> safe relative path inside a static dir; '' (index) if it
+    tries to climb out with '..' or is absolute. Raw request paths are not normalised."""
+    from urllib.parse import unquote
+    rel = unquote(str(raw or "")).replace("\\", "/").lstrip("/")
+    parts = [p for p in rel.split("/") if p not in ("", ".")]
+    if any(p == ".." for p in parts) or ":" in (parts[0] if parts else ""):
+        return ""
+    return "/".join(parts)
+
+
 class PromptMasterStudioRequestHandler(BaseHTTPRequestHandler):
     """HTTP request handler implementing REST endpoints and static file serving."""
 
@@ -207,7 +218,7 @@ class PromptMasterStudioRequestHandler(BaseHTTPRequestHandler):
             return
 
         # Serve static file from public directory
-        rel_path = path.lstrip("/")
+        rel_path = _safe_rel(path)
         try:
             target_file = (self.public_dir / rel_path).resolve()
             # Ensure target stays within public_dir
