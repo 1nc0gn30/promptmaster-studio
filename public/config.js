@@ -53,9 +53,9 @@ window.PROMPTMASTER_CONFIG = {
   freeTaste: {
     // How many distinct prompts a visitor can optimize with the FULL output
     // visible (plus copy/export) before results switch to preview mode.
-    fullRuns: 1,
+    fullRuns: 0,
     // In preview mode, how many lines of the optimized prompt stay readable.
-    previewLines: 6
+    previewLines: 4
   },
 
   license: {
