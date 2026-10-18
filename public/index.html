@@ -1339,7 +1339,7 @@
   <header class="site-header">
     <div class="lp-wrap site-header-inner">
       <a class="brand" href="#top" aria-label="PromptMaster Studio home">
-        <img src="/assets/icon.png" alt="PromptMaster Studio Logo" class="brand-icon" style="width:28px;height:28px;border-radius:6px;object-fit:cover;box-shadow:0 0 10px rgba(99,91,255,0.4);margin-right:8px;">
+        <img src="assets/icon.png" alt="PromptMaster Studio Logo" class="brand-icon" style="width:28px;height:28px;border-radius:6px;object-fit:cover;box-shadow:0 0 10px rgba(99,91,255,0.4);margin-right:8px;">
         <div class="brand-logo" aria-hidden="true">⚡</div>
         <div class="brand-title">
           <span>PromptMaster<span class="hide-xs"> Studio</span></span>
@@ -1509,11 +1509,11 @@
     <div class="mode-tabs" role="tablist" aria-label="Studio mode" style="display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 100%;">
       <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="optimizeModePanels" id="modeOptimizeBtn" onclick="setStudioMode('optimize')">✍️ Optimize Studio</button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="diffModePanel" id="modeDiffBtn" onclick="setStudioMode('diff')">⚖️ Prompt Diff</button>
-      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="historyModePanel" id="modeHistoryBtn" onclick="setStudioMode('history')">📜 Version History</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="historyModePanel" id="modeHistoryBtn" onclick="setStudioMode('history')">▣ Version History</button>
     </div>
         <div class="studio-tools">
-          <button class="btn btn-tonal" id="curriculumBtn" onclick="openCurriculumDrawer()">📚 Curriculum</button>
-          <button class="btn btn-tonal btn-icon" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark theme" aria-label="Toggle light or dark theme">🌓</button>
+          <button class="btn btn-tonal" id="curriculumBtn" onclick="openCurriculumDrawer()">▣ Curriculum</button>
+          <button class="btn btn-tonal btn-icon" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle light/dark theme" aria-label="Toggle light or dark theme">◐</button>
         </div>
       </div>
 
@@ -1569,13 +1569,13 @@
       <!-- Action Buttons -->
       <div style="display: flex; gap: 0.75rem; margin-top: auto; flex-wrap: wrap;">
         <button class="btn btn-primary" onclick="optimizePrompt()" style="flex: 1;">
-          🚀 Meta-Optimize Prompt
+          ★ Meta-Optimize Prompt
         </button>
         <button class="btn btn-tonal" onclick="autoFixPrompt()" title="Apply deterministic lint fixes">
-          🪄 Auto-Fix
+          ✦ Auto-Fix
         </button>
         <button class="btn btn-tonal" onclick="clearEditor()" title="Clear Prompt">
-          🗑️
+          ✕
         </button>
       </div>
     </div>
@@ -1588,10 +1588,10 @@
         </div>
         <div style="display: flex; gap: 0.5rem;">
           <button class="btn btn-tonal" onclick="copyOptimizedText()" style="padding: 4px 10px; font-size: 0.75rem;">
-            📋 Copy
+            ✦ Copy
           </button>
           <button class="btn btn-tonal" onclick="downloadOptimizedPrompt()" style="padding: 4px 10px; font-size: 0.75rem;">
-            💾 Export
+            ↓ Export
           </button>
         </div>
       </div>
@@ -1634,7 +1634,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">
-            <span>🛡️ Prompt Quality & Safety</span>
+            <span>❖ Prompt Quality & Safety</span>
           </div>
           <div class="overall-badge" id="overallBadge">100 / 100</div>
         </div>
@@ -1674,7 +1674,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">
-            <span>📊 Tokens & Cost Estimator</span>
+            <span>◈ Tokens & Cost Estimator</span>
           </div>
         </div>
 
@@ -1737,10 +1737,10 @@
         </div>
         <div style="display: flex; gap: 0.75rem; margin-top: 1rem;">
           <button class="btn btn-primary" onclick="comparePrompts()" style="flex: 1;">
-            🔍 Compare Prompts
+            ⌕ Compare Prompts
           </button>
           <button class="btn btn-tonal" onclick="clearDiffEditor()">
-            🗑️ Clear
+            ✕ Clear
           </button>
         </div>
         <div id="diffResultsBox" style="margin-top: 1rem; display: none;">
@@ -1755,7 +1755,7 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">
-            <span>📜 Version History</span>
+            <span>▣ Version History</span>
           </div>
           <div class="chip-group">
             <select id="historyBranchSelector" onchange="filterHistoryByBranch(this.value)" style="padding: 4px 8px; border-radius: 20px; border: 1px solid var(--outline-light); font-size: 0.8rem; background: var(--surface);">
@@ -1772,7 +1772,7 @@
               <input type="text" id="historyLabel" placeholder="Label (optional)" style="flex: 1; padding: 0.4rem 0.75rem; border-radius: 20px; border: 1px solid var(--outline-light); font-size: 0.85rem;">
               <input type="text" id="historyMessage" placeholder="Commit message (optional)" style="flex: 1; padding: 0.4rem 0.75rem; border-radius: 20px; border: 1px solid var(--outline-light); font-size: 0.85rem;">
             </div>
-            <button class="btn btn-primary" onclick="saveHistoryVersion()" style="margin-top: 0.75rem; width: 100%;">💾 Save Version</button>
+            <button class="btn btn-primary" onclick="saveHistoryVersion()" style="margin-top: 0.75rem; width: 100%;">↓ Save Version</button>
           </div>
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
@@ -1924,7 +1924,7 @@
   <div class="drawer" id="curriculumDrawer">
     <div class="drawer-header">
       <div style="font-family: var(--font-google); font-size: 1.1rem; font-weight: 600;">
-        📚 Prompt Engineering Curriculum
+        ▣ Prompt Engineering Curriculum
       </div>
       <button class="btn btn-tonal btn-icon" onclick="closeCurriculumDrawer()">✕</button>
     </div>
@@ -2883,7 +2883,7 @@
             <span>Line ${i.line_number || 1}</span>
           </div>
           <div>${i.message}</div>
-          ${i.suggestion ? `<div class="issue-suggestion">💡 ${i.suggestion}</div>` : ''}
+          ${i.suggestion ? `<div class="issue-suggestion">✦ ${i.suggestion}</div>` : ''}
         `;
         list.appendChild(item);
       });
@@ -3295,7 +3295,7 @@
             <div style="display: flex; gap: 0.5rem;">
               <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem;" onclick="viewVersion('${v.version_id}')" title="View Version">View</button>
               <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem;" onclick="rollbackToVersion('${v.version_id}')" title="Rollback Editor to this Version">↩️</button>
-              <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem; color: var(--error);" onclick="deleteVersion('${v.version_id}')" title="Delete Version">🗑️</button>
+              <button class="btn btn-tonal" style="padding: 2px 8px; font-size: 0.7rem; color: var(--error);" onclick="deleteVersion('${v.version_id}')" title="Delete Version">✕</button>
             </div>
           </div>
           <div style="font-size: 0.75rem; color: var(--on-surface-variant); margin-top: 0.25rem;">${v.message || ''} | ${v.tokens} tok &middot; ${new Date(v.created_at).toLocaleTimeString()}</div>
