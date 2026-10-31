@@ -11,11 +11,10 @@
 [![MCP Compliant](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20external-brightgreen.svg)](https://pypi.org/project/promptmaster-studio/)
 [![Tests](https://img.shields.io/badge/tests-235%20passed-success.svg)](https://github.com/NullAITech/promptmaster-studio)
-[![Monetization: Stripe + Solana](https://img.shields.io/badge/Checkout-$19%20Founding%20Lifetime-14F195.svg)](https://buy.stripe.com/cNiaEWaEldKo6Tm1C0fw40D)
 
 *From ad-hoc prompts to production-grade prompt engineering — 100% in-browser client execution with zero cloud telemetry.*
 
-**Engineered by Neal Frazier Tech ([@1nc0gn30](https://github.com/1nc0gn30)) • [NullAI Platform](https://nullai.tech)**
+**Engineered by [1nc0gn30](https://github.com/1nc0gn30) • [NullAI Platform](https://nullai.tech)**
 
 ---
 
@@ -306,7 +305,6 @@ hero with the product reel → how it works → the live studio → pricing → 
 | `solana.rpcUrl` *(optional)* | A CORS-enabled Solana RPC (e.g. a domain-restricted Helius/QuickNode URL). Enables automatic payment detection through the Solana Pay `reference`. |
 | `license.verifyEndpoint` *(optional)* | `"/.netlify/functions/verify-checkout"` once `STRIPE_SECRET_KEY` is set in Netlify env vars. |
 | `freeTaste.fullRuns`, `freeTaste.previewLines` | Tune the free taste. |
-| `product.priceLabel` | Shown in buttons. If you change the price, also update the static `$19` copy and the JSON-LD `price` in `index.html`. |
 
 Only public values belong in `config.js`. Never commit `sk_live_…` keys, webhook secrets or wallet private keys.
 
