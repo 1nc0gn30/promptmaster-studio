@@ -1815,8 +1815,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_mcp = subparsers.add_parser("mcp", help="Run Model Context Protocol (MCP) server over stdio.")
     p_mcp.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
 
-    # 9. platform / doctor / diagnostics
-    for diag_alias in ["platform", "doctor", "diagnostics"]:
+    # 9. platform / doctor / diagnostics / stats
+    for diag_alias in ["platform", "doctor", "diagnostics", "stats"]:
         p_diag = subparsers.add_parser(diag_alias, help="System diagnostics and platform health check.")
         p_diag.add_argument("--json", action="store_true", help="Output JSON diagnostics.")
         p_diag.add_argument("--no-color", action="store_true", help="Disable ANSI color output.")
@@ -1961,7 +1961,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         return cmd_templates(args)
     elif sub == "curriculum":
         return cmd_curriculum(args)
-    elif sub in ("platform", "doctor", "diagnostics"):
+    elif sub in ("platform", "doctor", "diagnostics", "stats"):
         return cmd_diagnostics(args)
     elif sub == "mcp":
         return cmd_mcp(args)
