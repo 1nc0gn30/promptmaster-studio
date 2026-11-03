@@ -1,5 +1,7 @@
 """Tests for PromptMaster Studio UI server and REST API endpoints in promptmaster_studio.ui_server."""
 
+from __future__ import annotations
+
 import json
 import threading
 import time
