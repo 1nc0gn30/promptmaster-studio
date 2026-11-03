@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 import pytest
 
@@ -21,7 +22,8 @@ def test_release_workflow_hardening():
 def test_verify_release_script_hardening():
     verify_script = REPO_ROOT / "bin" / "verify_release.sh"
     assert verify_script.is_file(), "bin/verify_release.sh harness must exist"
-    assert (verify_script.stat().st_mode & 0o111) != 0, "bin/verify_release.sh must be executable"
+    if not sys.platform.startswith("win"):
+        assert (verify_script.stat().st_mode & 0o111) != 0, "bin/verify_release.sh must be executable"
 
     script_text = verify_script.read_text(encoding="utf-8")
     assert "diffoscope" in script_text, "Harness must support diffoscope reproducibility inspections"

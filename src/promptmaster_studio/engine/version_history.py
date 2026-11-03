@@ -270,15 +270,15 @@ class PromptVersionHistory:
 
     def list_versions(self, branch: Optional[str] = None, limit: int = 20) -> List[PromptVersion]:
         """List versions, optionally filtered by branch, newest first."""
-        versions = []
-        for vid, raw in self._data.get("versions", {}).items():
+        versions_with_seq = []
+        for idx, (vid, raw) in enumerate(self._data.get("versions", {}).items()):
             v = PromptVersion.from_dict(raw)
             if branch is None or v.branch == branch:
-                versions.append(v)
+                versions_with_seq.append((idx, v))
 
-        # Sort by created_at descending
-        versions.sort(key=lambda v: v.created_at, reverse=True)
-        return versions[:limit]
+        # Sort by created_at descending, using insertion order as deterministic tie-breaker
+        versions_with_seq.sort(key=lambda item: (item[1].created_at, item[0]), reverse=True)
+        return [item[1] for item in versions_with_seq[:limit]]
 
     def list_branches(self) -> List[PromptBranch]:
         """List all branches."""
