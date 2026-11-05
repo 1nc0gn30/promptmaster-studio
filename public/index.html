@@ -3497,5 +3497,21 @@
       </div>
     </div>
   </div>
+
+  <script src="/sovereign_tutorial.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", function() {
+      if (window.createSovereignTutorial) {
+        window.createSovereignTutorial({
+          toolId: "promptmaster-studio",
+          toolName: "PromptMaster Studio",
+          tagline: "Autonomous system prompt engineering, DSPy optimizer, and template store!",
+          accentColor: "#8B5CF6",
+          steps: [{"icon": "\u270d\ufe0f", "title": "Craft Perfect System Prompts", "desc": "Design crystal-clear instructions and guardrails for Claude, GPT, DeepSeek, and local Ollama models."}, {"icon": "\u26a1", "title": "DSPy Optimization", "desc": "Automatically refines and tests your prompt phrasing against edge cases to maximize agent accuracy."}, {"icon": "\ud83d\udce6", "title": "Export to Any Agent", "desc": "Download system prompts formatted for Hermes Agent, Antigravity, OpenCode, or Claude Code."}]
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
