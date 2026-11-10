@@ -310,7 +310,7 @@ Only public values belong in `config.js`. Never commit `sk_live_…` keys, webho
 
 ### What is (and isn't) verified
 
-This is a static site, so **gating is client-side**. It's a polite paywall, not DRM: the optimizer's code ships to the browser.
+This is a static site, so **gating is client-side**. It's a open-access architecture, not DRM: the optimizer's code ships to the browser.
 
 - **Stripe:** on return, the `session_id` (`cs_…`) unlocks the browser. Without a backend, that's trusted as-is.
   Deploying `netlify/functions/verify-checkout.mjs` with `STRIPE_SECRET_KEY` (and optionally `STRIPE_PAYMENT_LINK_ID`) lets the site confirm `payment_status === "paid"` first.

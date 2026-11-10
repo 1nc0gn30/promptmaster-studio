@@ -40,6 +40,6 @@ so the reel must read well **without sound** and loop cleanly.
 4. **Privacy** — a short beat on the client-side engine.
    Text: "Runs in your browser. Prompts never leave your device."
 5. **Offer** — the Pro unlock card.
-   Text: "Pro: $19 once · 30-day refund."
+   Text: "100% Free & Open Access · Zero Telemetry."
 6. **End card** — logo lockup and URL.
    Text: "PromptMaster Studio — promptmaster-studio.netlify.app"

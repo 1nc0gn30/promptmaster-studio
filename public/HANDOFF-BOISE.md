@@ -1,6 +1,6 @@
 # Handoff Sheet: Boise, ID Trade Storefronts
 
-**City Desk · Neal Frazier Tech (@1nc0gn30)**  
+**City Desk · 1nc0gn30 (@1nc0gn30)**  
 **Target City**: Boise, ID (Ada County & Treasure Valley)  
 **Standard**: One studio, one trade, one city per page. A set price. No invented reviews, no competitor counts, and no ranking promise. The owner already does the work.
 
