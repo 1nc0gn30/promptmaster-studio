@@ -1,5 +1,5 @@
 # PromptMaster Studio — Context & Model Discovery (llms.txt)
-> Sovereign in-browser developer utility engineered by Neal Frazier Tech.
+> Sovereign in-browser developer utility engineered by 1nc0gn30 (@1nc0gn30) • NullAI.
 - [Application]: https://promptmaster-studio.netlify.app/
 - [Terms of Service]: https://promptmaster-studio.netlify.app/terms.html
 - [Privacy Policy]: https://promptmaster-studio.netlify.app/privacy.html

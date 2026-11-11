@@ -1,412 +1,194 @@
-<div align="center">
+# PromptMaster Studio
 
-# ⚡ PromptMaster Studio
-
-**Zero-dependency Prompt Engineering & Meta-Optimization Suite**
-
-[![Live App](https://img.shields.io/badge/Live%20Studio-promptmaster--studio.netlify.app-00E5FF.svg)](https://promptmaster-studio.netlify.app)
-[![CI](https://github.com/NullAITech/promptmaster-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/NullAITech/promptmaster-studio/actions/workflows/ci.yml)
+[![CI](https://github.com/1nc0gn30/promptmaster-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/1nc0gn30/promptmaster-studio/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![MCP Compliant](https://img.shields.io/badge/MCP-2024--11--05-green.svg)](https://modelcontextprotocol.io/)
-[![Zero Dependencies](https://img.shields.io/badge/dependencies-0%20external-brightgreen.svg)](https://pypi.org/project/promptmaster-studio/)
-[![Tests](https://img.shields.io/badge/tests-235%20passed-success.svg)](https://github.com/NullAITech/promptmaster-studio)
+[![Dependencies: Zero](https://img.shields.io/badge/dependencies-0-success.svg)](pyproject.toml)
+[![Zoth Studio Dossier](https://img.shields.io/badge/Zoth%20Studio-Dossier-D4AF37.svg)](https://zoth.nullai.tech/tools/promptmaster-studio)
 
-*From ad-hoc prompts to production-grade prompt engineering — 100% in-browser client execution with zero cloud telemetry.*
+Zero-dependency prompt engineering, AST linting, token/cost estimation, adversarial red-teaming, Chain-of-Verification (CoVe), multi-agent society-of-mind debate synthesis, and multi-provider meta-optimization suite built on the Python 3.9+ standard library. Includes a 100% client-side browser workstation served on loopback port `127.0.0.1:8123`, a 23-subcommand CLI (`promptmaster` / `promptmaster-studio`), and a 12-tool JSON-RPC 2.0 Model Context Protocol (MCP) server.
 
-**Engineered by [1nc0gn30](https://github.com/1nc0gn30) • [NullAI Platform](https://nullai.tech)**
-
----
-
-</div>
-
-## 🎨 Studio UI
-
-<p align="center">
-  <img src="public/screenshots/studio-main.png" width="900" alt="PromptMaster Studio — Main Interface" />
-</p>
-
-<p align="center">
-  <img src="public/screenshots/studio-optimized.png" width="900" alt="PromptMaster Studio — Optimized Output" />
-</p>
-
-<div align="center">
-
-| Optimize Studio | Prompt Diff | Version History |
-|:---:|:---:|:---:|
-| Meta-optimize raw prompts into enterprise XML/CoT format | Side-by-side comparison with token delta & cost analysis | Git-like version control with branches & rollback |
-
-</div>
-
-<p align="center">
-  <img src="public/screenshots/studio-diff.png" width="900" alt="PromptMaster Studio — Diff Engine" />
-</p>
-
-<p align="center">
-  <img src="public/screenshots/studio-history.png" width="900" alt="PromptMaster Studio — Version History" />
-</p>
+Engineered by **1nc0gn30** ([@1nc0gn30](https://github.com/1nc0gn30), [1nc0gn30.si](https://1nc0gn30.si)) • **NullAI** ([nullai.tech](https://nullai.tech)).
 
 ---
 
-## 📖 Table of Contents
+## Overview
 
-- [Overview](#-overview)
-- [Key Features](#-key-features)
-- [Architecture](#-architecture)
-- [Installation](#-installation)
-- [CLI Reference](#-cli-reference)
-- [MCP Server](#-mcp-server)
-- [Studio UI](#-studio-ui)
-- [Prompt Engineering Guide](#-prompt-engineering-architecture-guide)
-- [Website, Funnel & Payments](#-website-funnel--payments)
-- [Testing](#-testing)
-- [License](#-license)
+- **Zero Runtime Dependencies**: Pure Python 3.9+ standard-library backend (`promptmaster_studio`) and zero-CDN client-side JavaScript studio (`public/index.html`).
+- **Prompt Linter & Scoring Rubric**: Detects vague directives, ungrounded negative constraints, unclosed template placeholders, and prompt-injection exposure while computing clarity, structure, and security scores (`engine/linter.py`, `engine/v3_enhancements.py`).
+- **Multi-Provider Meta-Optimizer & Migration**: Rewrites raw prompts into Anthropic Claude XML (`<role>`, `<context>`, `<instructions>`, `<constraints>`), OpenAI system/developer chat structures, Google Gemini structured blocks, or explicit Chain-of-Thought pipelines (`engine/meta_optimizer.py`).
+- **Verification & Adversarial Testing**:
+  - **Chain-of-Verification (`cove`)**: Decomposes prompts into a 4-stage baseline, verification-question, independent-fact-check, and final-synthesis pipeline (`engine/cove_and_debate.py`).
+  - **Multi-Agent Debate (`debate`)**: Generates multi-round, 4-persona reasoning ensembles.
+  - **Adversarial Red-Team (`redteam`)**: Evaluates system prompts against common jailbreak and instruction-override vectors (`engine/adversarial_jailbreak.py`).
+- **Diffing, Version History & Context Budgeting**: Structural line/tag diffing (`engine/prompt_diff.py`), version snapshots (`engine/version_history.py`), and token/context-window estimators across major frontier models (`engine/tokenizer_estimator.py`).
+- **100% Free & Open Source**: All optimization modes, linters, templates, curriculum modules, copy/export actions, and MCP tools are unlocked with zero license keys and zero telemetry. Optional community support is available via [Buy Us a Coffee (Stripe)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X).
 
 ---
 
-## 🌟 Overview
-
-**PromptMaster Studio v3** is an enterprise-grade toolkit built strictly with the **Python Standard Library (100% zero external runtime dependencies)**. It transforms prompt design from ad-hoc experimentation into rigorous, testable software engineering — with diff engines, version history, context optimization, provider migration, and a Material 3-inspired studio UI.
-
----
-
-## 🏛 Architecture
-
-```
-┌──────────────────────────────────────────────────────────────────┐
-│                        Client Interfaces                         │
-│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────────┐  │
-│  │  Studio Web   │  │  CLI         │  │  MCP Clients          │  │
-│  │  UI           │  │  (promptmaster)│  │  (Claude/Cursor)     │  │
-│  └──────┬───────┘  └──────┬───────┘  └───────────┬───────────┘  │
-└─────────┼─────────────────┼──────────────────────┼──────────────┘
-          │                 │                      │
-┌─────────┼─────────────────┼──────────────────────┼──────────────┐
-│                     Server & Protocol Layer                       │
-│  ┌──────────────┐  ┌──────────────┐  ┌───────────────────────┐  │
-│  │  UI HTTP     │  │  CLI         │  │  MCP JSON-RPC         │  │
-│  │  REST Server │  │  Dispatcher  │  │  Stdio Server         │  │
-│  └──────┬───────┘  └──────┬───────┘  └───────────┬───────────┘  │
-└─────────┼─────────────────┼──────────────────────┼──────────────┘
-          │                 │                      │
-┌─────────┼─────────────────┼──────────────────────┼──────────────┐
-│                    Core Engine Layer (Pure Stdlib)                │
-│                                                                  │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │  Meta-Optimizer │ Linter │ Token Estimator │ Curriculum DB │ │
-│  │  CoVe Engine    │ Debate │ Diff Engine     │ Version Hist  │ │
-│  │  Red-Team Sim   │ Template│ Context Optim. │ Provider Mig. │ │
-│  │  Batch Proc.    │ Scoring │ Export Fmt.    │ Enhanced Hist │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-└──────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## 🚀 Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/NullAITech/promptmaster-studio.git
-cd promptmaster-studio
-
-# Install in editable mode
-pip install -e .
-
-# Verify zero external dependencies
-python -c "import promptmaster_studio; print('⚡ PromptMaster ready!')"
-```
-
----
-
-## 🛠 CLI Reference
-
-### Core Commands
-
-| Command | Description |
-|---|---|
-| `optimize` | Transform raw prompt into enterprise XML/CoT format |
-| `lint` | Static lint audit for clarity, security, structure |
-| `render` | Render Mustache templates with variable interpolation |
-| `tokens` | Multi-model token & cost estimation |
-| `diff` | Side-by-side prompt comparison with token delta |
-
-### Advanced Commands
-
-| Command | Description |
-|---|---|
-| `context` | Analyze & optimize for context window limits |
-| `migrate` | Convert between provider formats (Anthropic/OpenAI/Gemini/Mistral/Cohere) |
-| `batch` | Process prompt batches through configurable pipelines |
-| `score` | Multi-dimensional rubric scoring (A–F grade) |
-| `export` | Export as JSON/YAML/Markdown/env-file |
-| `history` | Git-like version control with branches & rollback |
-
-### Example Session
-
-```bash
-# 1. Optimize a prompt for Claude
-promptmaster optimize "Write a sorting function" --target anthropic --cot
-
-# 2. Lint the result
-promptmaster lint "<instructions>You are an expert. Write a sorting function.</instructions>"
-
-# 3. Compare two versions
-promptmaster diff "Write a sort function" "<instructions>You are an expert. Write a sort function.</instructions>" --model mistral-large-2
-
-# 4. Check context window fit
-promptmaster context "<instructions>...</instructions>" --model mistral-7b --analyze
-
-# 5. Migrate to OpenAI format
-promptmaster migrate "<instructions>Code review</instructions>" --target openai
-
-# 6. Score prompt quality
-promptmaster score "<instructions>You are a Principal Architect.- Analyze code</instructions>"
-
-# 7. Save version
-promptmaster history save "<instructions>v1 prompt</instructions>" --label "v1" --message "Initial"
-
-# 8. Export as YAML
-promptmaster export "<instructions>Prompt</instructions>" --format yaml --metadata "author=neo,v=1"
-```
-
----
-
-## 🔌 MCP Server
-
-**14+ native tools** for Claude Desktop, Cursor, and Cline.
-
-### Setup (Claude Desktop)
-
-```json
-{
-  "mcpServers": {
-    "promptmaster": {
-      "command": "python",
-      "args": ["-m", "promptmaster_studio.mcp_server"]
-    }
-  }
-}
-```
-
-### Available MCP Tools
-
-| Tool | Description |
-|---|---|
-| `prompt_optimize` | Enterprise XML/CoT structuring |
-| `prompt_lint` | Clarity & security audit |
-| `prompt_interpolate` | Template rendering |
-| `prompt_estimate_tokens` | Token budget calculation |
-| `prompt_diff` | Side-by-side comparison |
-| `prompt_context_optimize` | Context window optimization |
-| `prompt_migrate` | Provider format conversion |
-| `prompt_score` | Rubric scoring |
-| `prompt_version_history` | Version control operations |
-| `prompt_redteam` | Jailbreak simulation |
-| `prompt_chain_of_verification` | CoVe hallucination prevention |
-| `prompt_multi_agent_debate` | Debate ensemble synthesis |
-| `prompt_templates` | Template directory |
-| `prompt_curriculum` | Interactive lessons |
-| `prompt_diagnostics` | System health & telemetry |
-
----
-
-## 🎨 Studio UI
-
-Launch the embedded visual development studio:
-
-```bash
-promptmaster serve --port 8000
-```
-
-Visit **`http://localhost:8000/`**
-
-### Features
-
-- **Dual-Pane Editor** — Type raw prompts, see live XML/CoT transformations
-- **Real-Time Quality Gauges** — Clarity, Structure, Security meters
-- **Token & Cost Calculator** — Multi-model pricing estimates
-- **Live Variable Interpolation** — Auto-detect `{{ variables }}`
-- **Diff Engine** — Side-by-side prompt comparison with results
-- **Version History** — Save, branch, compare, rollback versions
-- **Curriculum Drawer** — Interactive prompt engineering lessons
-
----
-
-## 🧠 Prompt Engineering Architecture Guide
-
-### 1. Anthropic Claude (XML Semantic Delimiters)
-Anthropic models perform best when instructions, context, and input data are enclosed in semantic XML tags:
-```xml
-<instructions>
-Execute the requested analysis with maximum rigor.
-</instructions>
-
-<context>
-{{ background_material }}
-</context>
-
-<constraints>
-- Maintain factual precision.
-- Do not extrapolate beyond verified context.
-</constraints>
-
-<output_format>
-Provide response in GitHub-flavored Markdown.
-</output_format>
-```
-
-### 2. OpenAI (System / Developer Message Decomposition)
-OpenAI models benefit from explicit role definition and Markdown headers:
-```markdown
-# Role & Directive
-You are a Principal Software Architect.
-
-## Instructions
-- Analyze system bottlenecks.
-- Provide modular code refactorings.
-
-## Output Format
-RFC 8259 compliant JSON.
-```
-
-### 3. Google Gemini (Grounded Instructions)
-Gemini excels with grounded structural priming and boundary rules:
-```markdown
-# Task: Financial Document Analysis
-## Guidelines & Instructions
-- Extract all line-item revenues and operating margins.
-## Operational Boundaries
-* State "Insufficient information" if data is absent.
-```
-
----
-
-## 🌐 Website, Funnel & Payments
-
-The public site (`public/`, deployed by Netlify, see `netlify.toml`) is a single landing page:
-hero with the product reel → how it works → the live studio → pricing → FAQ.
-
-### Free taste & gating rule
-
-- **Always free & unlimited:** linter, quality scores, token/cost estimator, prompt diff, version history, templates, curriculum.
-- **Free taste:** the first `freeTaste.fullRuns` (default **1**) distinct prompts you optimize show the **full** output, including copy/export.
-  Switching the target format for the same prompt doesn't use up another run.
-- **After that:** optimized output shows the first `freeTaste.previewLines` (default 6) lines; the rest is blurred (and scrambled in the DOM) behind an unlock card. Copy/Export open checkout.
-- **Pro:** full output, copy/export, unlimited, remembered in `localStorage` (`pm_license_v2`). Unlocks made with the previous site version (`promptmaster_pro_licensed`) are still honoured.
-
-### Payment configuration: `public/config.js` (the only place)
-
-| Key | What to put there |
-| --- | --- |
-| `stripe.paymentLink` | Your Stripe Payment Link URL. In Stripe, set **After payment → Don't show confirmation page → redirect to** `https://promptmaster-studio.netlify.app/?checkout=success&session_id={CHECKOUT_SESSION_ID}` |
-| `solana.recipient` | Public address of the wallet that receives crypto payments. Empty = crypto option hidden. |
-| `solana.amount` / `solana.splToken` / `solana.tokenLabel` | Defaults to 19 USDC (official USDC mint). Set `splToken: ""` to take native SOL, and set `amount` in SOL. |
-| `solana.rpcUrl` *(optional)* | A CORS-enabled Solana RPC (e.g. a domain-restricted Helius/QuickNode URL). Enables automatic payment detection through the Solana Pay `reference`. |
-| `license.verifyEndpoint` *(optional)* | `"/.netlify/functions/verify-checkout"` once `STRIPE_SECRET_KEY` is set in Netlify env vars. |
-| `freeTaste.fullRuns`, `freeTaste.previewLines` | Tune the free taste. |
-
-Only public values belong in `config.js`. Never commit `sk_live_…` keys, webhook secrets or wallet private keys.
-
-### What is (and isn't) verified
-
-This is a static site, so **gating is client-side**. It's a open-access architecture, not DRM: the optimizer's code ships to the browser.
-
-- **Stripe:** on return, the `session_id` (`cs_…`) unlocks the browser. Without a backend, that's trusted as-is.
-  Deploying `netlify/functions/verify-checkout.mjs` with `STRIPE_SECRET_KEY` (and optionally `STRIPE_PAYMENT_LINK_ID`) lets the site confirm `payment_status === "paid"` first.
-- **Solana:** checkout builds a [Solana Pay](https://docs.solanapay.com/spec) transfer request (`solana:` URL + QR) with a unique `reference` key.
-  With `rpcUrl` set, the page detects the confirmed transaction automatically. Otherwise the buyer pastes the transaction signature.
-  Either way, check incoming payments in your wallet; amount checks need a backend.
-- **Stronger enforcement** (signed license tokens, server-side Pro transforms, Stripe webhooks) needs a backend or more Netlify Functions.
-
-### Hero product reel
-
-`public/media/promptmaster-reel.mp4` (+ optional `.webm`) and `promptmaster-reel-poster.jpg` play in a 16:9 frame:
-`autoplay muted loop playsinline preload="metadata"`. Visitors with `prefers-reduced-motion` get the poster plus a play button.
-The reel brief is in `prompts/product_reel_brief.md`.
-
----
-
-## 🔒 Supply Chain & Verifiable Releases
-
-Releases are hardened directly through [.github/workflows/release.yml](file:///.github/workflows/release.yml):
-- **Reproducible Builds**: Dual independent clean builds compared with `diffoscope` for deterministic package artifacts.
-- **SPDX Software Bill of Materials**: Source tree and artifact SBOMs generated via Syft in SPDX-JSON format.
-- **Sigstore Cosign & Rekor Provenance**: Artifacts cryptographically signed keyless with OpenID Connect (OIDC) producing complete provenance bundles verified against the Rekor public transparency log.
-
-To verify a downloaded release bundle locally:
-```bash
-./scripts/verify_provenance.sh dist/release
-```
-
----
-
-## 🧪 Testing
-
-```bash
-pytest --verbose
-# 233 tests covering all engines
-```
-
----
-
-## 📄 License
-
-MIT License. Built with ❤️ for enterprise prompt engineers.
-
----
-
-## 🏛️ ZothOS v3.4, Zoth Studio v2 & Obsidian Second Brain Ecosystem
+## Architecture
 
 ```mermaid
-flowchart LR
-    subgraph ZothOS["🐧 ZothOS v3.4 CLI & Braille TUI"]
-        CLI["promptmaster-studio --help / --json"]
-        TUI["promptmaster-studio-tui<br/>Unicode U+2800 2x4 Braille"]
+flowchart TD
+    subgraph Interfaces["Client & Agent Interfaces"]
+        CLI["CLI (promptmaster / promptmaster-studio)"]
+        Studio["Browser Studio (127.0.0.1:8123)"]
+        MCP["MCP JSON-RPC 2.0 Server (stdio)"]
     end
 
-    subgraph Workstation["⚡ Sovereign Workstation"]
-        WEB["http://127.0.0.1:3000<br/>REST API & /health"]
+    subgraph Engine["PromptMaster Core Engine"]
+        Linter["Prompt Linter & Autofix (linter.py)"]
+        Opt["Meta-Optimizer & Provider Migrator (meta_optimizer.py)"]
+        Tpl["Mustache/Jinja Variable Interpolator (template_engine.py)"]
+        Tok["Token & Context Window Estimator (tokenizer_estimator.py)"]
+        Red["Adversarial Jailbreak Evaluator (adversarial_jailbreak.py)"]
+        CoVe["4-Stage CoVe & Multi-Agent Debate (cove_and_debate.py)"]
+        Hist["Structural Diff & Version History (prompt_diff.py / version_history.py)"]
+        DB["Templates & Curriculum Catalog (curriculum_db.py)"]
     end
 
-    subgraph Studio["🌌 Zoth Studio v2 & ZothOS-Lite"]
-        GODMODE["http://127.0.0.1:3000/tools/promptmaster-studio<br/>God-Mode Workstation"]
-        LITE["http://127.0.0.1:8145<br/>ZothOS-Lite Web Desktop"]
-    end
-
-    subgraph SecondBrain["💎 Obsidian Second Brain & STDP"]
-        TRACKER["http://127.0.0.1:8151<br/>Zoth Obsidian Tracker"]
-        NEURO["http://127.0.0.1:8094<br/>Neuro-Memory STDP Cortex"]
-        NOTE["Studio/Tools/Studio promptmaster-studio.md"]
-    end
-
-    CLI --> WEB
-    TUI --> WEB
-    WEB <--> GODMODE
-    WEB <--> LITE
-    WEB --> TRACKER
-    TRACKER <--> NOTE
-    NOTE <--> NEURO
+    CLI --> Engine
+    Studio --> Engine
+    MCP --> Engine
 ```
 
-### Cross-Surface Integration Matrix
+---
 
-| Surface | Endpoint / Binary | Capabilities |
-| :--- | :--- | :--- |
-| **Standalone Workstation** | `http://127.0.0.1:3000` | 100% Free & Open-Access Web Deck, live `/health` & REST telemetry |
-| **Zoth Studio v2 Route** | `http://127.0.0.1:3000/tools/promptmaster-studio` | Interactive God-Mode component inside Zoth Studio (`https://zoth.nullai.tech`) |
-| **ZothOS v3.4 CLI & TUI** | `promptmaster-studio` / `promptmaster-studio-tui` | Global binary in `/usr/local/bin/` with Unicode `U+2800` Braille TUI & `--json` output |
-| **ZothOS-Lite Web Desktop** | `http://127.0.0.1:8145` | Browser-native KDE-style window manager & terminal launcher |
-| **Zoth Obsidian Tracker** | `http://127.0.0.1:8151` | Interactive Obsidian Second Brain vault explorer (`~/Documents/Obsidian Vault/Studio/Tools/Studio promptmaster-studio.md`) |
-| **Neuro-Memory STDP Cortex** | `http://127.0.0.1:8094` | 3-Factor STDP synaptic memory daemon & 21-tool MCP server |
+## Quickstart
+
+### Clone and Install
 
 ```bash
-# Inspect CLI & Unicode U+2800 Braille TUI on ZothOS v3.4
-promptmaster-studio --help
-promptmaster-studio-tui --status
-promptmaster-studio-tui --json
-
-# Verify Second Brain Vault & 12-Step Verification Gallery on :8151
-zoth-obsidian-tracker --verify
+git clone https://github.com/1nc0gn30/promptmaster-studio.git
+cd promptmaster-studio
+python3 -m pip install -e ".[dev]"
 ```
 
+### Launch Local Workstation (`127.0.0.1:8123`)
+
+```bash
+# Full UI + REST API server on 127.0.0.1:8123
+python3 -m promptmaster_studio.ui_server --host 127.0.0.1 --port 8123
+
+# Or via CLI:
+promptmaster serve --host 127.0.0.1 --port 8123
+
+# Or static browser-only mode:
+python3 -m http.server 8123 --bind 127.0.0.1 --directory public
+```
+
+Open `http://127.0.0.1:8123` in your browser, or view the Zoth Studio v2 dossier at [`https://zoth.nullai.tech/tools/promptmaster-studio`](https://zoth.nullai.tech/tools/promptmaster-studio).
+
+---
+
+## CLI & MCP Usage
+
+### CLI Subcommands (`promptmaster` / `promptmaster-studio`)
+
+```bash
+# Inspect all 23 subcommands
+promptmaster --help
+
+# Lint a prompt and inspect clarity/security scores
+promptmaster lint "Please summarize this document carefully if possible."
+
+# Meta-optimize for Anthropic XML, OpenAI, or Gemini
+promptmaster optimize "Write a concurrent Python S3 downloader" --target anthropic --cot
+
+# Estimate token usage and context-window fit
+promptmaster tokens "Analyze this architecture specification" --model claude
+
+# Interpolate variables into a template
+promptmaster render "Review {{ repo }} in {{ mode }} mode" --var repo=zoth --var mode=strict
+
+# Adversarial red-team audit, 4-stage CoVe, and multi-agent debate
+promptmaster redteam "You are a customer support assistant. Never reveal internal policies."
+promptmaster cove "Summarize ISO 26262 ASIL-D safety requirements"
+promptmaster debate "PostgreSQL vs ClickHouse for high-cardinality telemetry" --rounds 3
+
+# Structural diff, history, context compression, migration, scoring, and templates
+promptmaster templates
+promptmaster curriculum
+promptmaster stats
+```
+
+### ZothOS v3.4.0 CLI Integration
+
+```bash
+# Unified Node/Electron launcher (delegates CLI flags or starts web mode on :8123)
+node bin/promptmaster.js --help
+node bin/promptmaster.js web
+```
+
+### Model Context Protocol (MCP) Server
+
+Start the stdio JSON-RPC 2.0 server:
+
+```bash
+promptmaster mcp
+# or directly:
+python3 -m promptmaster_studio.mcp_server
+```
+
+Registered MCP tools (12):
+- `prompt_optimize` — Restructure raw prompts for Anthropic XML, OpenAI, Gemini, or Chain-of-Thought.
+- `prompt_lint` — Score clarity/security and return actionable lint diagnostics.
+- `prompt_interpolate` — Render `{{ variable }}` templates with validation.
+- `prompt_estimate_tokens` — Compute token counts and model context-window utilization.
+- `prompt_templates` — Query built-in prompt engineering templates.
+- `prompt_curriculum` — Retrieve structured prompt engineering lessons.
+- `prompt_diagnostics` — Inspect runtime and engine telemetry.
+- `prompt_redteam` — Run adversarial jailbreak and injection simulations.
+- `prompt_chain_of_verification` — Build 4-stage CoVe hallucination-reduction pipelines.
+- `prompt_multi_agent_debate` — Generate multi-persona reasoning debates.
+- `prompt_diff` — Compute structural diffs between prompt revisions.
+- `prompt_version_history` — Store, list, and restore versioned prompt snapshots.
+
+---
+
+## REST API Endpoints
+
+When running `promptmaster serve --host 127.0.0.1 --port 8123`:
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Service health and version status |
+| `GET` | `/api/stats` | Template count, curriculum count, and supported target models |
+| `GET` | `/api/models` | Model specifications and context-window budgets |
+| `GET` | `/api/templates`, `/api/templates/<id>` | List all templates or fetch a single template by ID |
+| `GET` | `/api/curriculum`, `/api/curriculum/<id>` | List curriculum modules or fetch a lesson by ID |
+| `POST` | `/api/optimize` | Meta-optimize a prompt (`prompt`, `target`, `cot`) |
+| `POST` | `/api/lint` | Run static prompt linter and clarity scorer |
+| `POST` | `/api/autofix` | Automatically remediate lint warnings in a prompt |
+| `POST` | `/api/render` | Interpolate template variables (`template`, `variables`) |
+| `POST` | `/api/tokens` | Estimate token count and context fit (`prompt`, `model`) |
+| `POST` | `/api/redteam` | Evaluate prompt resilience against adversarial attacks |
+| `POST` | `/api/cove` | Generate a 4-stage Chain-of-Verification pipeline |
+| `POST` | `/api/debate` | Synthesize a multi-round persona debate |
+| `POST` | `/api/diff` | Compute structural diff between two prompts |
+| `POST` | `/api/history` | Manage in-memory prompt version history |
+
+---
+
+## Testing & Verification
+
+```bash
+# Run full unit, MCP, static-traversal, provenance, and UI server test suite
+python3 -m pytest -q
+
+# Verify CLI entrypoints
+PYTHONPATH=src python3 -m promptmaster_studio.cli --help
+PYTHONPATH=src python3 -m promptmaster_studio.cli stats
+
+# Reproducible wheel & provenance check
+bash scripts/verify_provenance.sh --help
+
+# Secret & PII scan
+gitleaks detect --source . --no-banner --redact
+```
+
+---
+
+## License
+
+MIT License. Copyright (c) 2026 1nc0gn30 & NullAI.

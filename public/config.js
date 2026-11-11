@@ -1,9 +1,9 @@
 /* ==========================================================================
  * PromptMaster Studio: Open-Access & Voluntary Support Configuration
  * --------------------------------------------------------------------------
- * PromptMaster Studio is 100% free, unlocked, and open-access by default
- * with zero paywalls, zero license keys, and zero telemetry.
- * Voluntary tips via Buy Us a Coffee (Stripe) or Solana are optional.
+ * PromptMaster Studio is 100% free, unlocked, and open-source by default
+ * with zero license keys and zero telemetry.
+ * Voluntary tips via Buy Us a Coffee (Stripe) are optional.
  * ========================================================================== */
 window.PROMPTMASTER_CONFIG = {
   product: {
@@ -18,7 +18,7 @@ window.PROMPTMASTER_CONFIG = {
   },
 
   solana: {
-    recipient: "GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK",
+    recipient: "",
     amount: "",
     splToken: "",
     tokenLabel: "SOL",

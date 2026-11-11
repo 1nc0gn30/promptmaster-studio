@@ -1,0 +1,10 @@
+title = "Gitleaks Configuration"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Historical public Solana USDC SPL mint constant"
+commits = [
+  "8e7ff220dbcf911e48660a980efd52028da91cdb"
+]

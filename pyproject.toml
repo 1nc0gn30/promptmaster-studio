@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [
-    { name = "PromptMaster Studio Team", email = "engineering@promptmaster.dev" }
+    { name = "1nc0gn30" }
 ]
 keywords = [
     "prompt-engineering",

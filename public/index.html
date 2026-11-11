@@ -18,7 +18,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://promptmaster-studio.netlify.app/">
   <meta property="og:title" content="PromptMaster Studio: rough prompt in, production prompt out">
-  <meta property="og:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. 100% free and open-access with zero paywalls.">
+  <meta property="og:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. 100% free and open-access with zero feature gates.">
   <meta property="og:site_name" content="PromptMaster Studio by 1nc0gn30 • NullAI Platform">
   <meta property="og:image" content="https://promptmaster-studio.netlify.app/assets/banner.png">
   <meta property="og:image:width" content="1200">
@@ -30,7 +30,7 @@
   <meta name="twitter:site" content="@1nc0gn30">
   <meta name="twitter:creator" content="@1nc0gn30">
   <meta name="twitter:title" content="PromptMaster Studio: rough prompt in, production prompt out">
-  <meta name="twitter:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. 100% free and open-access with zero paywalls.">
+  <meta name="twitter:description" content="Lint, score and rewrite AI prompts for Claude, ChatGPT and Gemini, all in your browser. 100% free and open-access with zero feature gates.">
   <meta name="twitter:image" content="https://promptmaster-studio.netlify.app/assets/banner.png">
   <meta name="twitter:image:alt" content="PromptMaster Studio: rough prompt in, production prompt out. Prompt optimizer and linter for Claude, ChatGPT and Gemini.">
 
@@ -114,12 +114,12 @@
           {
             "@type": "Question",
             "name": "Is PromptMaster Studio completely free?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. 100% of features—the linter, quality scores, token and cost estimator, prompt diff, version history, templates, curriculum, and full multi-target optimizer with copy and export—are completely free and unlocked by default with zero paywalls." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. 100% of features—the linter, quality scores, token and cost estimator, prompt diff, version history, templates, curriculum, and full multi-target optimizer with copy and export—are completely free and unlocked by default with zero feature gates." }
           },
           {
             "@type": "Question",
             "name": "How can I support ongoing development?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Voluntary support is welcome via Buy Us a Coffee on Stripe (https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X) or direct Solana wallet tip (GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK)." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Voluntary support is welcome via Buy Us a Coffee on Stripe (https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)." }
           }
         ]
       }
@@ -832,89 +832,7 @@
       user-select: none !important;
       pointer-events: none !important;
     }
-    .output-paywall-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(9, 10, 15, 0.88);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px dashed rgba(99, 102, 241, 0.5);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      text-align: center;
-      z-index: 10;
-      box-sizing: border-box;
-    }
-    .paywall-lock-badge {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #818CF8;
-      background: rgba(99, 102, 241, 0.18);
-      border: 1px solid rgba(99, 102, 241, 0.35);
-      padding: 2px 10px;
-      border-radius: 9999px;
-      margin-bottom: 0.35rem;
-    }
-    .paywall-lock-title {
-      font-family: var(--font-brand);
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: #F8FAFC;
-      margin-bottom: 0.3rem;
-    }
-    .paywall-lock-desc {
-      font-size: 0.8rem;
-      color: var(--on-surface-variant);
-      max-width: 440px;
-      margin-bottom: 1rem;
-      line-height: 1.4;
-    }
-    .paywall-lock-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 0.75rem;
-    }
-    .paywall-enter-key {
-      background: none;
-      border: none;
-      color: #94A3B8;
-      font-size: 0.75rem;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-    .paywall-enter-key:hover {
-      color: #818CF8;
-    }
-
-    .paywall-wrap.is-locked #outputPreview,
-    .paywall-wrap.locked #outputPreview {
-      filter: blur(6px);
-      user-select: none;
-      pointer-events: none;
-    }
-    .paywall-wrap.is-locked .output-paywall-overlay,
-    .paywall-wrap.locked .output-paywall-overlay {
-      display: flex !important;
-    }
-    .paywall-wrap:not(.is-locked):not(.locked) #outputPreview {
-      filter: none !important;
-      user-select: auto !important;
-      pointer-events: auto !important;
-    }
-    .paywall-wrap:not(.is-locked):not(.locked) .output-paywall-overlay {
-      display: none !important;
-    }
-
-    /* Modal Paywall & License */
+    /* Modal Styles */
 
     @media (max-width: 860px) {
     }
@@ -1124,16 +1042,7 @@
     /* Gated preview */
     .preview-box.is-gated { overflow: hidden; }
     .pv-locked { filter: blur(5px); opacity: 0.55; user-select: none; -webkit-user-select: none; }
-    .output-paywall-overlay {
-      top: auto; height: auto; min-height: 220px;
-      background: linear-gradient(180deg, rgba(9,10,15,0) 0%, rgba(9,10,15,0.86) 22%, rgba(9,10,15,0.96) 100%);
-      backdrop-filter: none; -webkit-backdrop-filter: none; border: 0; border-top: 1px dashed rgba(99,102,241,0.45); border-radius: 0 0 var(--radius-md) var(--radius-md);
-      justify-content: flex-end; padding: 2.25rem 1.25rem 1.25rem;
-    }
-    [data-theme="light"] .output-paywall-overlay { background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 22%, #fff 100%); }
-    .paywall-lock-title { font-family: var(--font-brand); }
-    [data-theme="light"] .paywall-lock-title { color: #0B0F19; }
-    .paywall-lock-desc { margin-bottom: 0.85rem; }
+    
 
     /* Pricing */
     .pricing { padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px solid var(--outline-light); position: relative; overflow: hidden; }
@@ -1335,9 +1244,6 @@
       <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" style="padding: 6px 12px; min-height: 32px; background: #635BFF; color: #fff; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
         <span>☕ Buy Us a Coffee</span>
       </a>
-      <button type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText('GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK')" title="Copy Solana Tip Address: GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" style="padding: 6px 12px; min-height: 32px; background: #14F195; color: #000; border-radius: 6px; border: none; font-size: 11px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;">
-        <span>◎ Tip SOL</span>
-      </button>
     </div>
   </div>
 
@@ -1561,9 +1467,8 @@
       </div>
 
       <!-- Output Preview Container (100% Open Access) -->
-      <div class="preview-container" id="codePaywallWrap" data-alias="codePaywallWrap">
+      <div class="preview-container" id="codePreviewWrap" data-alias="codePreviewWrap">
         <div class="preview-box" id="outputPreview">Click 'Meta-Optimize Prompt' or type in the editor to see live transformed output...</div>
-        <div id="outputPaywallOverlay" class="output-paywall-overlay" style="display: none !important;"></div>
       </div>
 
       <!-- Applied Improvements Box -->
@@ -1744,7 +1649,7 @@
         <div class="section-head">
           <p class="kicker">// open access</p>
           <h2 class="section-title" id="pricingTitle">100% Free &amp; <em>Unlocked by Default</em></h2>
-          <p class="answer">Every feature in PromptMaster Studio is <strong>100% free and open-access</strong> with zero paywalls, zero license keys, and zero subscriptions. If it saves you time, voluntary coffee or Solana tips are appreciated.</p>
+          <p class="answer">Every feature in PromptMaster Studio is <strong>100% free and open-access</strong> with zero feature gates, zero license keys, and zero subscriptions. If it saves you time, voluntary coffee or Solana tips are appreciated.</p>
         </div>
 
         <div class="price-layout">
@@ -1773,7 +1678,6 @@
             <ul class="check-list">
               <li><div>100% Voluntary<span>All features remain unlocked regardless—no gates, ever</span></div></li>
               <li><div>Stripe Buy Us a Coffee<span>Card, Apple Pay &amp; Google Pay via Stripe</span></div></li>
-              <li><div>Direct Solana Wallet Tip<span><code style="font-size:11px;">GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK</code></span></div></li>
             </ul>
             <div class="plan-actions">
               <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="cta-primary cta-block" style="text-decoration:none;"><span>☕ Buy Us a Coffee</span> <span class="arrow" aria-hidden="true">→</span></a>
@@ -1806,7 +1710,7 @@
           </details>
           <details class="faq-item">
             <summary><h3>How can I support ongoing development?</h3></summary>
-            <div class="faq-answer"><p><strong>Voluntary tips are always welcome!</strong> You can <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener">Buy Us a Coffee via Stripe</a> or send a voluntary Solana tip to <code>GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK</code>.</p></div>
+            <div class="faq-answer"><p><strong>Voluntary tips are always welcome!</strong> You can <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener">Buy Us a Coffee via Stripe</a>.</p></div>
           </details>
         </div>
       </div>
@@ -2011,39 +1915,11 @@
     // Render optimizer output, gated to a preview when the visitor has no Pro and no free taste left.
     function renderGated(text) {
       const preview = document.getElementById("outputPreview");
-      const overlay = document.getElementById("outputPaywallOverlay");
-      const full = isProLicensed || !optimizedData || optimizedData.fullVisible;
-      if (full) {
-        preview.classList.remove("is-gated");
-        preview.textContent = text;
-        if (overlay) overlay.style.display = "none";
-        return;
-      }
-      const lines = text.split("\n");
-      const n = Math.max(1, Math.min(CFG_TASTE.previewLines | 0 || 6, Math.floor(lines.length * 0.45)));
-      const clearPart = lines.slice(0, n).join("\n");
-      const rest = lines.slice(n).join("\n") || "…";
-      preview.classList.add("is-gated");
-      preview.scrollTop = 0;
-      preview.textContent = "";
-      const a = document.createElement("span");
-      a.className = "pv-clear";
-      a.textContent = clearPart + "\n";
-      const b = document.createElement("span");
-      b.className = "pv-locked";
-      b.setAttribute("aria-hidden", "true");
-      b.textContent = scramble(rest);
-      preview.append(a, b);
-      if (overlay) {
-        overlay.style.display = "flex";
-        requestAnimationFrame(() => {
-          const top = Math.max(48, Math.min(b.offsetTop, preview.clientHeight - 230));
-          overlay.style.top = top + "px";
-        });
-      }
+      preview.classList.remove("is-gated");
+      preview.textContent = text;
     }
 
-    function canExport() { return isProLicensed || !optimizedData || !!optimizedData.fullVisible; }
+    function canExport() { return true; }
 
     // ---------- UI state ----------
     function updateProUI() {
@@ -2061,18 +1937,7 @@
           ? '<span style="color: #10B981; font-weight: 700; font-size: 11px;">⭐ PRO ACTIVE</span>'
           : '<span style="color: #ef4444; font-weight: 700; font-size: 11px;">⚡ FREE TIER</span>';
       }
-      const wrap = document.getElementById("codePaywallWrap");
-      if (wrap) {
-        if (isProLicensed) {
-          wrap.classList.remove("is-locked", "locked");
-        } else {
-          wrap.classList.add("is-locked", "locked");
-        }
-      }
-      const overlay = document.getElementById("outputPaywallOverlay");
-      if (overlay) {
-        overlay.style.display = isProLicensed ? "none" : "flex";
-      }
+      
       const meter = document.getElementById("tasteMeter");
       const meterText = document.getElementById("tasteMeterText");
       if (meter && meterText) {
@@ -2138,7 +2003,7 @@
       const m = document.getElementById(id);
       if (!m) return;
       m.classList.remove("is-open");
-      if (id === "proPaywallModal") stopSolanaWatch();
+      if (id === "supportModal") stopSolanaWatch();
       if (!document.querySelector(".pm-modal.is-open")) {
         document.body.style.overflow = "";
         if (lastFocusBeforeModal && lastFocusBeforeModal.focus) lastFocusBeforeModal.focus({ preventScroll: true });
@@ -2149,7 +2014,7 @@
     function openCheckout(opts = {}) {
       closeAllModals();
       applyConfigToDom();
-      openModal("proPaywallModal");
+      openModal("supportModal");
       if (opts.solana && solanaConfigured()) toggleSolanaPanel(true);
     }
     function openRestore() {
@@ -2159,11 +2024,8 @@
       openModal("licenseModal");
     }
     // Names used by older markup and inline handlers.
-    function openPaywallModal() { openCheckout(); }
-    function closePaywallModal() { closeModal("proPaywallModal"); }
     function openLicenseActivationModal() { openRestore(); }
     function closeLicenseModal() { closeModal("licenseModal"); }
-    function openDePayCheckout() { openCheckout({ solana: true }); }
 
     // ---------- Stripe ----------
     async function verifyStripeSession(sessionId) {
@@ -2462,12 +2324,10 @@
     function renderOutputView() {
       const preview = document.getElementById("outputPreview");
       const impBox = document.getElementById("improvementsBox");
-      const overlay = document.getElementById("outputPaywallOverlay");
-      impBox.style.display = "none";
+            impBox.style.display = "none";
       const showPlain = (text) => {
         preview.classList.remove("is-gated");
         preview.textContent = text;
-        if (overlay) overlay.style.display = "none";
       };
 
       if (!optimizedData) {
@@ -3317,7 +3177,7 @@
   </script>
 
   <!-- VOLUNTARY SUPPORT MODAL -->
-  <div class="pm-modal" id="proPaywallModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" data-modal>
+  <div class="pm-modal" id="supportModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" data-modal>
     <div class="pm-dialog">
       <div class="pm-dialog-head">
         <h2 class="pm-dialog-title" id="checkoutTitle">☕ Support <em>PromptMaster Studio</em></h2>
@@ -3326,24 +3186,12 @@
       <div class="pm-dialog-body">
         <div class="pm-price-row">
           <div><span class="amount">100% Free</span><span class="term">open access</span></div>
-          <div class="note">Zero paywalls · voluntary tips welcome</div>
+          <div class="note">Zero feature gates · voluntary tips welcome</div>
         </div>
         <div class="pm-pay">
           <a class="cta-primary cta-block" id="stripeCheckoutBtn" href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener"><span>☕ Buy Us a Coffee (Stripe)</span> <span class="arrow" aria-hidden="true">→</span></a>
           <p class="pm-pay-hint" id="stripeHint">Voluntary support via Stripe · Card, Apple Pay &amp; Google Pay</p>
           <p class="pm-unavailable" id="stripeUnavailable" hidden>Email <a href="mailto:support@nullai.tech" data-support-email>support@nullai.tech</a> for support.</p>
-          <button type="button" class="btn-ghost" id="solanaCheckoutBtn" aria-expanded="false" aria-controls="solPanel"><span>◎ Tip SOL (<code>GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK</code>)</span></button>
-          <div class="sol-panel" id="solPanel">
-            <div class="sol-grid">
-              <div class="sol-qr" id="solQr" aria-label="Solana Tip QR code" role="img"></div>
-              <div class="sol-meta">
-                <div><div class="row-label">Voluntary Solana Tip</div><div class="mono" id="solRecipient">GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK</div></div>
-                <div class="pm-field"><a class="pm-mini-btn" id="solWalletLink" href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" style="text-decoration:none">Open in wallet</a><button type="button" class="pm-mini-btn" id="solCopyAddr">Copy address</button></div>
-              </div>
-            </div>
-            <div class="sol-status" id="solStatus" hidden></div>
-            <div hidden><input id="solSigInput" type="text"><button type="button" id="solSigSubmit">OK</button><p id="solMsg"></p></div>
-          </div>
         </div>
       </div>
     </div>
