@@ -1552,11 +1552,27 @@ class PromptMasterHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
             self._send_json(models)
             return
 
-        # Serve static web UI
-        # Check if public/index.html exists on disk
-        public_dir = Path(__file__).resolve().parent.parent.parent / "public"
+        # Serve static web UI & assets
+        public_dir = (Path(__file__).resolve().parent.parent.parent / "public").resolve()
+        rel_path = urllib.parse.unquote(path.lstrip("/"))
+        if rel_path and rel_path != "index.html":
+            candidate = (public_dir / rel_path).resolve()
+            if candidate.is_file() and candidate.is_relative_to(public_dir):
+                import mimetypes
+                mime_type, _ = mimetypes.guess_type(str(candidate))
+                if str(candidate).endswith(".js"):
+                    mime_type = "application/javascript; charset=utf-8"
+                elif str(candidate).endswith(".css"):
+                    mime_type = "text/css; charset=utf-8"
+                data = candidate.read_bytes()
+                self.send_response(200)
+                self.send_header("Content-Type", mime_type or "application/octet-stream")
+                self.send_header("Content-Length", str(len(data)))
+                self.end_headers()
+                self.wfile.write(data)
+                return
+
         index_file = public_dir / "index.html"
-        
         if index_file.is_file():
             html_bytes = index_file.read_bytes()
         else:

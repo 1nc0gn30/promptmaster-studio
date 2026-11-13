@@ -1210,7 +1210,7 @@
 
   <!-- Header -->
   <header class="site-header">
-    <div class="lp-wrap site-header-inner">
+    <div class="lp-wrap site-header-inner" style="flex-wrap: wrap; gap: 8px;">
       <a class="brand" href="#top" aria-label="PromptMaster Studio home">
         <img src="assets/icon.png" alt="PromptMaster Studio Logo" class="brand-icon" style="width:28px;height:28px;border-radius:6px;object-fit:cover;box-shadow:0 0 10px rgba(99,91,255,0.4);margin-right:8px;">
         <div class="brand-logo" aria-hidden="true">⚡</div>
@@ -1226,9 +1226,9 @@
         <a href="#faq">FAQ</a>
         <a href="/support.html">Support</a>
       </nav>
-      <div class="header-cta-wrap" id="headerProContainer" style="display: flex; align-items: center; gap: 8px;">
-        <span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; background: rgba(20,241,149,0.12); border: 1px solid rgba(20,241,149,0.35); color: #14F195;">✦ 100% OPEN ACCESS</span>
-        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="cta-primary cta-sm" style="text-decoration: none;"><span>☕ Buy Us a Coffee</span></a>
+      <div class="header-cta-wrap" id="headerProContainer" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; background: rgba(20,241,149,0.12); border: 1px solid rgba(20,241,149,0.35); color: #14F195; white-space: nowrap;">✦ 100% OPEN ACCESS</span>
+        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="cta-primary cta-sm hide-xs" style="text-decoration: none; white-space: nowrap;"><span>☕ Buy Us a Coffee</span></a>
       </div>
     </div>
   </header>
@@ -1926,16 +1926,8 @@
       const banner = document.getElementById("funnelHeroBanner");
       if (banner) banner.style.display = isProLicensed ? "none" : "flex";
       const proContainer = document.getElementById("headerProContainer");
-      if (proContainer) {
-        proContainer.innerHTML = isProLicensed
-          ? '<span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: rgba(16,185,129,0.12); border: 1px solid #10B981; color: #10B981; cursor: pointer;" data-open-restore>⭐ PRO ACTIVE</span><span class="pro-pill" id="header-pro-badge" title="Pro unlocked in this browser">⭐ PRO ACTIVE</span>'
-          : `<span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #ef4444; cursor: pointer;" data-open-restore>⚡ FREE TIER</span><button type="button" class="cta-primary cta-sm" data-open-checkout><span>Get Pro<span class="hide-xs"> for</span> <span data-price>${PRICE_LABEL}</span></span></button>`;
-      }
-      const badge = document.getElementById("licenseBadge");
-      if (badge) {
-        badge.innerHTML = isProLicensed
-          ? '<span style="color: #10B981; font-weight: 700; font-size: 11px;">⭐ PRO ACTIVE</span>'
-          : '<span style="color: #ef4444; font-weight: 700; font-size: 11px;">⚡ FREE TIER</span>';
+      if (proContainer && !proContainer.querySelector("a[href*='buy.stripe.com']")) {
+        proContainer.innerHTML = '<span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: rgba(20,241,149,0.12); border: 1px solid rgba(20,241,149,0.35); color: #14F195; white-space: nowrap;">✦ 100% OPEN ACCESS</span><a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="cta-primary cta-sm hide-xs" style="text-decoration: none; white-space: nowrap;"><span>☕ Buy Us a Coffee</span></a>';
       }
       
       const meter = document.getElementById("tasteMeter");
