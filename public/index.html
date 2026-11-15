@@ -42,13 +42,13 @@
       {
         "@type": "Organization",
         "@id": "https://promptmaster-studio.netlify.app/#org",
-        "name": "NullAI Platform",
-        "alternateName": "1nc0gn30",
+        "name": "Neal Frazier Tech (@1nc0gn30) • NullAI Platform",
+        "alternateName": ["Neal Frazier Tech", "1nc0gn30", "NullAI Platform"],
         "url": "https://nullai.tech",
         "logo": "https://promptmaster-studio.netlify.app/favicon.svg",
         "email": "support@nullai.tech",
-        "founder": { "@type": "Person", "name": "1nc0gn30", "url": "https://1nc0gn30.si" },
-        "sameAs": ["https://github.com/1nc0gn30", "https://x.com/1nc0gn30", "https://1nc0gn30.si", "https://nullai.tech"]
+        "founder": { "@type": "Person", "name": "Neal Frazier", "alternateName": "1nc0gn30", "url": "https://nealfrazier.tech" },
+        "sameAs": ["https://github.com/1nc0gn30", "https://x.com/1nc0gn30", "https://nealfrazier.tech", "https://nullai.tech"]
       },
       {
         "@type": "WebSite",
@@ -119,7 +119,7 @@
           {
             "@type": "Question",
             "name": "How can I support ongoing development?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Voluntary support is welcome via Buy Us a Coffee on Stripe (https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Voluntary support is welcome via Buy Us a Coffee on Stripe (https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X) or Solana tips to GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK." }
           }
         ]
       }
@@ -1039,9 +1039,9 @@
     .studio-toolbar .mode-tabs { flex: 1 1 auto; margin: 0 !important; }
     .studio-tools { display: flex; gap: 0.5rem; }
 
-    /* Gated preview */
-    .preview-box.is-gated { overflow: hidden; }
-    .pv-locked { filter: blur(5px); opacity: 0.55; user-select: none; -webkit-user-select: none; }
+    /* Open-access preview (unblurred) */
+    .preview-box.is-gated { overflow: visible; }
+    .pv-locked { opacity: 1; user-select: auto; }
     
 
     /* Pricing */
@@ -1243,6 +1243,9 @@
     <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
       <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" style="padding: 6px 12px; min-height: 32px; background: #635BFF; color: #fff; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
         <span>☕ Buy Us a Coffee</span>
+      </a>
+      <a href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" title="Solana Tip Address: GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" style="padding: 6px 12px; min-height: 32px; background: #047857; color: #fff; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+        <span>◎ Solana Tip: GG2e…dXoK</span>
       </a>
     </div>
   </div>
@@ -1733,7 +1736,7 @@
   <footer class="site-footer">
     <div class="lp-wrap footer-inner">
       <div>
-        <strong>PromptMaster Studio</strong> · Engineered by <a class="brand-link" href="https://1nc0gn30.si" target="_blank" rel="noopener">1nc0gn30</a> (<a class="brand-link" href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) · <a class="brand-link" href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a>
+        <strong>PromptMaster Studio</strong> · Engineered by Neal Frazier Tech (<a class="brand-link" href="https://github.com/1nc0gn30" target="_blank" rel="noopener">@1nc0gn30</a>) • <a class="brand-link" href="https://nullai.tech" target="_blank" rel="noopener">NullAI Platform</a>
       </div>
       <nav class="footer-links" aria-label="Footer">
         <a href="/terms.html">Terms of Service</a>

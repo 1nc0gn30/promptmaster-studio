@@ -153,7 +153,7 @@ class PromptMasterStudioRequestHandler(BaseHTTPRequestHandler):
         # ---------------------------------------------------------------------
         # REST API Routes
         # ---------------------------------------------------------------------
-        if path == "/api/health":
+        if path in ("/health", "/api/health"):
             self._send_json({
                 "status": "healthy",
                 "version": __version__,

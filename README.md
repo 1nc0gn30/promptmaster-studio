@@ -189,6 +189,11 @@ gitleaks detect --source . --no-banner --redact
 
 ---
 
-## License
+## License & Attribution
 
-MIT License. Copyright (c) 2026 1nc0gn30 & NullAI.
+MIT License — **100% Free & Open-Access** (zero paywalls, zero license keys).  
+Engineered by **Neal Frazier Tech (`@1nc0gn30`) • [NullAI Platform](https://nullai.tech)** ([nealfrazier.tech](https://nealfrazier.tech)).
+
+Optional support:
+- [☕ Buy Us a Coffee (Stripe)](https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X)
+- **Solana Tip Address**: `GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK` (`solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK`)
