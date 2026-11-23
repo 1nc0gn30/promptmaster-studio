@@ -1789,8 +1789,6 @@
     const SOL_SIG_RE = /^[1-9A-HJ-NP-Za-km-z]{64,90}$/;
     const SOL_ADDR_RE = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
 
-    let isProLicensed = true;
-
     function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
     function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
     function randomBytes(n) { const a = new Uint8Array(n); crypto.getRandomValues(a); return a; }
@@ -1841,14 +1839,12 @@
     }
 
     function checkProLicense() {
-      isProLicensed = true;
       updateProUI();
       return true;
     }
 
     function grantPro(method, ref, opts = {}) {
       const lic = saveLicense(method, ref);
-      isProLicensed = true;
       localStorage.setItem("promptmaster_pro_licensed", "true");
       updateProUI();
       if (optimizedData) optimizedData.fullVisible = true;
@@ -1876,18 +1872,9 @@
       return (h >>> 0).toString(36) + "." + t.length;
     }
     function freeRunsLeft() { return Math.max(0, (CFG_TASTE.fullRuns | 0) - readTaste().prompts.length); }
-    // Called once per optimization. Returns true when the full output may be shown.
+    // Called once per optimization. Full output is always open-access.
     function claimFullView(inputText) {
-      if (isProLicensed) return true;
-      const taste = readTaste();
-      const h = hashText(inputText.trim());
-      if (taste.prompts.includes(h)) return true;           // the same prompt they already used their taste on
-      if (taste.prompts.length < (CFG_TASTE.fullRuns | 0)) {
-        taste.prompts.push(h);
-        lsSet(LS_KEYS.taste, JSON.stringify(taste));
-        return true;
-      }
-      return false;
+      return true;
     }
     function scramble(text) {
       const pool = "abcdefghijklmnopqrstuvwxyz";
@@ -1909,7 +1896,7 @@
     // ---------- UI state ----------
     function updateProUI() {
       const banner = document.getElementById("funnelHeroBanner");
-      if (banner) banner.style.display = isProLicensed ? "none" : "flex";
+      if (banner) banner.style.display = "none";
       const proContainer = document.getElementById("headerProContainer");
       if (proContainer && !proContainer.querySelector("a[href*='buy.stripe.com']")) {
         proContainer.innerHTML = '<span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; background: rgba(20,241,149,0.12); border: 1px solid rgba(20,241,149,0.35); color: #14F195; white-space: nowrap;">✦ 100% OPEN ACCESS</span><a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="cta-primary cta-sm hide-xs" style="text-decoration: none; white-space: nowrap;"><span>☕ Buy Us a Coffee</span></a>';
@@ -1919,20 +1906,8 @@
       const meterText = document.getElementById("tasteMeterText");
       if (meter && meterText) {
         meter.classList.remove("is-preview");
-        const left = freeRunsLeft();
-        if (isProLicensed) {
-          meter.querySelector(".taste-icon").textContent = "★";
-          meterText.innerHTML = "<strong>Pro active.</strong> Full output, copy and export are unlocked in this browser.";
-        } else if (left > 0) {
-          meter.querySelector(".taste-icon").textContent = "✦";
-          meterText.innerHTML = left === 1
-            ? "<strong>Free taste:</strong> your first optimized prompt is shown in full, copy and export included."
-            : `<strong>Free taste:</strong> ${left} optimized prompts shown in full, copy and export included.`;
-        } else {
-          meter.classList.add("is-preview");
-          meter.querySelector(".taste-icon").textContent = "◐";
-          meterText.innerHTML = `<strong>Preview mode:</strong> new results show the first lines. <button type="button" class="text-btn" data-open-checkout>Unlock everything for ${PRICE_LABEL}</button>`;
-        }
+        meter.querySelector(".taste-icon").textContent = "★";
+        meterText.innerHTML = "<strong>Open access active.</strong> Full output, copy and export are unlocked in this browser.";
       }
       applyConfigToDom();
     }
