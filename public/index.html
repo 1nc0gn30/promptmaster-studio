@@ -1210,9 +1210,8 @@
 
   <!-- Header -->
   <header class="site-header">
-    <div class="lp-wrap site-header-inner" style="flex-wrap: wrap; gap: 8px;">
+    <div class="lp-wrap site-header-inner" style="flex-wrap: wrap; gap: 10px;">
       <a class="brand" href="#top" aria-label="PromptMaster Studio home">
-        <img src="assets/icon.png" alt="PromptMaster Studio Logo" class="brand-icon" style="width:28px;height:28px;border-radius:6px;object-fit:cover;box-shadow:0 0 10px rgba(99,91,255,0.4);margin-right:8px;">
         <div class="brand-logo" aria-hidden="true">⚡</div>
         <div class="brand-title">
           <span>PromptMaster<span class="hide-xs"> Studio</span></span>
@@ -1222,33 +1221,16 @@
       <nav class="site-nav" aria-label="Primary">
         <a href="#how">How it works</a>
         <a href="#studio">Try it free</a>
-        <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
         <a href="/support.html">Support</a>
       </nav>
       <div class="header-cta-wrap" id="headerProContainer" style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-        <span class="badge" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; background: rgba(20,241,149,0.12); border: 1px solid rgba(20,241,149,0.35); color: #14F195; white-space: nowrap;">✦ 100% OPEN ACCESS</span>
-        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="cta-primary cta-sm hide-xs" style="text-decoration: none; white-space: nowrap;"><span>☕ Buy Us a Coffee</span></a>
+        <span class="badge hide-sm" id="licenseBadge" style="display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 600; background: rgba(20,241,149,0.12); border: 1px solid rgba(20,241,149,0.35); color: #14F195; white-space: nowrap;">✦ 100% OPEN ACCESS</span>
+        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" class="cta-primary cta-sm" style="text-decoration: none; white-space: nowrap; padding: 0.42rem 0.85rem; font-size: 0.78rem;"><span>☕ Buy Us a Coffee</span></a>
+        <a href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" title="Solana Tip Address: GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" class="hide-sm" style="padding: 0.42rem 0.75rem; background: #047857; color: #fff; border-radius: 9999px; text-decoration: none; font-size: 0.75rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;"><span>◎ Solana Tip</span></a>
       </div>
     </div>
   </header>
-
-  <!-- Voluntary Open-Access Support Bar -->
-  <div id="openAccessSupportBar" style="background: linear-gradient(90deg, rgba(99,91,255,0.12) 0%, rgba(20,241,149,0.12) 100%); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 8px 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; z-index: 95; position: relative;">
-    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-      <span style="background: rgba(20,241,149,0.18); color: #14F195; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Open Access</span>
-      <span style="font-weight: 600; color: #fff;">100% Free &amp; Unlocked by Default</span>
-      <span style="color: #cbd5e1; font-size: 12px;">• Unlimited Prompt Exports • Multi-Model Profiler • Zero Telemetry</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-      <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener" style="padding: 6px 12px; min-height: 32px; background: #635BFF; color: #fff; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
-        <span>☕ Buy Us a Coffee</span>
-      </a>
-      <a href="solana:GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" title="Solana Tip Address: GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK" style="padding: 6px 12px; min-height: 32px; background: #047857; color: #fff; border-radius: 6px; text-decoration: none; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
-        <span>◎ Solana Tip: GG2e…dXoK</span>
-      </a>
-    </div>
-  </div>
 
   <!-- Main -->
   <main id="top">
@@ -1265,7 +1247,7 @@
           <p class="hero-sub">PromptMaster Studio <strong>lints, scores and rewrites</strong> your prompts for Claude, ChatGPT, Gemini and chain-of-thought in seconds. It all runs on your device, so nothing gets uploaded.</p>
           <div class="hero-actions">
             <a href="#studio" class="cta-primary" id="heroCta" data-focus-editor>Optimize a prompt free <span class="arrow" aria-hidden="true">→</span></a>
-            <a href="#pricing" class="cta-link">100% Open Access</a>
+            <a href="#studio" class="cta-link">100% Open Access</a>
           </div>
           <ul class="hero-assurances" aria-label="Key facts">
             <li>No sign-up required</li>
