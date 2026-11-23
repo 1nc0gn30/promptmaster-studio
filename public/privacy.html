@@ -221,10 +221,10 @@
           },
           {
             "@type": "Question",
-            "name": "How is user data or payment information stored?",
+            "name": "How is user data or voluntary support information stored?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Payments are processed directly by Stripe Inc. or Solana Tip on Solana. No credit cards or private keys are stored by PromptMaster Studio. Local storage is strictly used for client-side license state."
+              "text": "PromptMaster Studio is 100% free and open-access with zero paywalls. Voluntary coffee tips are processed directly by Stripe Inc. or on-chain via Solana. No credit cards or private keys are stored by PromptMaster Studio."
             }
           }
         ]
@@ -252,7 +252,7 @@
         <a href="/terms.html" class="nav-link">Terms</a>
         <a href="/privacy.html" class="nav-link active">Privacy</a>
         <a href="/support.html" class="nav-link">Support & FAQ</a>
-        <a href="/#pricing" class="btn-cta">Get Pro ($0 (Free))</a>
+        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" class="btn-cta">☕ Buy Us a Coffee</a>
       </nav>
     </div>
   </header>
@@ -288,20 +288,20 @@
       </ul>
     </div>
 
-    <!-- Section 3: Information Collected During Purchases -->
+    <!-- Section 3: Voluntary Support Rails -->
     <div class="legal-card">
-      <h2>3. Transactional & Payment Data</h2>
+      <h2>3. Voluntary Support &amp; Tip Rails</h2>
       <p>
-        When you choose to upgrade to a Pro Sovereign License ($0 (Free) one-time), the transaction is handled exclusively by verified third-party payment rails:
+        PromptMaster Studio is <strong>100% free and open-access</strong> with zero paywalls, zero license keys, and zero subscriptions. If you choose to send a voluntary tip to support development, the transaction is handled exclusively by third-party rails:
       </p>
       <ul>
         <li>
-          <strong>Stripe Payments</strong>:
-          When paying via Credit Card, Apple Pay, or Google Pay, your financial information is processed directly by <strong>Stripe, Inc.</strong> 1nc0gn30 never sees, handles, or stores your credit card number or CVV. We receive only standard transaction metadata (receipt email, billing country, and transaction status) to facilitate license key verification and refund fulfillment.
+          <strong>Buy Us a Coffee (Stripe)</strong>:
+          Voluntary tips via <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" style="color: #818CF8;">Stripe</a> are processed directly by <strong>Stripe, Inc.</strong> Neal Frazier Tech never sees, handles, or stores your credit card number or CVV.
         </li>
         <li>
-          <strong>Solana Tip Web3 (Solana)</strong>:
-          When paying with Solana (SOL) or stablecoins (USDC), the transaction executes directly on the decentralized Solana blockchain. Blockchain transaction signatures and wallet addresses are public on-chain data by nature.
+          <strong>Solana Tip Wallet</strong>:
+          Optional tips sent to <code>GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK</code> execute directly on the decentralized Solana blockchain. Blockchain transaction signatures and wallet addresses are public on-chain data by nature.
         </li>
       </ul>
     </div>
@@ -310,11 +310,9 @@
     <div class="legal-card">
       <h2>4. Browser Local Storage (`localStorage`)</h2>
       <p>
-        PromptMaster Studio uses your browser's local storage solely to deliver seamless utility between sessions:
+        PromptMaster Studio uses your browser's local storage solely to preserve your local workspace between sessions:
       </p>
       <ul>
-        <li><code>promptmaster_pro_licensed</code>: Boolean flag recording whether your Pro license is active on this browser.</li>
-        <li><code>promptmaster_license_key</code>: Your receipt email or activation key.</li>
         <li><code>promptmaster_versions_v1</code>: Local prompt branch snapshots saved via the Version History tab.</li>
       </ul>
       <p>

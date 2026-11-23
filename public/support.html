@@ -304,7 +304,7 @@
         "@type": "ContactPage",
         "name": "PromptMaster Studio Customer Support Desk",
         "url": "https://promptmaster-studio.netlify.app/support.html",
-        "description": "Direct customer support desk, 30-day money-back guarantee processing, and technical inquiry assistance for PromptMaster Studio.",
+        "description": "Direct customer support desk, open-access documentation, and technical inquiry assistance for PromptMaster Studio.",
         "mainEntity": {
           "@type": "Organization",
           "name": "1nc0gn30",
@@ -322,18 +322,10 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "How does the $0 (Free) Lifetime Pro license work?",
+            "name": "Is PromptMaster Studio 100% free and open-access?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You pay $0 (Free) once and receive permanent, unrestricted access to advanced prompt compiler architectures (Chain-of-Thought, ReAct, Tree-of-Thoughts, Few-Shot), code export, and prompt engineering utilities. There are zero recurring monthly subscriptions."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How do I activate my Pro license after purchase?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Pro unlocks automatically when Stripe sends you back to the site after payment, and the site shows you a restore link. To unlock another browser, open that restore link, or click 'Restore access' on the main page and paste your Stripe checkout session ID (cs_...) or Solana transaction signature. If you lose it, email support@nullai.tech with your receipt."
+              "text": "Yes. Every prompt compiler architecture (Chain-of-Thought, ReAct, Tree-of-Thoughts, Few-Shot), code export, and utility in PromptMaster Studio is 100% free and unlocked by default with zero paywalls, zero license keys, and zero subscriptions."
             }
           },
           {
@@ -346,18 +338,10 @@
           },
           {
             "@type": "Question",
-            "name": "What is your refund policy?",
+            "name": "How can I support PromptMaster Studio development?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We offer an unconditional 30-day money-back guarantee. If you are not satisfied for any reason, email us at support@nullai.tech with your Stripe receipt email or Solana transaction signature, and we will issue a full refund within 24-48 business hours."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you accept cryptocurrency payments?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Alongside Stripe (Credit Cards, Apple Pay, Google Pay), we accept decentralized payments via Solana Tip on the Solana blockchain (SOL, USDC, USDT). Click the 'Pay with Solana' button in the pricing banner or modal to pay instantly."
+              "text": "If PromptMaster Studio saves you time, you can optionally Buy Us a Coffee via Stripe (https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X) or send a voluntary Solana tip to GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK."
             }
           }
         ]
@@ -385,7 +369,7 @@
         <a href="/terms.html" class="nav-link">Terms</a>
         <a href="/privacy.html" class="nav-link">Privacy</a>
         <a href="/support.html" class="nav-link active">Support & FAQ</a>
-        <a href="/#pricing" class="btn-cta">Get Pro ($0 (Free))</a>
+        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" class="btn-cta">☕ Buy Us a Coffee</a>
       </nav>
     </div>
   </header>
@@ -396,7 +380,7 @@
       <div class="doc-tag">CLIENT CARE & KNOWLEDGE BASE</div>
       <h1>Support & FAQ Hub</h1>
       <div class="doc-meta">
-        Direct engineer assistance, license activation help, and transparent 30-day refund processing.
+        Direct engineer assistance, open-access documentation, and community issue tracking.
       </div>
     </div>
 
@@ -408,7 +392,7 @@
           <div class="bento-icon" style="background: rgba(16, 185, 129, 0.12); color: #10B981;">✉️</div>
           <div class="bento-title">Direct Support Desk</div>
           <div class="bento-desc">
-            Direct email line to our development engineering team. Priority response queue for Pro license holders within 12 business hours.
+            Direct email line to our development engineering team for technical questions, architecture feedback, and bug reports.
           </div>
         </div>
         <a href="mailto:support@nullai.tech" class="bento-link">support@nullai.tech &rarr;</a>
@@ -417,13 +401,13 @@
       <!-- Card 2 -->
       <div class="bento-card">
         <div>
-          <div class="bento-icon" style="background: rgba(99, 102, 241, 0.12); color: #818CF8;">🛡️</div>
-          <div class="bento-title">30-Day Money-Back Guarantee</div>
+          <div class="bento-icon" style="background: rgba(99, 102, 241, 0.12); color: #818CF8;">☕</div>
+          <div class="bento-title">100% Open-Access · Support Us</div>
           <div class="bento-desc">
-            100% full refund policy on all Stripe and Solana purchases. Send your receipt email for instant processing within 24 to 48 hours.
+            Every feature is 100% free with zero paywalls. Optional tips via Stripe or Solana (<code>GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK</code>).
           </div>
         </div>
-        <a href="#faq" class="bento-link">Read refund terms &rarr;</a>
+        <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" class="bento-link">☕ Buy Us a Coffee &rarr;</a>
       </div>
 
       <!-- Card 3 -->
@@ -462,8 +446,6 @@
           <div class="form-group">
             <label class="form-label" for="ticket-category">Inquiry Category</label>
             <select id="ticket-category" class="form-select">
-              <option value="License Activation / Unlock">License Activation / Unlock</option>
-              <option value="Refund Request (30-Day Guarantee)">Refund Request (30-Day Guarantee)</option>
               <option value="Technical Question / Bug Report">Technical Question / Bug Report</option>
               <option value="Feature Request">Feature Request</option>
               <option value="General Inquiry">General Inquiry</option>
@@ -471,8 +453,8 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="ticket-key">License Key or Stripe Receipt (Optional)</label>
-            <input type="text" id="ticket-key" class="form-input" placeholder="e.g. ch_3M..., or your Stripe checkout email">
+            <label class="form-label" for="ticket-key">Reference / GitHub Handle (Optional)</label>
+            <input type="text" id="ticket-key" class="form-input" placeholder="e.g. @yourhandle or browser version">
           </div>
 
           <div class="form-group">
@@ -500,26 +482,15 @@
         <!-- FAQ Item 1 -->
         <div class="faq-item open">
           <button class="faq-question" onclick="toggleFaq(this)">
-            <span>How does the $0 (Free) Lifetime Pro license work?</span>
+            <span>Is PromptMaster Studio 100% free and open-access?</span>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            You pay $0 (Free) once and receive permanent, unrestricted access to advanced prompt compiler architectures (Chain-of-Thought, ReAct, Tree-of-Thoughts, Few-Shot), code export, and prompt engineering utilities. There are zero recurring monthly subscriptions or hidden fees.
+            Yes. Every prompt compiler architecture (Chain-of-Thought, ReAct, Tree-of-Thoughts, Few-Shot), code export, and prompt engineering utility is 100% unlocked by default with zero paywalls, zero license keys, and zero recurring subscriptions.
           </div>
         </div>
 
         <!-- FAQ Item 2 -->
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            <span>How do I activate my Pro license after purchase?</span>
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            Pro unlocks automatically when Stripe sends you back to the site after payment, and the site shows you a restore link. To unlock another browser, open that restore link, or click <strong>Restore access</strong> on the <a href="/#pricing" style="color: var(--primary);">main page</a> and paste your Stripe checkout session ID (<code>cs_…</code>) or Solana transaction signature. If you lose it, email support@nullai.tech with your receipt.
-          </div>
-        </div>
-
-        <!-- FAQ Item 3 -->
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
             <span>Is my prompt data private? Does PromptMaster store my prompts?</span>
@@ -530,14 +501,14 @@
           </div>
         </div>
 
-        <!-- FAQ Item 4 -->
+        <!-- FAQ Item 3 -->
         <div class="faq-item">
           <button class="faq-question" onclick="toggleFaq(this)">
-            <span>What is your refund policy?</span>
+            <span>How can I support PromptMaster Studio development?</span>
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            We offer an unconditional 30-day money-back guarantee. If you are not satisfied for any reason, email us at <a href="mailto:support@nullai.tech" style="color: var(--primary);">support@nullai.tech</a> or use the ticket form on this page with your Stripe receipt email or Solana transaction signature, and we will issue a full refund within 24-48 business hours.
+            Voluntary support is welcomed via <a href="https://buy.stripe.com/3cIfZg27PdKo2D64Ocfw40X" target="_blank" rel="noopener noreferrer" style="color: var(--primary);">☕ Buy Us a Coffee (Stripe)</a> or by sending a Solana tip to <code>GG2eQbVh8ut1BK6j1A2tz7pSySdLpD38BgyEhGcxdXoK</code>.
           </div>
         </div>
 
